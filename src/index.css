@@ -1,0 +1,58 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     scrollbar-width: none;
+}
+
+.title {
+     font-family: 'Playwrite IS', sans-serif;
+     
+}
+
+
+body {
+     background-color: #fdf0d5;
+     color:#272C39;
+     font-family: Nunito, sans-serif;
+     -webkit-font-smoothing: antialiased;
+     font-weight: 500;
+     transition: all 0.2s linear;
+}
+
+.dark {
+     background-color: #272C39;
+     color: #fdf0d5;
+}
+
+#img-slider {
+     animation: spinning 10s infinite linear;
+     position: relative;
+     z-index: -10;
+     transform: translateX(0%);
+}
+
+@keyframes spinning {
+
+     from {
+          transform: translateX(-100%);
+     }
+     
+} 
+
+.spin {
+     animation: animate-spin 8s linear infinite;
+}
+
+@keyframes animate-spin {
+     to {
+          transform: rotate(360deg);
+     }
+     
+}
+
