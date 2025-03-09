@@ -1,49 +1,56 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+/* stroke-width: 20px */
 *, *::before, *::after {
      padding: 0;
      margin: 0;
      box-sizing: border-box;
-     scrollbar-width: none;
+     scrollbar-width: transparent;
+     scrollbar-color: transparent;
+     transition: all 0.11s ease-in-out;
+}
+::-webkit-scrollbar {
+     width: 6px; 
+     height: 10px;
+     border-radius: 10px; 
+} 
+
+::-webkit-scrollbar-track {
+     background: transparent; 
+     border-radius: 10px;
+}
+
+::-webkit-scrollbar-track:hover {
+     background: transparent; 
+     border-radius: 50%; 
+     cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+     background: linear-gradient(45deg, gray, gray);
+     border-radius: 10px; 
 }
 
 .title {
-     font-family: 'Playwrite IS', sans-serif;
-     
+     font-family: Playwrite IS, sans-serif;
 }
 
-
 body {
-     background-color: #fdf0d5;
-     color:#272C39;
+     background-color: #fdf6e9;
+     color: #272c39;
      font-family: Nunito, sans-serif;
      -webkit-font-smoothing: antialiased;
      font-weight: 500;
-     transition: all 0.2s linear;
 }
 
 .dark {
      background-color: #272C39;
-     color: #fdf0d5;
+     color: #fdf6e9;
 }
 
-#img-slider {
-     animation: spinning 10s infinite linear;
-     position: relative;
-     z-index: -10;
-     transform: translateX(0%);
-}
-
-@keyframes spinning {
-
-     from {
-          transform: translateX(-100%);
-     }
-     
-} 
 
 .spin {
      animation: animate-spin 8s linear infinite;
@@ -52,7 +59,108 @@ body {
 @keyframes animate-spin {
      to {
           transform: rotate(360deg);
-     }
-     
+     }     
 }
 
+
+.animates {
+     text-shadow: 0 0 10px #9013fe, 0 0 30px #ff9e00, 0 0 40px greenyellow, 0 0 80px yellow;
+     animation: animate 1s linear infinite;
+}
+.text-shadow {
+     text-shadow: 0 0 10px white, 0 0 30px white, 0 0 40px white, 0 0 80px white;
+}
+
+@keyframes animate {
+     from {
+          filter: hue-rotate(0deg);
+     }
+
+     to {
+          filter: hue-rotate(360deg);
+     }
+}
+
+.animate-border:hover {
+     border: none solid gray;
+     animation: fills 1s linear infinite;
+     scale: 110%;
+}
+
+
+
+.active-header {
+     opacity: 1;
+     transition: all .12s ease-in-out;
+     backdrop-filter: blur(10px);
+}
+
+.backdrop-container {
+     animation: sliders 10s linear infinite;
+     min-width: 100%;
+     scroll-snap-align: center;
+}
+
+@keyframes sliders {
+     from {
+          scroll-snap-align: center;
+     }
+}
+
+.backdrop-container > img {
+     min-width: 100%;
+}
+
+@keyframes spin {
+     to {
+          transform: rotate(360deg);
+     }
+}
+
+@keyframes spin1 {
+     to {
+          transform: rotate(-360deg);
+     }
+}
+
+@keyframes spin2 {
+     to {
+          transform: rotate(360deg);
+     }
+}
+
+@keyframes spin3 {
+     to {
+          transform: rotate(-360deg);
+     }
+}     
+.animate-spin {
+     animation: spin 20s linear infinite;
+}
+
+.animate-spin1 {
+     animation: spin1 20s linear infinite;
+}
+
+.animate-spin2 {
+     animation: spin2 30s linear infinite;
+}
+
+.animate-spin3 {
+     animation: spin3 30s linear infinite;
+}
+
+
+
+.activeMenu {
+     display: grid;
+}
+
+.ellipsis-overview {
+     display: -webkit-box;
+     -webkit-box-orient: vertical;
+     -webkit-line-clamp: 4; /* Number of lines */
+     overflow: hidden;
+     text-overflow: ellipsis;
+ }
+ 

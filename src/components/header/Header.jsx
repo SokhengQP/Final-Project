@@ -2,106 +2,122 @@ import { Link } from "react-router";
 import { RiMovie2Line } from "react-icons/ri";
 import { FaTv } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { MdExpandMore } from "react-icons/md";
-import { CgLogIn } from "react-icons/cg";
-import { IoSearch } from "react-icons/io5";
+import { MdExpandMore, MdPerson, MdOutlinePersonOutline } from "react-icons/md";
+import { TbMenuDeep } from "react-icons/tb";
 import Modes from '../../Modes';
+import { useEffect, useState } from "react";
 
 export default function Header() {
+     const [menuOpen, setMenuOpen] = useState(false);
+
+     useEffect(() => {
+          const handleScroll = () => {
+               const nav = document.getElementById('nav');
+               if (window.scrollY >= 50) {
+                    nav.classList.add('active-header');
+               } else {
+                    nav.classList.remove('active-header');
+               }
+          };
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+     }, []);
+
      const links = [
           {
-               catory: 'Movie',
-               icons: <RiMovie2Line size='24px' />,
+               category: 'Movie',
+               icon: <RiMovie2Line size={24} />,
                items: [
-                    { id: 1, title: 'Now playing', path: '/now-playing' },
-                    { id: 2, title: 'Popular', path: '/popular-movie' },
-                    { id: 3, title: 'Top Rated', path: '/top-rated-movie' },
-                    { id: 4, title: 'Upcomming', path: '/up-comming' },
+                    { title: 'Now Playing', path: '/now-playing' },
+                    { title: 'Popular', path: '/popular-movie' },
+                    { title: 'Top Rated', path: '/top-rated-movie' },
+                    { title: 'Upcoming', path: '/up-comming' }
                ]
           },
           {
-               catory: 'Tv Show',
-               icons: <FaTv size='24px' />,
+               category: 'TV Show',
+               icon: <FaTv size={24} />,
                items: [
-                    { id: 1, title: 'Popular', path: '/popular-tv' },
-                    { id: 2, title: 'Airing Today', path: '/airing-today' },
-                    { id: 3, title: 'On Tv', path: '/on-tv' },
+                    { title: 'Popular', path: '/popular-tv' },
+                    { title: 'Airing Today', path: '/airing-today' },
+                    { title: 'On TV', path: '/on-tv' },
+                    { title: 'Top Rated', path: '/top-rated-tv' },
                ]
           },
           {
-               catory: 'People',
-               icons: <FaPeopleGroup size='24px' />,
-               items: [
-                    { id: 1, title: 'Popular People', path: '/popular-people' }
-               ]
+               category: 'People',
+               icon: <FaPeopleGroup size={24} />,
+               items: [{ title: 'Popular People', path: '/popular-people' }]
           },
-
           {
-               catory: 'More',
-               icons: <MdExpandMore size='24px' />,
-               items: [
-                    { id: 1, title: 'Discussions', path: '/popular-people' }
-               ]
-          },
-
+               category: 'More',
+               icon: <MdExpandMore size={24} />,
+               items: [{ title: 'Discussions', path: '/discussions' }]
+          }
      ];
 
      return (
-          <>
-          
-               <div className="flex justify-between items-center px-8 py-2 sticky top-0 bg-[#fdf0d5] dark:bg-[#272C39] z-50">
-                    <Link to='/' className="flex flex-shrink-0" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="600">
-                         <img id="logo" fetchpriority="high" className="aspect-square opacity-75 h-24 w-24 rounded-[50%] hover:[filter:drop-shadow(0_0_6px_#5a189a)_drop-shadow(0_0_6px_black)_drop-shadow(0_0_6px_black)_drop-shadow(0_0_6px_#ffba08)] active:[filter:drop-shadow(0_0_6px_#e85d04)_drop-shadow(0_0_6px_#ecf39e)_drop-shadow(0_0_6px_#ff9e00)_drop-shadow(0_0_6px_#240046)]
-                         active:scale-110" src="https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_1280.png" alt="my-profile" />
+          <header id="nav" className="fixed top-0 w-full hover:opacity-100 opacity-50 backdrop-blur-md z-50 transition-all duration-300 shadow-md">
+               <div className="container mx-auto flex justify-between items-center py-3 px-4">
+                    {/* Logo */}
+                    <Link to="/" className="flex-shrink-0">
+                         <img
+                              src="https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_1280.png"
+                              alt="Logo"
+                              className="h-16 w-16 rounded-full transition-transform hover:scale-110"
+                         />
                     </Link>
 
-                    <div className="flex flex-shrink-0 justify-between items-center gap-8">
-                         {/* Movie */}
-                         <div className="flex flex-row items-center justify-between gap-2 text-[14px]" data-aos="fade-down-left" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos-delay="300">
-                              {links.map((catories) => {
-                                   const { id, catory, icons, items } = catories;
-                                   return (
-                                        // hover:shadow-[0_0_10px]
-                                        <div key={id} className="relative flex items-center gap-2 p-4 rounded-xl cursor-pointer hover:drop-shadow-[0_0_14px] group">
-
-                                             <span className="group-hover:-translate-x-1 group-hover:-rotate-6">{icons}</span>
-
-                                             <h1 className="">{catory}</h1>
-                                             <div className="flex-col gap-2 z-10 bg-[#fdf0d576] w-32 p-4  absolute left-0 top-14 rounded-xl text-nowrap hidden group-hover:flex" >
-                                                  {items.map((item, index) => {
-                                                       const { title, path } = item;
-                                                       return (
-                                                            <Link to={path} key={index}>
-                                                                 <span className="text-ellipsis hidden group-hover:flex text-[14px] font-[600] text-black"> {title} </span>
-                                                            </Link>
-                                                       )
-                                                  })}
-                                             </div>
-                                        </div>
-                                   )
-                              })}
-
-                         </div>
-
-                         <div className="flex justify-between gap-8 items-center rounded-xl" data-aos="fade-down-left" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos-delay="300">
-
-                              <Link to="/log-in" target="_blank">
-                                   <CgLogIn size='20px' className="hover:translate-x-1 group-hover:rotate-6 cursor-pointer" />
-                              </Link>
-
-                              <div className="relative flex items-center ">
-                                   <input id="value" type="text" placeholder="Search" className="text-[14px] bg-transparent outline-none border-2 dark:border-white border-black rounded-3xl h-10 px-4" />
-                                   <IoSearch className="absolute right-4 hover:cursor-pointer" />
+                    {/* Desktop Menu (Hidden on Mobile) */}
+                    <nav className="hidden md:flex items-center space-x-6">
+                         {links.map(({ category, icon, items }) => (
+                              <div key={category} className="relative group p-2 rounded-md">
+                                   <div className="flex items-center gap-2 cursor-pointer">
+                                        <span className="group-hover:-translate-x-1 group-hover:-rotate-6 group-hover:-translate-y-[1px] ">{icon}</span>
+                                        <span className="font-bold text-sm animates">{category}</span>
+                                   </div>
+                                   {/* Dropdown */}
+                                   <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+                                        {items.map(({ title, path }) => (
+                                             <Link key={title} to={path} className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                  {title}
+                                             </Link>
+                                        ))}
+                                   </div>
                               </div>
+                         ))}
+                    </nav>
 
-                              <Modes />
-                              
-                         </div>
-
+                    {/* Icons + Mode Switcher */}
+                    
+                    <div className="flex items-center space-x-4">
+                         <Link to="/log-in" className="relative p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                              <MdOutlinePersonOutline size={24} className="group-hover:hidden" />
+                              <MdPerson size={24} className="hidden group-hover:block" />
+                         </Link>
+                         <Modes />
+                         {/* Mobile Menu Button */}
+                         <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+                              <TbMenuDeep size={28} />
+                         </button>
                     </div>
                </div>
-          
-          
-          </>
-     )
+
+               {/* Mobile Menu (Slide Down) */}
+               <div className={`md:hidden ${menuOpen ? 'block' : 'hidden'} bg-white dark:bg-gray-800 border-t`}>
+                    {links.map(({ category, items }) => (
+                         <div key={category} className="border-b">
+                              <h3 className="font-bold px-4 py-2">{category}</h3>
+                              <div className="flex flex-col space-y-1">
+                                   {items.map(({ title, path }) => (
+                                        <Link key={title} to={path} className="px-6 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                                             {title}
+                                        </Link>
+                                   ))}
+                              </div>
+                         </div>
+                    ))}
+               </div>
+          </header>
+     );
 }

@@ -1,8 +1,8 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css';
 
-import { createBrowserRouter, RouterProvider } from 'react-router';
+import { createBrowserRouter, RouterProvider, useLocation } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from './features/store.js';
 
@@ -20,13 +20,36 @@ import PopularTv from './components/tv-shows/PopularTv';
 import TopRateTv from './components/tv-shows/TopRateTv';
 import MovieDetails from './components/movies/MovieDetails.jsx';
 import PathError from './PathError.jsx';
-import PopularPeople from './components/popular-people/PopularPeople'
+import PopularPeople from './components/popular-people/PopularPeople';
+import LogIn from './components/signup/LogIn';
+import TvDetails from './components/movies/TvDetails';
+import Footer from './components/header/Footer.jsx';
+import ProgressRounded from './components/movies/details/ProgressRounded.jsx';
+import VideoType from './components/movies/details/VideoType.jsx';
+import GenresType from './components/movies/details/GenresType.jsx';
+import CastCrew from './components/movies/details/CastCrew.jsx';
+import CastCrewTv from './components/movies/details/CastCrewTv.jsx';
+import GenreTvType from './components/movies/details/GenreTvType.jsx';
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top on route change
+  }, [pathname]);
+
+  return null; // This component doesn't render anything
+};
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MasterLayout />,
+
+    element:
+      <>
+        <ScrollToTop />
+        <MasterLayout />
+      </>,
     children: [
       {
         path: '/header',
@@ -41,10 +64,12 @@ const router = createBrowserRouter([
         path: '/popular-movie',
         element: <PopularMovie />
       },
+
       {
         path: '/now-playing',
-        element: <NowPlaying />
+        element: <NowPlaying />,
       },
+
       {
         path: '/up-comming',
         element: <Upcomming />
@@ -53,40 +78,81 @@ const router = createBrowserRouter([
         path: '/top-rated-movie',
         element: <TopRatedMovie />
       },
+
       // Tv Shows
       {
         path: '/popular-tv',
         element: <PopularTv />
       },
+
       {
         path: '/airing-today',
         element: <AiringToday />
       },
+
       {
         path: '/on-tv',
         element: <OnTv />
       },
+
       {
         path: '/top-rated-tv',
         element: <TopRateTv />
       },
+
       // People
       {
         path: '/popular-people',
         element: <PopularPeople />
       },
       {
+        path: '/video/:id',
+        element: <VideoType />
+      },
+      {
+        path: '/tv/:id/cast&crew',
+        element: <CastCrewTv />
+      },
+      {
+        path: '/tv-details/:id',
+        element: <TvDetails />,
+      },
+      {
         path: '/movie-details/:id',
         element: <MovieDetails />
       },
+
+      {
+        path: '/footer',
+        element: <Footer />
+      },
+
+      {
+        path: '/alternative/:id/title',
+        element: <ProgressRounded />
+      },
+      {
+        path: '/genre/:genre_id',
+        element: <GenresType />
+      },
+      {
+        path: '/genre/:genre_id/tv',
+        element: <GenreTvType />
+      },
+      {
+        path: '/movie/:id/cast&crew',
+        element: <CastCrew />
+      },
     ],
-    
-    errorElement: {
-      path: '/path-error',
-      element: <PathError />
-    }
-    
-  }
+
+    errorElement: <PathError />,
+
+  },
+  {
+    path: '/log-in',
+    element: <LogIn />
+  },
+
 ])
 
 createRoot(document.getElementById('root')).render(
