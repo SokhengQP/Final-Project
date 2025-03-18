@@ -5,8 +5,6 @@ import { MyPropsMovie } from "../../props/MyPropsMovie";
 import { Link } from "react-router";
 import { Votes } from "../../utility";
 import InfiniteScroll from '../../styles/InfiniteScroll';
-import 'swiper/css';
-import 'swiper/css/effect-fade';
 import { IoSearchOutline } from "react-icons/io5";
 import { fetchSearchResults } from '../../features/search/fetchSearchResults';
 import { url, empty } from "../../utility";
