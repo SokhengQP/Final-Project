@@ -33,7 +33,6 @@ import GenreTvType from './components/movies/details/GenreTvType.jsx';
 import VdoTv from './components/tv-shows/details/VdoTv.jsx';
 import Persons from './components/popular-people/Persons.jsx';
 import Favorite from './components/favor/Favorite.jsx'
-import ActingTV from './components/popular-people/acting/ActingTv.jsx';
 import ActingMV from './components/popular-people/acting/ActingMV.jsx';
 
 
@@ -169,11 +168,6 @@ const router = createBrowserRouter([
         path: '/acting-movies',
         element: <ActingMV />
       },
-      {
-        path: '/acting-tv-shows',
-        element: <ActingTV />
-      },
-     
       
     ],
 
