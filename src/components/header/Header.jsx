@@ -2,10 +2,11 @@ import { Link } from "react-router";
 import { RiMovie2Line } from "react-icons/ri";
 import { FaTv } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { MdExpandMore, MdPerson, MdOutlinePersonOutline } from "react-icons/md";
+import { MdPerson, MdOutlinePersonOutline, MdOutlineFavoriteBorder } from "react-icons/md";
 import { TbMenuDeep } from "react-icons/tb";
 import Modes from '../../Modes';
 import { useEffect, useState } from "react";
+
 
 export default function Header() {
      const [menuOpen, setMenuOpen] = useState(false);
@@ -20,7 +21,9 @@ export default function Header() {
                }
           };
           window.addEventListener('scroll', handleScroll);
-          return () => window.removeEventListener('scroll', handleScroll);
+          return () => {
+               window.removeEventListener('scroll', handleScroll)
+          };     
      }, []);
 
      const links = [
@@ -47,36 +50,34 @@ export default function Header() {
           {
                category: 'People',
                icon: <FaPeopleGroup size={24} />,
-               items: [{ title: 'Popular People', path: '/popular-people' }]
+               items: [{ title: 'Popular People', path: '/popular-person' }]
           },
           {
-               category: 'More',
-               icon: <MdExpandMore size={24} />,
-               items: [{ title: 'Discussions', path: '/discussions' }]
-          }
+               category: 'Fav',
+               icon: <MdOutlineFavoriteBorder size={24} />,
+               items: [{ title: 'Favourite', path: '/favorites-component' }]
+          },
      ];
 
      return (
-          <header id="nav" className="fixed top-0 w-full hover:opacity-100 opacity-50 backdrop-blur-md z-50 transition-all duration-300 shadow-md">
-               <div className="container mx-auto flex justify-between items-center py-3 px-4">
+          <header id="nav" className="fixed top-0 w-full hover:opacity-100 opacity-25 backdrop-blur-md z-50 transition-all duration-300 shadow-md">
+               <div className="container flex justify-between items-center py-0 px-16">
                     {/* Logo */}
-                    <Link to="/" className="flex-shrink-0">
-                         <img
-                              src="https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_1280.png"
-                              alt="Logo"
-                              className="h-16 w-16 rounded-full transition-transform hover:scale-110"
-                         />
+                    <Link to="/" className="flex-shrink-0 rounded-3xl custom-drop-shadow">
+                         <img id="logo" className=" aspect-square p-4 h-24 w-24 rounded-3xl cursor-pointer hover:scale-105" src="https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_1280.png" alt="FoxMovie" />
                     </Link>
 
                     {/* Desktop Menu (Hidden on Mobile) */}
                     <nav className="hidden md:flex items-center space-x-6">
                          {links.map(({ category, icon, items }) => (
-                              <div key={category} className="relative group p-2 rounded-md">
-                                   <div className="flex items-center gap-2 cursor-pointer">
+                              <div key={category} className="relative group p-2 rounded-md ">
+                                   <div className="flex items-center gap-2 cursor-pointer custom-drop-shadow">
                                         <span className="group-hover:-translate-x-1 group-hover:-rotate-6 group-hover:-translate-y-[1px] ">{icon}</span>
                                         <span className="font-bold text-sm animates">{category}</span>
                                    </div>
+
                                    {/* Dropdown */}
+                                   
                                    <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
                                         {items.map(({ title, path }) => (
                                              <Link key={title} to={path} className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -89,7 +90,7 @@ export default function Header() {
                     </nav>
 
                     {/* Icons + Mode Switcher */}
-                    
+
                     <div className="flex items-center space-x-4">
                          <Link to="/log-in" className="relative p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
                               <MdOutlinePersonOutline size={24} className="group-hover:hidden" />

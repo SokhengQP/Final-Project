@@ -29,7 +29,7 @@ export default function TopRatedMovie() {
      return (
           <div className="my-[120px]">
                
-               <div className="flex gap-4 justify-between items-center w-full px-10 my-4">
+               <div className="flex gap-4 justify-between items-center w-full px-16 my-4">
                     <h1 className="text-base md:text-xl xl:text-2xl">Top Rated Movies</h1>
                     <Pagination
                          currentPage={page}
@@ -41,7 +41,7 @@ export default function TopRatedMovie() {
                </div>
 
 
-               <section className="grid grid-cols-5 gap-10 px-10">
+               <section className="grid grid-cols-6 gap-10 px-16">
                     {
                          movieTopRate?.results?.length > 0 ? (
                               movieTopRate.results.map(item => {
@@ -49,7 +49,7 @@ export default function TopRatedMovie() {
                                    const movieLink = `/movie-details/${id}-${original_title?.replace(/\s+/g, '-')}`;
 
                                    return (
-                                        <Link to={movieLink} key={id} className="hover:scale-105 cursor-pointer">
+                                        <Link to={movieLink} key={id} className=" cursor-pointer">
                                              <MyPropsMovie
                                                   originalTitle={title || 'Unavailable'}
                                                   poster={url + poster_path}

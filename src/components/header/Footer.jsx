@@ -9,8 +9,7 @@ const Footer = () => {
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
                     <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
-                    <img id="logo" className="aspect-square p-4 opacity-75 h-28 w-28 rounded-3xl hover:[filter:drop-shadow(0_0_6px_#5a189a)_drop-shadow(0_0_14px_#3c096c)_drop-shadow(0_0_6px_purple)_drop-shadow(0_0_6px_#ffba08)] active:[filter:drop-shadow(0_0_6px_#e85d04)_drop-shadow(0_0_6px_#ecf39e)_drop-shadow(0_0_6px_#ff9e00)_drop-shadow(0_0_6px_#240046)]
-                         active:scale-110" src="https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_1280.png" alt="FoxMovie" />
+                    <img id="logo" className="aspect-square p-4 opacity-75 h-28 w-28 rounded-3xl custom-drop-shadow cursor-pointer hover:scale-105" src="https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_1280.png" alt="FoxMovie" />
 
                         <p className="text-base leading-relaxed mt-7">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
 

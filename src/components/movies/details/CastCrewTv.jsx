@@ -25,19 +25,18 @@ export default function CastCrewTv() {
                     <img className="w-[80px] rounded-md" src={tvs?.poster_path ? url + tvs?.poster_path : empty} alt={url + tvs?.backdrop_path} />
                 </div>
 
-                {/* <p>{tvs?.first_air_date}</p> */}
-
                 <div className="cursor-pointer">
                     {/* Link back to tv-details */}
                     <Link to={`/tv-details/${tvs?.id}`} className="font-[700] text-5xl flex items-center gap-2 hover:text-blue-500">
                         <span>{tvs?.name || ''}</span>
-                        <span className="font-[600]">{tvs?.first_air_date ? convertDate(tvs?.first_air_date) : ''} </span>
+                        <span className="font-[600]">{tvs?.first_air_date ? convertDate(tvs?.first_air_date) : ''}</span>
                     </Link>
 
                     <Link className="flex group" to={`/tv-details/${creditTv?.id}`}>
                         <IoIosArrowRoundBack size={'24px'} className="group-hover:-translate-x-1 " />
                         <p className="group-hover:text-gray-400">Back to main</p>
                     </Link>
+                    
                 </div>
             </header>
 
@@ -52,9 +51,10 @@ export default function CastCrewTv() {
                     </div>
                     {
                         creditTv?.cast?.map((math) => {
-                            const { name, profile_path, total_episode_count, roles } = math;
+                            const { id, name, profile_path, total_episode_count, roles } = math;
                             return (
-                                <div
+                                <Link
+                                    to={`/to-persons/${id}-${name.replace(/\s/g, ('-'))}`}
                                     key={name}
                                     className="flex gap-6 rounded-xl shadow-[0_0_4px_gray] overflow-hidden hover:scale-105 transition-transform border-gray-700 cursor-pointer"
                                 >
@@ -69,7 +69,7 @@ export default function CastCrewTv() {
                                     </div>
 
 
-                                </div>
+                                </Link>
                             )
                         })
                     }
@@ -85,9 +85,10 @@ export default function CastCrewTv() {
                     {
 
                         creditTv?.crew?.map(crews => {
-                            const { name, profile_path, jobs, total_episode_count  } = crews;
+                            const { id, name, profile_path, jobs, total_episode_count } = crews;
                             return (
-                                <div
+                                <Link
+                                    to={`/to-persons/${id}-${name?.replace(/\s/g, ('-'))}`}
                                     key={name}
                                     className="flex gap-6 rounded-xl shadow-[0_0_4px_gray] overflow-hidden hover:scale-105 transition-transform border-gray-700 cursor-pointer"
                                 >
@@ -100,7 +101,7 @@ export default function CastCrewTv() {
                                         <p className="truncate text-[12px] md:text-[14px] xl:text-base hover:text-blue-500">{name ? name : ''}</p>
                                         <p className="text-[14px] brightness-90">{jobs?.map(cha => cha.job)} <span className="text-gray-100 text-[14px]">({total_episode_count ? total_episode_count + ' Episodes' : 'N/A'})</span></p>
                                     </div>
-                                </div>
+                                </Link>
                             )
                         }) || 'Hi'
                     }

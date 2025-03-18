@@ -1,6 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+// @type {import('tailwindcss').Config}
 const flowbite = require("flowbite-react/tailwind");
-
 
 export default {
   content: [
@@ -9,11 +8,27 @@ export default {
     flowbite.content(),
   ],
   darkMode: "class",
-  theme: {    
-    extend: {},
+  theme: {
+    extend: {
+      keyframes: {
+        gradient: {
+          '0%': {
+            backgroundPosition: '0% 50%'
+          },
+          '50%': {
+            backgroundPosition: '100% 50%'
+          },
+          '100%': {
+            backgroundPosition: '0% 50%'
+          },
+        },
+      },
+    },
+    animation: {
+      gradient: 'gradient 8s linear infinite'
+    },
   },
   plugins: [
     flowbite.plugin(),
   ],
 }
-

@@ -111,6 +111,7 @@ const Particles = ({
             depth: false,
             alpha: true
         });
+        
         const gl = renderer.gl;
         container.appendChild(gl.canvas);
         gl.clearColor(0, 0, 0, 0);
@@ -256,6 +257,7 @@ const Particles = ({
             }
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
+
     }, [
         particleCount,
         particleSpread,
@@ -270,9 +272,7 @@ const Particles = ({
     ]);
 
     return (
-        <div ref = {containerRef} className = {`relative w-full h-full ${className}`}/> 
-
-
+        <div ref={containerRef} className={`relative w-full h-full ${className}`} />
     );
 };
 

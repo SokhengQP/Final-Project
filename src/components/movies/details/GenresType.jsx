@@ -48,10 +48,10 @@ export default function GenresType() {
 
             <ul className='grid grid-cols-1 gap-8 '>
                 {
-                    discoverByGenre.results?.map((movie) => (
-                        <Link key={movie.id} to={`/movie-details/${movie.id}`} className='hover:scale-105 flex items-center gap-4 rounded-xl overflow-clip shadow-[0_0_2px_gray] dark:bg-[#374151]'>
+                    discoverByGenre?.results?.map((movie) => (
+                        <Link key={movie.id} to={`/movie-details/${movie.id}`} className='hover:scale-105 custom-drop-shadow flex items-center gap-6 rounded-xl shadow-[0_0_4px_gray] overflow-clip'>
                             <img
-                                className='object-contain w-[140px]'
+                                className='object-cover h-full w-[140px] aspect-square'
                                 src={movie.poster_path ? url + movie.poster_path : empty}
                                 alt={movie.title}
                             />

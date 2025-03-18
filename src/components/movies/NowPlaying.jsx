@@ -11,8 +11,8 @@ const empty = `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicon
 const url = `https://image.tmdb.org/t/p/original`;
 
 export default function NowPlaying() {
+     
      const dispatch = useDispatch();
-
      const { movieplayingPage, page } = useSelector((state) => state.movie);
      const totalPage = movieplayingPage?.total_pages || 1;
 
@@ -39,18 +39,17 @@ export default function NowPlaying() {
                     />
                </div>
 
-               <section className="grid grid-cols-5 gap-10 px-10 ">
+               <section className="grid 2xl:grid-cols-6 gap-10 px-16">
                     {
                          movieplayingPage?.results?.length > 0 ? (
                               movieplayingPage.results.map(item => {
                                    const { id, title, release_date, poster_path, vote_average, original_title } = item;
-                                   const movieLink = `/movie-details/${id}-${original_title?.replace(/\s+/g, '-')}`;
                                    return (
-                                        <Link to={movieLink} key={id} className="hover:scale-105 cursor-pointer gap-10">
+                                        <Link to={`/movie-details/${id}-${original_title?.replace(/\s+/g, '-')}`} key={id} className="cursor-pointer gap-10">
                                              <MyPropsMovie
                                                   originalTitle={title || 'Unavailable'}
                                                   poster={poster_path ? (url + poster_path) : (empty)}
-                                                  votes={Votes(vote_average)}
+                                                  votes={Votes(vote_average) || 0}
                                                   releaseDate={release_date || 'Unavailable'}
                                              />
                                         </Link>

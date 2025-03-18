@@ -1,4 +1,4 @@
-import { StrictMode, useEffect } from 'react'
+import React, { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css';
 
@@ -30,10 +30,15 @@ import GenresType from './components/movies/details/GenresType.jsx';
 import CastCrew from './components/movies/details/CastCrew.jsx';
 import CastCrewTv from './components/movies/details/CastCrewTv.jsx';
 import GenreTvType from './components/movies/details/GenreTvType.jsx';
+import VdoTv from './components/tv-shows/details/VdoTv.jsx';
+import Persons from './components/popular-people/Persons.jsx';
+import Favorite from './components/favor/Favorite.jsx'
+import ActingTV from './components/popular-people/acting/ActingTv.jsx';
+import ActingMV from './components/popular-people/acting/ActingMV.jsx';
 
-const ScrollToTop = () => {
+
+export const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top on route change
   }, [pathname]);
@@ -44,7 +49,6 @@ const ScrollToTop = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-
     element:
       <>
         <ScrollToTop />
@@ -102,13 +106,31 @@ const router = createBrowserRouter([
 
       // People
       {
-        path: '/popular-people',
+        path: '/popular-person',
         element: <PopularPeople />
       },
+
+      // Favorite
+      {
+        path: '/favorites-component',
+        element: <Favorite />
+      },
+
+      {
+        path: '/to-persons/:id',
+        element: <Persons />
+      },
+
       {
         path: '/video/:id',
         element: <VideoType />
       },
+
+      {
+        path: '/vdoTv/:id',
+        element: <VdoTv />
+      },
+
       {
         path: '/tv/:id/cast&crew',
         element: <CastCrewTv />
@@ -143,6 +165,16 @@ const router = createBrowserRouter([
         path: '/movie/:id/cast&crew',
         element: <CastCrew />
       },
+      {
+        path: '/acting-movies',
+        element: <ActingMV />
+      },
+      {
+        path: '/acting-tv-shows',
+        element: <ActingTV />
+      },
+     
+      
     ],
 
     errorElement: <PathError />,

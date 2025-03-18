@@ -9,7 +9,7 @@ import {
      fetchDiscover,
      fetchMovieDetails,
      fetchTv,
-     fetchNowPlaying,
+     // fetchNowPlaying,
      fetchMoviesReleaseDate,
      fetchMovieTopRate,
      fetchUpcomming,
@@ -34,7 +34,7 @@ export const movieSlice = createSlice({
           detailsVideo: {},
           popular: {},
           details: {},
-          movieplaying: {},
+          // movieplaying: {},
           movieplayingPage: {},
           tvs: {},
           detailReleaseDate: {},
@@ -47,6 +47,7 @@ export const movieSlice = createSlice({
           error: {},
           loading: {},
           status: "",
+
      },
 
      reducers: {
@@ -57,29 +58,28 @@ export const movieSlice = createSlice({
 
      extraReducers(builder) {
           builder
-          
+
                .addCase(fetchDiscover.fulfilled, (state, action) => {
-                    // TODO
-                    state.status = "SUCCEED";
+                    state.status = 'SUCCEED';
                     state.discover = action.payload; 
                })
 
                .addCase(fetchMovieTopRate.fulfilled, (state, action) => {
                     // TODO
                     state.status = "SUCCEED";
-                    state.movieTopRate = action.payload; 
+                    state.movieTopRate = action.payload;
                })
-               
+
                .addCase(fetchMoviesVideo.fulfilled, (state, action) => {
                     // TODO
                     state.status = "SUCCEED";
-                    state.detailsVideo = action.payload; 
+                    state.detailsVideo = action.payload;
                })
 
                .addCase(fetchUpcomming.fulfilled, (state, action) => {
                     // TODO
                     state.status = "SUCCEED";
-                    state.upcomming = action.payload; 
+                    state.upcomming = action.payload;
                })
 
                .addCase(fetchMovies.pending, (state, action) => {
@@ -90,24 +90,24 @@ export const movieSlice = createSlice({
                .addCase(fetchMovies.fulfilled, (state, action) => {
                     // TODO
                     state.status = "SUCCEED";
-                    state.data = action.payload; 
+                    state.data = action.payload;
                })
 
                .addCase(fetchMoviesReleaseDate.fulfilled, (state, action) => {
                     // TODO
-                    state.detailReleaseDate = action.payload; 
+                    state.detailReleaseDate = action.payload;
                })
-               
+
 
                .addCase(fetchTv.fulfilled, (state, action) => {
                     state.status = "SUCCEED";
-                    state.tvs = action.payload; 
+                    state.tvs = action.payload;
                })
-               
+
                .addCase(fetchPopular.fulfilled, (state, action) => {
                     // TODO
                     state.status = "SUCCEED";
-                    state.popular = action.payload; 
+                    state.popular = action.payload;
                })
 
                .addCase(fetchMovies.rejected, (state, action) => {
@@ -134,11 +134,11 @@ export const movieSlice = createSlice({
 
                })
 
-               .addCase(fetchNowPlaying.fulfilled, (state, action) => {
-                    state.status = 'SUCCEED';
-                    state.movieplaying = action.payload;
+               // .addCase(fetchNowPlaying.fulfilled, (state, action) => {
+               //      state.status = 'SUCCEED';
+               //      state.movieplaying = action.payload;
 
-               })
+               // })
 
                .addCase(fetchNowPlayingPage.fulfilled, (state, action) => {
                     state.status = 'SUCCEED';
@@ -146,7 +146,7 @@ export const movieSlice = createSlice({
 
                })
 
-              
+
                .addCase(fetchGenreMovie.fulfilled, (state, action) => {
                     state.genreMovie = action.payload;
                })
@@ -158,12 +158,12 @@ export const movieSlice = createSlice({
                .addCase(fetchDiscoverByGenre.fulfilled, (state, action) => {
                     state.discoverByGenre = action.payload;
                })
-               
+
                .addCase(fetchTopBilledCast.fulfilled, (state, action) => {
                     state.creditMovie = action.payload;
                })
 
-               
+
                .addCase(fetchCreditTv.fulfilled, (state, action) => {
                     state.creditTv = action.payload;
                })
@@ -172,7 +172,7 @@ export const movieSlice = createSlice({
                .addCase(fetchDiscoverTv.fulfilled, (state, action) => {
                     state.discoverTv = action.payload;
                })
-               
+
      }
 })
 

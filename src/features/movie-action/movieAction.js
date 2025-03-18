@@ -1,13 +1,9 @@
 
-
-
-import {
-     createAsyncThunk
-} from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const url = `995b46c34578880175b2df0cb63164cd`;
-
 // Discover Movie
+
 export const fetchDiscover = createAsyncThunk('/movie/fetchDiscover/',
      async () => {
           try {
@@ -136,9 +132,9 @@ export const fetchTrendingDay = createAsyncThunk('/movie/fetchMovie/',
 
 // tv-detials
 export let fetchTv = createAsyncThunk('/movie/fetchTv/',
-     async (ids) => {
+     async (id) => {
           try {
-               let response = await fetch(`https://api.themoviedb.org/3/tv/${ids}?api_key=${url}`);
+               let response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${url}`);
                let datas = await response.json();
                return datas;
           } catch (error) {
@@ -187,19 +183,6 @@ export const fetchMoviesReleaseDate = createAsyncThunk('/product/fetchfetchMovie
      }
 )
 
-// Now Playing
-export const fetchNowPlaying = createAsyncThunk('/product/fetchNowPlaying/',
-     async () => {
-          try {
-               let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${url}`);
-               const respData = response.json();
-               return respData;
-          } catch (error) {
-               return Promise.reject(error);
-          }
-     }
-);
-
 
 // Now Playing page
 export const fetchNowPlayingPage = createAsyncThunk('/product/fetchNowPlayingPage/',
@@ -244,8 +227,6 @@ export const fetchMovieDetails = createAsyncThunk('/product/fetchDetails/',
 
 
 
-
-
 // For Sonic the Hedgehog 3
 export const fetchSearchMovie = createAsyncThunk('/product/fetchSearchMovie/',
      async () => {
@@ -273,19 +254,6 @@ export const fetchTopRated = createAsyncThunk('/product/fetchTopRated/',
 );
 
 
-// Movie Certification
-export const fetchMovieCertification = createAsyncThunk('/product/fetchMovieCertification/',
-     async () => {
-          try {
-               const response = await fetch(`https://api.themoviedb.org/3/certification/movie/list?api_key=${url}`);
-               const respData = response.json();
-               return respData;
-          } catch (error) {
-               return Promise.reject(error);
-          }
-     }
-);
-
 
 
 // Genre - Movie List
@@ -312,4 +280,16 @@ export const fetchGenreTv = createAsyncThunk('/product/fetchGenreTv/',
                return Promise.reject(error);
           }
      }
+);
+
+export const fetchPopularTv = createAsyncThunk('/my-popular/fetchPopularTvs/',
+    async (page = 1) => {
+        try {
+            let response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${keys}&page=${page}`);
+            let data = response.json();
+            return data;
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
 );

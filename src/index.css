@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 
-/* stroke-width: 20px */
 *, *::before, *::after {
      padding: 0;
      margin: 0;
      box-sizing: border-box;
      scrollbar-width: transparent;
      scrollbar-color: transparent;
-     transition: all 0.11s ease-in-out;
+     transition: all 0.11s linear;
 }
+
 ::-webkit-scrollbar {
      width: 6px; 
      height: 10px;
@@ -23,7 +23,7 @@
      border-radius: 10px;
 }
 
-::-webkit-scrollbar-track:hover {
+::-webkit-scrollbar-track {
      background: transparent; 
      border-radius: 50%; 
      cursor: pointer;
@@ -34,23 +34,54 @@
      border-radius: 10px; 
 }
 
-.title {
-     font-family: Playwrite IS, sans-serif;
+
+:root {
+     --bg-primary: #EFEFEC;
+     --bg-secondary: #FFFFFF;
+     --bg-acting: #1E1E1E;
+     --text-primary: #1C1A26;
+     --text-secondary: #4B5563;
+     --text-acting: hsl(60, 9%, 90%);
+     --border-color: #D1D5DB;
+     --accent-hover: #F3F4F6;
 }
 
+   
+.dark {
+     --bg-primary: #1E1E1E;
+     --bg-secondary: #2D2D2D;
+     --bg-acting: #2D2D2D;
+     --text-primary: hsl(60, 9%, 90%);
+     --text-secondary: #9CA3AF;
+     --text-acting: hsl(60, 9%, 90%);
+     --border-color: #4B5563;
+     --accent-hover: #374151;
+}
+
+   
 body {
-     background-color: #fdf6e9;
-     color: #272c39;
+     background-color: var(--bg-primary);
+     color: var(--text-primary);
      font-family: Nunito, sans-serif;
      -webkit-font-smoothing: antialiased;
      font-weight: 500;
+     transition: background-color 0.3s ease, color 0.3s ease;
+}
+     
+     
+/* Dark Mode */
+body.dark {
+     background-color: var(--bg-primary); /* Deep dark gray for dark mode */
+     color: var(--text-primary); /* Warm off-white text for readability */
 }
 
-.dark {
-     background-color: #272C39;
-     color: #fdf6e9;
+body, [class*="bg-"], [class*="text-"], [class*="border-"] {
+     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+.title {
+     font-family: Playwrite IS, sans-serif;
+}
 
 .spin {
      animation: animate-spin 8s linear infinite;
@@ -63,23 +94,16 @@ body {
 }
 
 
-.animates {
-     text-shadow: 0 0 10px #9013fe, 0 0 30px #ff9e00, 0 0 40px greenyellow, 0 0 80px yellow;
-     animation: animate 1s linear infinite;
-}
 .text-shadow {
-     text-shadow: 0 0 10px white, 0 0 30px white, 0 0 40px white, 0 0 80px white;
+     text-shadow: 0 0 40px gray, 0 0 10px white, 0 0 40px white;
+     color: (display-p3 0.43 0.58 0.9)
 }
 
-@keyframes animate {
-     from {
-          filter: hue-rotate(0deg);
-     }
-
-     to {
-          filter: hue-rotate(360deg);
-     }
+.custom-drop-shadow:hover  {
+     filter: drop-shadow(0 0 20px #5a189a) drop-shadow(0 0 24px #3c096c);
+     transition: all 0.1s ease-in-out;
 }
+
 
 .animate-border:hover {
      border: none solid gray;
@@ -162,5 +186,11 @@ body {
      -webkit-line-clamp: 4; /* Number of lines */
      overflow: hidden;
      text-overflow: ellipsis;
- }
- 
+}
+
+.hide-text {
+     overflow: hidden;
+     display: -webkit-box;
+     -webkit-box-orient: vertical;
+     -webkit-line-clamp: 5;
+}

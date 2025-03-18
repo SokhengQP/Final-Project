@@ -2,15 +2,18 @@ import Particles from './styles/Particles.jsx';
 import Header from './components/header/Header'
 import { Outlet } from "react-router";
 import Footer from './components/header/Footer.jsx';
+import React from 'react';
 
 export default function MasterLayout() {
-
+     const HeaderMemo = React.memo(Header);
+     const FooterMemo = React.memo(Footer);
+     const ParticlesMemo = React.memo(Particles);
      return (
           <>
-               
-               <Header />
+               <HeaderMemo />
+
                <div style={{ width: '100%', height: '100%', position: 'fixed', left: '0', top: '0', zIndex: '-9999' }}>
-                    <Particles
+                    <ParticlesMemo
                          particleColors={['#ffffff', '#ffffff']}
                          particleCount={200}
                          particleSpread={10}
@@ -22,8 +25,7 @@ export default function MasterLayout() {
                     />
                </div>
                <Outlet />
-               <Footer />
-     
+               <FooterMemo />
           </>
      );
 }

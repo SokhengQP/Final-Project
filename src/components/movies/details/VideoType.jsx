@@ -7,6 +7,7 @@ import { CgUnavailable } from "react-icons/cg";
 
 
 export default function VideoType() {
+    
     const dispatch = useDispatch();
     const { id } = useParams();
 
@@ -19,9 +20,6 @@ export default function VideoType() {
     useEffect(() => {
         dispatch(fetchMoviesVideo(id));
     }, []);
-    
-    console.log(detailsVideo)
-
 
     if (!Array.isArray(detailsVideo.results) || detailsVideo.results.length === 0) {
         return <div className="flex justify-center mt-40 items-center">
@@ -54,7 +52,7 @@ export default function VideoType() {
                     detailsVideo.results?.filter(video => video.type === 'Trailer')?.map(item => (
                         <div key={item.key} className="aspect-video overflow-clip hover:scale-105 group">
                             <iframe
-                                allowFullScreennpm 
+                                allowFullScreen
                                 src={`https://www.youtube.com/embed/${item.key}`}
                                 className="w-full h-full rounded-xl"
                                 loading="lazy"
@@ -96,15 +94,3 @@ export default function VideoType() {
 
 
 
-
-{/* {paginatedVideos.map((video) => (
-    <div key={video.id} className="aspect-video overflow-clip hover:scale-105 group">
-        <iframe
-            allowFullScreen
-            src={`https://www.youtube.com/embed/${video.key}`}
-            className="w-full h-full rounded-xl"
-            loading="lazy"
-        />
-        <p className="mt-2 text-start px-4 text-wrap group-hover:text-green-500 text-ellipsis">{video.name}</p>
-    </div>
-))} */}

@@ -23,11 +23,12 @@ export default function GenreTvType() {
         dispatch(fetchGenreTv());
         dispatch(fetchTv(params.id));
     }, [dispatch, genre_id, page]);
-    console.log(tvs)
+    
     function genreName() {
         return genreTv?.genres?.find(item => item.id === genreId)?.name || "Unknown";
     }
 
+    console.log("tv",tvs);
     const handlePageChange = (newPage) => {
         dispatch(setPage(newPage));
     };
@@ -37,7 +38,6 @@ export default function GenreTvType() {
             <div className='flex justify-between items-center '>
                 <div className='text-3xl'>
                     <aside>{genreName()}</aside>
-                    <Link to={`/tv-details/${tvs?.id}`}>Back to main</Link>
                 </div>
                 <Pagination
                     currentPage={page}
@@ -51,7 +51,7 @@ export default function GenreTvType() {
             <ul className='grid grid-cols-1 gap-8 '>
                 {
                     discoverTv.results?.map((movie) => (
-                        <Link key={movie.id} to={`/movie-details/${movie.id}`} className='hover:scale-105 flex items-center gap-4 rounded-xl overflow-clip shadow-[0_0_2px_gray] dark:bg-[#374151]'>
+                        <Link key={movie.id} to={`/tv-details/${movie.id}`} className='hover:scale-105 flex items-center gap-4 rounded-xl overflow-clip shadow-[0_0_2px_gray] dark:bg-[#374151]'>
                             <img
                                 className='object-contain w-[140px]'
                                 src={movie.poster_path ? url + movie.poster_path : empty}
