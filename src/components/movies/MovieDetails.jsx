@@ -75,7 +75,7 @@ export default function MovieDetails() {
                          </div>
 
                          {/* Movie Details */}
-                         <div className="z-10 flex flex-col gap-6 p-4 sm:p-6 rounded-xl w-fit">
+                         <div className="z-10 flex flex-col gap-6 sm:p-6 rounded-xl w-fit pt-8">
                               {/* Title and Rating */}
                               <section className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                                    <p className="text-2xl sm:text-3xl md:text-4xl font-bold custom-drop-shadow cursor-pointer text-wrap">
@@ -128,14 +128,14 @@ export default function MovieDetails() {
                               <div className="flex flex-shrink-0 justify-between gap-6 w-full">
                                    <Link
                                         to={`/video/${details?.id}-${details?.title?.replace(/\s+/g, '-')}-movies`}
-                                        className="flex flex-shrink-0 gap-2 justify-center items-center rounded-3xl text-md w-[50%] bg-red-500 py-2"
+                                        className="flex flex-shrink-0 gap-2 justify-center items-center rounded-3xl text-md flex-grow bg-red-500 py-2"
                                    >
                                         <FaPlay className="cursor-pointer" />
                                         <button>Play Trailer</button>
                                    </Link>
 
                                    <button
-                                        className={`flex flex-shrink-0 justify-center w-[50%] items-center rounded-3xl text-md ${isFav ? 'cursor-not-allowed bg-black' : 'bg-[#090109] text-white '}`}
+                                        className={`flex flex-shrink-0 justify-center flex-grow items-center rounded-3xl text-md ${isFav ? 'cursor-not-allowed bg-black' : 'bg-[#090109] text-white '}`}
                                         onClick={() => handleAddToFavorites(details)}
                                         disabled={isFav}
                                    >

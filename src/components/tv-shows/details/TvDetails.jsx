@@ -74,7 +74,7 @@ export default function TvDetails() {
                     </div>
 
                     {/* TV Details */}
-                    <div className="z-10 flex flex-col gap-6 p-4 sm:p-6 rounded-xl w-fit">
+                    <div className="z-10 flex flex-col gap-6 sm:p-6 rounded-xl w-fit pt-8">
                         {/* Title and Rating */}
                         <section className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <p className="text-2xl sm:text-3xl md:text-4xl font-bold custom-drop-shadow cursor-pointer text-wrap">
@@ -117,17 +117,17 @@ export default function TvDetails() {
                         </section>
 
                         {/* Play Trailer Button */}
-                        <div className="flex flex-shrink-0 justify-between gap-6 w-full">
+                        <div className="flex flex-shrink-0 justify-between gap-4 w-full">
                             <Link
                                 to={`/video/${tvs?.id}-${tvs?.title?.replace(/\s+/g, '-')}-movies`}
-                                className="flex flex-shrink-0 gap-2 justify-center items-center rounded-3xl text-md w-[50%] bg-red-500 py-2"
+                                className="flex flex-shrink-0 gap-2 justify-center items-center rounded-3xl text-md flex-grow bg-red-500 py-2"
                             >
                                 <FaPlay className="cursor-pointer" />
                                 <button>Play Trailer</button>
                             </Link>
 
                             <button
-                                className={`flex flex-shrink-0 justify-center w-[50%] items-center rounded-3xl text-md ${isFav ? 'cursor-not-allowed bg-black' : 'bg-[#090109] text-white '}`}
+                                className={`flex flex-shrink-0 justify-center flex-grow items-center rounded-3xl text-md ${isFav ? 'cursor-not-allowed bg-black' : 'bg-[#090109] text-white '}`}
                                 onClick={() => handleAddToFavorites(tvs)}
                                 disabled={isFav}
                             >
@@ -149,11 +149,11 @@ export default function TvDetails() {
             </div>
 
             {/* Series Cast Section */}
-            <p className="rounded-md px-4 py-2 mx-4 sm:mx-8 md:mx-10 text-xl sm:text-2xl md:text-3xl mt-20 sm:mt-24 md:mt-36 font-semibold">
+            <p className="rounded-md px-4 py-2 sm:mx-8 md:mx-10 text-xl sm:text-2xl md:text-3xl mt-20 sm:mt-24 md:mt-36 font-semibold">
                 Series Cast
             </p>
 
-            <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto mx-16 py-6 sm:py-8 md:py-10 z-50">
+            <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto mx-4 py-6 sm:py-8 md:py-10 z-50">
                 {creditTv?.cast ? (
                     creditTv?.cast?.slice(0, visibleCount)?.map((castMember) => {
                         const { id, profile_path, name, character } = castMember;
@@ -187,7 +187,7 @@ export default function TvDetails() {
                 ) : (
                     <p className="text-gray-400 text-start w-full px-2">We don't have any cast information available.</p>
                 )}
-                <button>
+                <button >
                     {creditTv?.cast && visibleCount < creditTv?.cast?.length && (
                         <div className="text-center py-4">
                             <button
@@ -211,11 +211,12 @@ export default function TvDetails() {
                 </Link>
             </div>
 
-            <div className="px-16">
+            <div>
                 {(() => {
                     if (!Array.isArray(seasons) || seasons.length === 0) {
                         return <li>No seasons available</li>;
                     }
+
                     const lastSeason = seasons[seasons.length - 1];
                     const { id, air_date, season_number, poster_path, episode_count, name } = lastSeason;
                     return [
@@ -223,10 +224,12 @@ export default function TvDetails() {
                             <div className="px-2 overflow-clip">
                                 <img className={`w-32 rounded-md`} src={poster_path ? faces + poster_path : fallbackImg} alt="" />
                             </div>
-                            <div className="flex flex-col justify-center px-2 text-sm">
+                            <div className="flex flex-col justify-center px-2 text-sm flex-shrink">
+                                
                                 <p className="text-xl font-bold">Season {season_number}</p>
                                 <p className="flex items-center ">{convertDate(air_date)} &nbsp; <GoDotFill size={'12px'} /> &nbsp; {episode_count} Episodes</p>
                                 <p className="leading-10">{name} of {tvs?.original_name} premiered on {convertBirthday(air_date)}.</p>
+                                
                                 <p className="flex gap-2 items-center">
                                     <FaRegCalendarAlt size={'20px'} />
                                     <span className="underline ">{last_episode_to_air?.name}</span>

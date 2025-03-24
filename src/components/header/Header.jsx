@@ -105,7 +105,7 @@ export default function Header() {
 
 
      return (
-          <header id="nav" className={`fixed top-0 w-full backdrop-blur-xl z-50 transition-all duration-300 shadow-md px-16 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+          <header id="nav" className={`fixed top-0 w-full backdrop-blur-xl z-50 transition-all duration-300 shadow-md px-4 md:px-16 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
                <div className="container flex justify-between items-center py-0">
                     {/* Logo */}
                     <Link to="/" className="flex-shrink-0 rounded-3xl custom-drop-shadow">
@@ -135,7 +135,7 @@ export default function Header() {
                          <div className="relative p-2 rounded-xl flex items-center">
                               {
                                    !isAuthenticated ? (
-                                        <Link to={`/log-in`} className="flex items-center gap-2 hover:bg-gray-600 px-4 py-2 rounded-lg active-header">
+                                        <Link to={`/log-in`} className="flex items-center gap-2 hover:bg-gray-600 px-4 py-2 rounded-lg active-header flex-shrink-0">
                                              <FiLogOut size='20px' />
                                              <p>Sign in</p>
                                         </Link>) :
