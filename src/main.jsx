@@ -35,6 +35,8 @@ import Persons from './components/popular-people/Persons.jsx';
 import ActingMV from './components/popular-people/acting/ActingMV.jsx';
 import StockFavor from './components/favorite/StockFavor.jsx';
 import SearchProgress from './components/header/SearchProgress.jsx';
+import TotalEpi from './components/tv-shows/details/TotalEpi.jsx';
+
 
 export const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -173,6 +175,13 @@ const router = createBrowserRouter([
         path: '/to-stock-favor',
         element: <StockFavor />
       },
+
+      {
+        path: '/total-tv-episode/:id/seasons/:season-number',
+        element: <TotalEpi />
+      },
+
+      
 
     ],
 

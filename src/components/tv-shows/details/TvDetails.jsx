@@ -49,7 +49,7 @@ export default function TvDetails() {
     return (
         <>
             {/* Background Image */}
-            <div className="fixed w-full top-20 brightness-125 2xl:brightness-50 -z-50 opacity-25">
+            <div className="fixed w-full top-0 brightness-125 2xl:brightness-50 -z-50 opacity-25">
                 <img
                     className="w-full h-auto sm:h-screen object-cover"
                     src={backdrop_path ? faces + backdrop_path : fallbackImg}
@@ -60,7 +60,7 @@ export default function TvDetails() {
             </div>
 
             {/* Main Content */}
-            <div className="relative px-4 sm:px-8 md:px-16">
+            <div className="relative px-8 md:px-16">
                 <div className="grid grid-cols-1 2xl:grid-cols-2 mt-20 sm:mt-24 md:mt-[120px] place-content-center rounded-3xl relative overflow-hidden">
                     {/* Poster Image (Hidden on smaller screens) */}
                     <div className="z-10 group cursor-pointer hidden 2xl:flex items-center justify-center">
@@ -149,11 +149,11 @@ export default function TvDetails() {
             </div>
 
             {/* Series Cast Section */}
-            <p className="rounded-md px-4 py-2 sm:mx-8 md:mx-10 text-xl sm:text-2xl md:text-3xl mt-20 sm:mt-24 md:mt-36 font-semibold">
+            <p className="rounded-md mx-8 py-2 md:mx-8 text-xl sm:text-2xl md:text-3xl mt-12 sm:mt-24 md:mt-36 font-semibold">
                 Series Cast
             </p>
 
-            <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto mx-4 py-6 sm:py-8 md:py-10 z-50">
+            <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto mx-8 md:mx-16 py-6 z-50">
                 {creditTv?.cast ? (
                     creditTv?.cast?.slice(0, visibleCount)?.map((castMember) => {
                         const { id, profile_path, name, character } = castMember;
@@ -205,13 +205,13 @@ export default function TvDetails() {
             <hr className="mx-16"></hr>
 
             {/* Full Cast & Crew Link */}
-            <div className="mx-4 sm:mx-8 md:mx-16 my-4 w-fit rounded-md py-1 hover:text-blue-500 cursor-pointer hover:scale-105 text-sm sm:text-base md:text-lg">
+            <div className="px-8 md:px-16 my-4 w-fit rounded-md py-1 hover:text-blue-500 cursor-pointer custom-drop-shadow hover:scale-105 text-sm sm:text-base md:text-lg">
                 <Link to={`/tv/${tvs?.id}-${original_name?.replace(/\s+/g, '-')}/cast&crew`}>
                     Full Cast & Crew
                 </Link>
             </div>
 
-            <div>
+            <div className="mx-8 md:mx-16">
                 {(() => {
                     if (!Array.isArray(seasons) || seasons.length === 0) {
                         return <li>No seasons available</li>;
@@ -225,22 +225,27 @@ export default function TvDetails() {
                                 <img className={`w-32 rounded-md`} src={poster_path ? faces + poster_path : fallbackImg} alt="" />
                             </div>
                             <div className="flex flex-col justify-center px-2 text-sm flex-shrink">
-                                
-                                <p className="text-xl font-bold">Season {season_number}</p>
+
+                                <Link to={`/total-tv-episode/${tvs?.id}/seasons/${season_number}`} className="text-xl font-bold">Season {season_number}</Link>
                                 <p className="flex items-center ">{convertDate(air_date)} &nbsp; <GoDotFill size={'12px'} /> &nbsp; {episode_count} Episodes</p>
                                 <p className="leading-10">{name} of {tvs?.original_name} premiered on {convertBirthday(air_date)}.</p>
-                                
+
                                 <p className="flex gap-2 items-center">
                                     <FaRegCalendarAlt size={'20px'} />
-                                    <span className="underline ">{last_episode_to_air?.name}</span>
+                                    <span className="underline">{last_episode_to_air?.name}</span>
                                     <p>({season_number}x{last_episode_to_air?.episode_number}, {convertBirthday(last_air_date)})</p>
                                     <span className="border px-2 py-1 rounded-md">Season {last_episode_to_air?.episode_type?.charAt(0)?.toUpperCase() + last_episode_to_air?.episode_type?.slice(1)}</span>
                                 </p>
                             </div>
                         </div>
                     ];
-                }) ()}
+                })()}
             </div>
+
+
+            <button className="mx-8 md:mx-16">View All Seasons</button>
+
+
         </>
     );
 }

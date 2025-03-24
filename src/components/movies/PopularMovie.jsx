@@ -45,10 +45,10 @@ export default function PopularMovie() {
      };
 
      return (
-          <div className="my-[120px] px-16">
+          <div className="my-[120px] px-8 md:px-16">
 
                <div className="flex flex-col 2xl:flex-row justify-between items-center w-full my-4 ">
-                    <h1 className="text-base md:text-xl xl:text-2xl">Popular Movie</h1>
+                    <h1 className="text-xl md:text-2xl xl:text-3xl">Popular Movie</h1>
                     <Pagination
                          currentPage={page}
                          totalPages={totalPages}

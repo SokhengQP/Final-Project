@@ -42,10 +42,10 @@ export default function PopularTv() {
      return (
 
           <>
-               <div className="my-[120px] px-16">
+               <div className="my-[120px] px-8 md:px-16">
 
                     <div className="flex flex-col 2xl:flex-row justify-between items-center w-full my-4">
-                         <h2 className="text-base md:text-xl xl:text-2xl">Popular TV Shows</h2>
+                         <h2 className="text-xl md:text-2xl xl:text-3xl">Popular TV Shows</h2>
                          <Pagination
                               currentPage={page}
                               totalPages={totalPage ?? 1}

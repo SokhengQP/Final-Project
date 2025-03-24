@@ -45,9 +45,9 @@ export default function OnTv() {
 
      return (
           <>
-               <div className="my-[120px] px-16">
+               <div className="my-[120px] px-8 md:px-16">
                     <div className="flex flex-col 2xl:flex-row justify-between items-center w-full my-4">
-                         <h2 className="text-base md:text-xl xl:text-2xl">TV Shows Airing Today</h2>
+                         <h2 className="text-xl md:text-2xl xl:text-3xl">TV Shows Airing Today</h2>
                          <Pagination
                               currentPage={page}
                               totalPages={totalPage ?? 1}

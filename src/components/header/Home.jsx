@@ -80,7 +80,7 @@ export default function Home() {
 
 
                {/* Trending Section with Add to Favorite button */}
-               <div className="flex items-center justify-start gap-8 my-4 px-16">
+               <div className="flex items-center justify-start gap-8 my-4 px-8 md:px-16">
                     <h2 className="text-base 2xl:text-3xl">Trending</h2>
                     <button
                          onClick={toggleDay}
@@ -90,7 +90,7 @@ export default function Home() {
                     </button>
                </div>
 
-               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 px-16">
+               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 px-8 md:px-16">
                     {data.results?.map(item => {
                          let { id, poster_path, original_title, backdrop_path, release_date, media_type, first_air_date, name, vote_average } = item;
                          const isFav = isFavorite(id);

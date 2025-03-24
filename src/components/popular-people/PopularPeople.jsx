@@ -52,7 +52,7 @@ export default function PopularPeople() {
                <div>
                     <h1 className="2xl:text-2xl mt-[120px] text-center">Popular People</h1>
                     <form
-                         className="flex items-center max-w-lg mx-auto mb-4 z-10 my-2"
+                         className="flex items-center max-w-lg mx-auto z-10 my-2"
                          onSubmit={(e) => e.preventDefault()}
                     >
                          <div className="relative w-full">
@@ -85,14 +85,14 @@ export default function PopularPeople() {
                          totalPages={totalPages}
                          onPageChange={handlePageChange}
                          showIcons
-                         className="mb-2 p-0  flex justify-center md:justify-end border"
+                         className="mb-2 p-0 flex justify-center md:justify-end"
                     />
 
-                    <section className="grid grid-cols-1 xl:grid-cols-2 gap-32 px-16">
+                    <section className="grid grid-cols-1 xl:grid-cols-2 gap-20 px-8 md:px-16 pt-12 md:pt-4">
                          {loading ? (
                               <p className="col-span-2 text-center text-lg text-gray-400 ">Loading...</p>
                          ) : error ? (
-                              <p className="col-span-2 text-center text-lg text-red-500 ">Error: {error}</p>
+                              <p className="col-span-2 text-center text-lg text-red-500">Error: {error}</p>
                          ) : displayData?.results?.length > 0 ? (
                               displayData.results.map((person) => {
                                    const { id, name, profile_path, known_for } = person;
@@ -118,6 +118,7 @@ export default function PopularPeople() {
                          )}
                     </section>
                </div>
+
 
           </>
      );

@@ -73,16 +73,32 @@ export const fetchMoviesTv = createAsyncThunk('/my-details/fetchMoviesTv/',
     }
 );
 
-
-// Tv episode
-export const fetchTvEpisode = createAsyncThunk('/tv-season/details/',
-    async ({series_id, season_number}) => {
+// tv seasons
+export const fetchTvEpisode = createAsyncThunk(
+    'tv-season/details-seasons',
+    async ({
+        id,
+        season_number
+    }, {
+        rejectWithValue
+    }) => { // Keep id to match route
         try {
-            const response = await fetch(`tps://api.themoviedb.org/3/tv/${series_id}/season/${season_number}?api_key=${keys}`);
-            const data = response.json();
+            if (!id || !season_number) {
+                throw new Error('Missing ID or season number');
+            }
+
+            const response = await fetch(
+                `https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${keys}`
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json(); // Add await here
             return data;
         } catch (error) {
-            return Promise.reject(error);
+            return rejectWithValue(error.message || 'Failed to fetch TV episodes');
         }
     }
 );

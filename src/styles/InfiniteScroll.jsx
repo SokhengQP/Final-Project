@@ -144,8 +144,8 @@ export default function InfiniteScroll({
       style={{ maxHeight }}
     >
       {/* Gradient Overlays */}
-      <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"></div>
+      {/* <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"></div> */}
 
       {/* Container */}
       <div
@@ -158,7 +158,7 @@ export default function InfiniteScroll({
       >
         {items.map((item, i) => (
           <div
-            className="flex items-center justify-center border-2 border-white rounded-xl select-none box-border relative overflow-hidden"
+            className="flex items-center justify-center border-2 rounded-xl select-none box-border relative overflow-hidden"
             key={i}
             style={{
               height: `${itemMinHeight}px`,
@@ -168,7 +168,7 @@ export default function InfiniteScroll({
             <img
               src={item.src}
               alt={item.alt || `Image ${i + 1}`}
-              className="w-full h-full object-cover"
+              className="object-contain "
             />
           </div>
         ))}

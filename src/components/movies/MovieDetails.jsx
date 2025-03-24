@@ -14,6 +14,7 @@ import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 
 export default function MovieDetails() {
+     
      const dispatch = useDispatch();
      const params = useParams();
      const { details, creditMovie } = useSelector((state) => state.movie);
@@ -25,8 +26,6 @@ export default function MovieDetails() {
           dispatch(fetchMovieDetails(params.id));
           dispatch(fetchTopBilledCast(params.id));
      }, []);
-
-     
 
      const { id, runtime, genres, poster_path, release_date, backdrop_path, title, original_title, vote_average, overview, tagline } = details;
 
@@ -40,8 +39,8 @@ export default function MovieDetails() {
      const isFavorite = (movieId) => {
           return favorites.some(fav => fav.id === movieId);
      };
+     
      const isFav = isFavorite(id);
-
      const [visibleCount, setVisibleCount] = useState(8);
      const loadmore = () => {
           setVisibleCount((prev) => prev + 8);
@@ -50,7 +49,7 @@ export default function MovieDetails() {
      return (
           <>
                {/* Background Image */}
-               <div className="fixed w-full top-20 brightness-125 2xl:brightness-50 -z-50 opacity-25">
+               <div className="fixed w-full top-0 brightness-125 2xl:brightness-50 -z-50 opacity-25">
                     <img
                          onLoad={() => setIsLoaded(true)}
                          onError={() => setIsLoaded(true)}
@@ -61,7 +60,7 @@ export default function MovieDetails() {
                </div>
 
                {/* Main Content */}
-               <div className="relative px-4 sm:px-8 md:px-16 z-10">
+               <div className="relative mx-8 md:px-16 z-10">
                     <div className=" grid grid-cols-1 2xl:grid-cols-2 mt-20 sm:mt-24 md:mt-[120px] place-content-center rounded-3xl relative overflow-hidden">
                          {/* Poster Image (Hidden on smaller screens) */}
                          <div className="z-10 group cursor-pointer hidden 2xl:flex items-center justify-center">
@@ -159,11 +158,11 @@ export default function MovieDetails() {
                </div>
 
                {/* Top Billed Cast Section */}
-               <p className="rounded-md px-4 py-2 mx-4 sm:mx-8 md:mx-10 text-xl sm:text-2xl md:text-3xl mt-20 sm:mt-24 md:mt-36 font-semibold">
+               <p className="rounded-md mx-8 md:mx-16 text-xl sm:text-2xl md:text-3xl mt-12 sm:mt-24 md:mt-36 font-semibold">
                     Top Billed Cast
                </p>
 
-               <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto mx-16 py-6 sm:py-8 md:py-10 z-50">
+               <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto mx-8 md:mx-16 py-6 sm:py-8 md:py-10 z-50">
                     {creditMovie?.cast ? (
                          creditMovie?.cast?.slice(0, visibleCount)?.map((castMember) => {
                               const { id, profile_path, name, character } = castMember;
@@ -180,7 +179,7 @@ export default function MovieDetails() {
                                              src={profile_path ? `${faces}${profile_path}` : fallbackImg}
                                              alt={`${name} as ${character}`}
                                         />
-                                        <div className="font-semibold py-2 px-4 w-full text-center">
+                                        <div className="font-semibold py-2 w-full text-center">
                                              <p className="truncate text-xs sm:text-[12px] md:text-[14px] xl:text-base">
                                                   {name}
                                              </p>
@@ -200,7 +199,7 @@ export default function MovieDetails() {
                </div>
 
                {/* Full Cast & Crew Link */}
-               <div className="mx-4 sm:mx-8 md:mx-10 my-4 w-fit rounded-md px-2 py-1 hover:text-blue-500 cursor-pointer hover:scale-105 text-sm sm:text-base md:text-lg">
+               <div className="mx-8 md:mx-16 mt-2 w-fit rounded-md py-2 hover:text-blue-500 cursor-pointer hover:scale-105 text-sm sm:text-base md:text-lg">
                     <Link to={`/movie/${details?.id}-${original_title?.replace(/\s+/g, '-')}/cast&crew`}>
                          Full Cast & Crew
                     </Link>
