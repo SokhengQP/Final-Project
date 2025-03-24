@@ -131,7 +131,7 @@ export const fetchTrendingDay = createAsyncThunk('/movie/fetchMovie/',
 )
 
 // tv-detials
-export let fetchTv = createAsyncThunk('/movie/fetchTv/',
+export const fetchTv = createAsyncThunk('/movie/fetchTv/',
      async (id) => {
           try {
                let response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${url}`);

@@ -19,7 +19,7 @@ export const fetchSearchResults = createAsyncThunk('search/fetchSearchResults', 
                     `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${encodeURIComponent(query)}`
                 );
                 resolve(fetchResponse);
-            }, 1000); // Delay of 2000ms (2 seconds)
+            }, 2000); // Delay of 2000ms (2 seconds)
         });
 
         if (!response.ok) throw new Error('Failed to fetch search results');

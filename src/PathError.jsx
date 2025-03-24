@@ -11,7 +11,6 @@ export default function PathError() {
                     <h2 className="flex justify-center text-5xl text-blackp py-4 text-black">Page doesn't exist</h2>
                     <img className="absolute w-full h-full -z-10 top-0 left-0" src="https://img.freepik.com/free-vector/error-404-concept-illustration_114360-1811.jpg?t=st=1741158257~exp=1741161857~hmac=8158290e3a86468f81c1182abbd6b47e49ed655f785afa0f559de0ade069439d&w=1380" alt="" />
                </div>
-
           </>
 
      )

@@ -20,9 +20,9 @@ export const fetchPopularTv = createAsyncThunk('/my-popular/fetchPopularTv/',
 
 // TV SERIES LISTS - Airing Today
 export const fetchAiringTv = createAsyncThunk('/my-airTv/fetchAirTv/',
-    async () => {
+    async (page) => {
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${keys}`);
+            const response = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${keys}&page=${page}`);
             const data = response.json();
             return data;
         } catch (error) {
@@ -74,3 +74,15 @@ export const fetchMoviesTv = createAsyncThunk('/my-details/fetchMoviesTv/',
 );
 
 
+// Tv episode
+export const fetchTvEpisode = createAsyncThunk('/tv-season/details/',
+    async ({series_id, season_number}) => {
+        try {
+            const response = await fetch(`tps://api.themoviedb.org/3/tv/${series_id}/season/${season_number}?api_key=${keys}`);
+            const data = response.json();
+            return data;
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
+);

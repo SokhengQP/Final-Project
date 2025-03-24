@@ -158,7 +158,7 @@ export default function InfiniteScroll({
       >
         {items.map((item, i) => (
           <div
-            className="flex items-center justify-center p-4 border-2 border-white rounded-[15px] select-none box-border relative overflow-hidden"
+            className="flex items-center justify-center border-2 border-white rounded-xl select-none box-border relative overflow-hidden"
             key={i}
             style={{
               height: `${itemMinHeight}px`,

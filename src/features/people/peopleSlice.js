@@ -1,17 +1,26 @@
-
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchPopularPeople, fetchPersonDetail, fetchCombinedCredit, fetchExternalId, fetchCreditMovie } from "./peopleAction";
-
+import {
+    createSlice
+} from "@reduxjs/toolkit";
+import {
+    fetchPopularPeople,
+    fetchPersonDetail,
+    fetchCombinedCredit,
+    fetchExternalId,
+    fetchCreditMovie,
+    fetchSearchPeople
+} from "./peopleAction";
 
 export const peopleSlice = createSlice({
     name: 'people',
     initialState: {
         popularPerson: {},
+        searchResults: {},
         personDetail: {},
         combinedCredit: {},
         external: {},
         creditMV: {},
         page: 1,
+        loading: false,
         status: '',
         error: null
     },
@@ -31,6 +40,10 @@ export const peopleSlice = createSlice({
             .addCase(fetchPopularPeople.fulfilled, (state, action) => {
                 state.status = 'SUCCEED';
                 state.popularPerson = action.payload;
+            })
+            .addCase(fetchSearchPeople.fulfilled, (state, action) => {
+                state.searchResults = action.payload;
+                state.loading = false;
             })
 
             .addCase(fetchPopularPeople.rejected, (state, action) => {

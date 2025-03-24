@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
      padding: 0;
      margin: 0;
      box-sizing: border-box;
@@ -13,27 +15,30 @@
 }
 
 ::-webkit-scrollbar {
-     width: 6px; 
+     width: 6px;
      height: 10px;
-     border-radius: 10px; 
-} 
-
-::-webkit-scrollbar-track {
-     background: transparent; 
      border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-     background: transparent; 
-     border-radius: 50%; 
+     background: transparent;
+     border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+     background: transparent;
+     border-radius: 50%;
      cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
      background: linear-gradient(45deg, gray, gray);
-     border-radius: 10px; 
+     border-radius: 10px;
 }
 
+html {
+     scroll-behavior: smooth;
+}
 
 :root {
      --bg-primary: #EFEFEC;
@@ -46,7 +51,7 @@
      --accent-hover: #F3F4F6;
 }
 
-   
+
 .dark {
      --bg-primary: #1E1E1E;
      --bg-secondary: #2D2D2D;
@@ -58,7 +63,7 @@
      --accent-hover: #374151;
 }
 
-   
+
 body {
      background-color: var(--bg-primary);
      color: var(--text-primary);
@@ -67,15 +72,20 @@ body {
      font-weight: 500;
      transition: background-color 0.3s ease, color 0.3s ease;
 }
-     
-     
+
+
 /* Dark Mode */
 body.dark {
-     background-color: var(--bg-primary); /* Deep dark gray for dark mode */
-     color: var(--text-primary); /* Warm off-white text for readability */
+     background-color: var(--bg-primary);
+     /* Deep dark gray for dark mode */
+     color: var(--text-primary);
+     /* Warm off-white text for readability */
 }
 
-body, [class*="bg-"], [class*="text-"], [class*="border-"] {
+body,
+[class*="bg-"],
+[class*="text-"],
+[class*="border-"] {
      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -90,7 +100,7 @@ body, [class*="bg-"], [class*="text-"], [class*="border-"] {
 @keyframes animate-spin {
      to {
           transform: rotate(360deg);
-     }     
+     }
 }
 
 
@@ -99,8 +109,7 @@ body, [class*="bg-"], [class*="text-"], [class*="border-"] {
      color: (display-p3 0.43 0.58 0.9)
 }
 
-.custom-drop-shadow:hover  {
-     filter: drop-shadow(0 0 20px #5a189a) drop-shadow(0 0 24px #3c096c);
+.custom-drop-shadow:hover {
      transition: all 0.1s ease-in-out;
 }
 
@@ -116,7 +125,7 @@ body, [class*="bg-"], [class*="text-"], [class*="border-"] {
 .active-header {
      opacity: 1;
      transition: all .12s ease-in-out;
-     backdrop-filter: blur(10px);
+     /* backdrop-filter: blur(10px); */
 }
 
 .backdrop-container {
@@ -131,7 +140,7 @@ body, [class*="bg-"], [class*="text-"], [class*="border-"] {
      }
 }
 
-.backdrop-container > img {
+.backdrop-container>img {
      min-width: 100%;
 }
 
@@ -157,7 +166,8 @@ body, [class*="bg-"], [class*="text-"], [class*="border-"] {
      to {
           transform: rotate(-360deg);
      }
-}     
+}
+
 .animate-spin {
      animation: spin 20s linear infinite;
 }
@@ -183,7 +193,8 @@ body, [class*="bg-"], [class*="text-"], [class*="border-"] {
 .ellipsis-overview {
      display: -webkit-box;
      -webkit-box-orient: vertical;
-     -webkit-line-clamp: 4; /* Number of lines */
+     -webkit-line-clamp: 4;
+     /* Number of lines */
      overflow: hidden;
      text-overflow: ellipsis;
 }
@@ -193,4 +204,25 @@ body, [class*="bg-"], [class*="text-"], [class*="border-"] {
      display: -webkit-box;
      -webkit-box-orient: vertical;
      -webkit-line-clamp: 5;
+}
+
+/* Blur Image */
+.blur {
+     -webkit-filter: blur(15px);
+     -moz-filter: blur(15px);
+     -o-filter: blur(15px);
+     -ms-filter: blur(15px);
+     filter: blur(15px);
+}
+
+.img-container {
+     border: 1px solid #fff;
+     margin: 40px;
+     float: left;
+     overflow: hidden;
+}
+
+.input-transparent:focus {
+     outline: none;
+     border-color: #2A2A2A; /* Match your design */
 }

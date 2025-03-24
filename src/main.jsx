@@ -6,9 +6,9 @@ import { createBrowserRouter, RouterProvider, useLocation } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from './features/store.js';
 
-// Components
-import Header from './components/header/Header.jsx';
-import Home from './components/header/Home';
+// page
+import Header from './components/header/Header';
+import Home from './components/header/Home.jsx';
 import MasterLayout from './MasterLayout';
 import NowPlaying from './components/movies/NowPlaying';
 import PopularMovie from './components/movies/PopularMovie';
@@ -22,8 +22,8 @@ import MovieDetails from './components/movies/MovieDetails.jsx';
 import PathError from './PathError.jsx';
 import PopularPeople from './components/popular-people/PopularPeople';
 import LogIn from './components/signup/LogIn';
-import TvDetails from './components/movies/TvDetails';
-import Footer from './components/header/Footer.jsx';
+import TvDetails from './components/tv-shows/details/TvDetails.jsx';
+import Footer from './components/header/Footer';
 import ProgressRounded from './components/movies/details/ProgressRounded.jsx';
 import VideoType from './components/movies/details/VideoType.jsx';
 import GenresType from './components/movies/details/GenresType.jsx';
@@ -32,9 +32,9 @@ import CastCrewTv from './components/movies/details/CastCrewTv.jsx';
 import GenreTvType from './components/movies/details/GenreTvType.jsx';
 import VdoTv from './components/tv-shows/details/VdoTv.jsx';
 import Persons from './components/popular-people/Persons.jsx';
-import Favorite from './components/favor/Favorite.jsx'
 import ActingMV from './components/popular-people/acting/ActingMV.jsx';
-
+import StockFavor from './components/favorite/StockFavor.jsx';
+import SearchProgress from './components/header/SearchProgress.jsx';
 
 export const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -57,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: '/header',
         element: <Header />
+      },
+      {
+        path: '/search-progress',
+        element: <SearchProgress />
       },
       {
         path: '/',
@@ -110,10 +114,6 @@ const router = createBrowserRouter([
       },
 
       // Favorite
-      {
-        path: '/favorites-component',
-        element: <Favorite />
-      },
 
       {
         path: '/to-persons/:id',
@@ -168,7 +168,12 @@ const router = createBrowserRouter([
         path: '/acting-movies',
         element: <ActingMV />
       },
-      
+
+      {
+        path: '/to-stock-favor',
+        element: <StockFavor />
+      },
+
     ],
 
     errorElement: <PathError />,

@@ -1,12 +1,16 @@
-export const empty = `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg`;
+export const fallbackImg = `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg`;
 export const url = `https://image.tmdb.org/t/p/original`;
+export const faces = `https://image.tmdb.org/t/p/w220_and_h330_face/`;
+export const faces_original = `https://image.tmdb.org/t/p/original`;
 export const insta = `https://instagram.com/`;
 export const fb = `https://facebook.com/`;
 export const twit = `https://x.com/`;
 export const tiktoks = `https://tiktok.com/@`;
 export const yt = `https://youtube.com/`;
+
 export var monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 export var monthFullName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
 
 // Store multiple functions
 export const innerDate = (monthNames) => {
@@ -43,7 +47,6 @@ export const convertRuntime = (runtimes) => {
 }
 
 
-// const [first, setFirst] = useState();
 export const convertDate = (convertDate) => {
     const fullDate = new Date(convertDate);
     const year = fullDate.getFullYear();
@@ -73,5 +76,3 @@ export function convertGender(peops) {
             return 'Male'
     }
 }
-
-

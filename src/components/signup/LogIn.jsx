@@ -1,38 +1,67 @@
+import { useFormik } from "formik";
 import Particles from "../../styles/Particles"
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import * as Yup from 'yup';
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../features/auths/authAction";
+import { useNavigate } from "react-router";
 
 const ParticleMemo = React.memo(Particles);
 export default function LogIn() {
+     // create formik for handle form data login
+     // submit, change, blur
+
+     const navigate = useNavigate();
+     const dispatch = useDispatch();
+
+     const formik = useFormik({
+          initialValues: {
+               email: '',
+               password: '',
+          },
+
+          onSubmit: (value) => {
+               dispatch(signUp(value))
+               navigate(`/`);
+          },
+
+          validationSchema: Yup.object({
+               password: Yup.string()
+                    .min(6, "Must be 6 characters up!")
+                    .max(15, "Must be 20 characters or less")
+                    .required("Required"),
+               email: Yup.string()
+                    .email('Invalid email address!')
+                    .required("Required")
+          }),
+     });
+
+
      return (
           <>
-               <div className="flex justify-center items-center top-0 left-0 relative h-screen">
-                    <div className="absolute animate-spin  rounded-[40%] border-4 h-[500px] w-[500px] border-purple-500 shadow-[0_0_10px_purple]" />
-                    <div className="absolute animate-spin1 rounded-[40%] border-4 h-[500px] w-[500px] border-orange-500  shadow-[0_0_10px_orange] ml-2" />
-                    <div className="absolute animate-spin2 rounded-[40%] border-4 h-[500px] w-[500px] border-green-500 shadow-[0_0_10px_green] ml-2" />
-                    <div className="absolute animate-spin3 rounded-[40%] border-4 h-[500px] w-[500px] border-blue-500 shadow-[0_0_10px_blue] ml-2" />
+               <form
+                    // onSubmit will get handleSubmit
+                    onSubmit={formik.handleSubmit}
+               >
+                    <input
+                         onChange={formik.handleChange}
+                         value={formik.values.email}
+                         id="email"
+                         name="email"
+                         type="email"
+                    />
+                    {formik.touched.email && formik.touched.email ? <div className="text-red-500">{formik.errors.email}</div> : null}
 
-                    <div className="z-10 flex flex-col items-center gap-4">
-                         <div className="flex gap-8 flex-col w-[300px] ">
+                    <input
+                         onChange={formik.handleChange}
+                         value={formik.values.password}
+                         id="password"
+                         name="password"
+                         type="password" />
 
-                              <div className="flex items-center justify-around">
-                                   <img id="logo" className="aspect-square opacity-75 h-28 w-28 rounded-3xl" src="https://cdn.pixabay.com/photo/2017/01/31/23/42/animal-2028258_1280.png" alt="FoxMovie" />
-                                   <h2 className="text-3xl px-4 text-wrap">
-                                        <span className="text-nowrap text-2xl">Welcome to </span>
-                                        <br />
-                                        <span className="text-nowrap font-[800]">Fox Movie</span>
-                                   </h2>
-                              </div>
-
-
-
-
-
-                         </div>
-
-                         <button className="border-2 border-green-500 w-[100px] p-2 flex rounded-md justify-center">Submit</button>
-                    </div>
-               </div>
+                    {formik.touched.password && formik.errors.password ? <div className="text-red-500">{formik.errors.password}</div> : null}
+                    <button type="submit">Log in</button>
+               </form>
 
                <div style={{ width: '100%', height: '100%', position: 'fixed', left: '0', top: '0', zIndex: '-9999' }}>
                     <ParticleMemo

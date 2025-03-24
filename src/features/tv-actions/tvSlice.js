@@ -9,6 +9,7 @@ import {
     fetchTopRatedTv,
     fetchOnTv,
     fetchMoviesTv,
+    fetchTvEpisode,
 } from "./tvAction";
 
 
@@ -17,9 +18,9 @@ export const tvSlice = createSlice({
     initialState: {
         popularTv: {},
         airTv: {},
+        tvEpi: {},
         onTv: {},
         topRatedTv: {},
-
         page: 1,
         status: '',
         error: null
@@ -32,7 +33,7 @@ export const tvSlice = createSlice({
     },
 
     extraReducers(builder) {
-        
+
         builder
             // fetchAirTv
             .addCase(fetchAiringTv.fulfilled, (state, action) => {
@@ -67,7 +68,10 @@ export const tvSlice = createSlice({
                 state.videoTv = action.payload;
             })
 
-            
+            // tv season episode  
+            .addCase(fetchTvEpisode.fulfilled, (state, action) => {
+                state.tvEpi = action.payload;
+            })
 
     }
 })

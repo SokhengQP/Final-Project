@@ -5,7 +5,7 @@ import { fetchPersonDetail, fetchCombinedCredit, fetchExternalId } from '../../f
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io5";
 import { FaXTwitter, FaTiktok } from "react-icons/fa6";
-import { url, empty, convertGender, convertBirthday, convertCurrentYear, insta, twit, fb, tiktoks, yt } from '../../utility';
+import { url, fallbackImg, convertGender, convertBirthday, convertCurrentYear, insta, twit, fb, tiktoks, yt } from '../../utility';
 import ActingMV from './acting/ActingMV.jsx';
 import React from 'react';
 
@@ -29,7 +29,7 @@ export default function Persons() {
     const param = useParams();
     let { personDetail, combinedCredit, external } = useSelector((state) => state.people);
     const { facebook_id, instagram_id, tiktok_id, twitter_id, youtube_id } = external;
-    
+
     const [posterCount, setPosterCount] = useState(0);
     useEffect(() => {
         dispatch(fetchPersonDetail(param.id));
@@ -40,23 +40,25 @@ export default function Persons() {
     useEffect(() => {
         if (combinedCredit?.cast) {
             const castcount = combinedCredit.cast?.reduce((acc, item) => {
-                console.log(item?.media_type === 'movie');
                 return item?.media_type ? acc + 1 : acc;
             }, 0);
-            setPosterCount(castcount);                          
+            setPosterCount(castcount);
         };
     }, [combinedCredit?.cast]);
 
     const { gender, birthday, place_of_birth, also_known_as } = personDetail;
-
+    const [isLoaded, setIsLoaded] = useState(false);
     return (
         <>
             <div className="my-[120px] px-10">
-                <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+                <div className="flex flex-col  md:flex-row justify-between items-start gap-8">
                     {/* person profile_path */}
                     <div className="w-full md:w-[26%] ">
 
-                        <img className="rounded-xl" src={personDetail?.profile_path ? url + personDetail?.profile_path : empty} alt="" />
+                        <img
+                            onLoad={() => setIsLoaded(true)}
+                            onError={() => setIsLoaded(true)}
+                            className={`rounded-xl ${!isLoaded ? 'blur-xl' : ''}`} src={personDetail?.profile_path ? url + personDetail?.profile_path : fallbackImg} alt="" />
 
                         <div className="py-6 flex items-center gap-6">
                             <Link className={`custom-drop-shadow p-2 cursor-pointer ${facebook_id ? facebook_id : 'hidden'}`} to={fb + facebook_id} target="_blank">
@@ -121,7 +123,7 @@ export default function Persons() {
 
 
                     {/* Get the combined movie and TV credits that belong to a person. */}
-                    <section className="flex flex-col gap-2 w-full md:w-[70%] overflow-hidden ">
+                    <section className="flex flex-col gap-2 w-full md:w-[70%] overflow-hidden">
                         <Link to={`/popular-person`} className="custom-active text-4xl md:text-5xl font-[800] px-2">
                             {personDetail?.name}
                         </Link>
@@ -163,7 +165,10 @@ export default function Persons() {
                                                 to={media_type === "movie" ? `/movie-details/${id}` : `/tv-details/${id}`}
                                                 className="flex flex-col h-[300px] md:h-[400px] flex-shrink-0 justify-start overflow-hidden custom-drop-shadow w-[150px] md:w-[200px] cursor-pointer hover:scale-105"
                                                 key={credit_id}>
-                                                <img className="h-[80%] md:h-[85%] rounded-xl object-cover " src={poster_path ? url + poster_path : empty} alt={credit_id} />
+                                                <img
+                                                    onLoad={() => setIsLoaded(true)}
+                                                    onError={() => setIsLoaded(true)}
+                                                    className={`h-[80%] md:h-[85%] rounded-xl object-cover ${!isLoaded ? 'blur-xl' : ''}`} src={poster_path ? url + poster_path : fallbackImg} alt={credit_id} />
                                                 <p className="text-ellipsis h-[15%] py-4 px-2 justify-self-start text-sm md:text-base">
                                                     {original_title || name}
                                                 </p>
@@ -178,7 +183,7 @@ export default function Persons() {
                                 <aside>
                                     <ActingMV />
                                 </aside>
-                             
+
                             </div>
 
                         </div>
