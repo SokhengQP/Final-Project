@@ -11,6 +11,8 @@ import { MdDateRange } from "react-icons/md";
 import { addToFavorites } from "../../../features/favorite-action/favouriteSlice.js";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
+import { FaRegCalendarAlt } from "react-icons/fa";
+
 export default function TvDetails() {
 
     const params = useParams();
@@ -215,24 +217,27 @@ export default function TvDetails() {
                         return <li>No seasons available</li>;
                     }
                     const lastSeason = seasons[seasons.length - 1];
-                    const { air_date, season_number, poster_path, episode_count, name } = lastSeason;
+                    const { id, air_date, season_number, poster_path, episode_count, name } = lastSeason;
                     return [
-                        <div className="flex">
-                            <div className="p-2 border-none">
-                                <img className={`w-24 `} src={poster_path ? faces + poster_path : fallbackImg} alt="" />
+                        <div className="flex cursor-pointer" key={id}>
+                            <div className="px-2 overflow-clip">
+                                <img className={`w-32 rounded-md`} src={poster_path ? faces + poster_path : fallbackImg} alt="" />
                             </div>
-                            <div>
+                            <div className="flex flex-col justify-center px-2 text-sm">
                                 <p className="text-xl font-bold">Season {season_number}</p>
-                                <p className="flex items-center">{convertDate(air_date)} &nbsp; <GoDotFill size={'12px'} /> &nbsp; {episode_count} Episodes</p>
-                                <p>{name} of {tvs?.original_name} premiered on {convertBirthday(air_date)}.</p>
-                                <p>{last_episode_to_air?.name} ({season_number}x{last_episode_to_air?.episode_number}, {convertBirthday(last_air_date)}) <span className="border px-2 py-1 rounded-md   ">Season {last_episode_to_air?.episode_type?.charAt(0)?.toUpperCase() + last_episode_to_air?.episode_type?.slice(1)}</span></p>
+                                <p className="flex items-center ">{convertDate(air_date)} &nbsp; <GoDotFill size={'12px'} /> &nbsp; {episode_count} Episodes</p>
+                                <p className="leading-10">{name} of {tvs?.original_name} premiered on {convertBirthday(air_date)}.</p>
+                                <p className="flex gap-2 items-center">
+                                    <FaRegCalendarAlt size={'20px'} />
+                                    <span className="underline ">{last_episode_to_air?.name}</span>
+                                    <p>({season_number}x{last_episode_to_air?.episode_number}, {convertBirthday(last_air_date)})</p>
+                                    <span className="border px-2 py-1 rounded-md">Season {last_episode_to_air?.episode_type?.charAt(0)?.toUpperCase() + last_episode_to_air?.episode_type?.slice(1)}</span>
+                                </p>
                             </div>
                         </div>
                     ];
-                })()}
+                }) ()}
             </div>
-
-
         </>
     );
 }

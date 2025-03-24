@@ -125,7 +125,7 @@ export default function StockFavor() {
                                             </aside>
                                         </div>
                                         <button
-                                            className="absolute top-3 right-6 rounded-[12px] hover:rounded-[50%] custom-drop-shadow p-2 border-2 border-transparent border-white dark:border-black"
+                                            className="absolute top-3 right-6 rounded-[12px] hover:rounded-[50%] flex items-center justify-center w-8 h-8 custom-drop-shadow border-2 border-transparent border-white dark:border-black"
                                             onClick={() => handleRemoveFromFavorites(id)}
                                         >
                                             <CiBookmarkRemove className="text-current w-[20px]" />

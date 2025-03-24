@@ -56,9 +56,6 @@ const authSlice = createSlice({
                 state.profile = action.payload;
 
             })
-
-
-
     }
 })
 

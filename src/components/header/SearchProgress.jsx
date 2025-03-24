@@ -1,4 +1,4 @@
-import { faces, fallbackImg } from "../../utility.js";
+import { faces, faces_original, fallbackImg } from "../../utility.js";
 import { MyPropsMovie } from "../../props/MyPropsMovie.jsx";
 import { Link } from "react-router";
 import { Votes } from "../../utility.js";
@@ -9,7 +9,6 @@ import { fetchSearchResults } from '../../features/search/fetchSearchResults.js'
 import { addToFavorites } from '../../features/favorite-action/favouriteSlice.js'
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { IoTv } from "react-icons/io5";
-
 
 export default function SearchProgress() {
     const dispatch = useDispatch();
@@ -71,10 +70,10 @@ export default function SearchProgress() {
                     </button>
                 </form>
             </div>
-            <section>
+            <section className="px-16">
                 {query && (
                     <div>
-                        <h3 className="text-xl font-semibold p-4">Search Results</h3>
+                        <h3 className="text-xl font-semibold py-4">Search Results</h3>
                         {loading ? (
                             <p>Loading...</p>
                         ) : error ? (
@@ -82,7 +81,7 @@ export default function SearchProgress() {
                         ) : results.length === 0 ? (
                             <p>No results found</p>
                         ) : (
-                            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 transition-all px-4 ease-in-out gap-6 duration-500">
+                            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6 transition-all ease-in-out gap-6 duration-500">
                                 {results.map(item => {
                                     let { id, poster_path, original_title, release_date, media_type, first_air_date, name, vote_average } = item;
                                     const isFav = isFavorite(id);
@@ -90,7 +89,7 @@ export default function SearchProgress() {
                                         <div key={id} className="relative">
                                             <Link to={media_type === 'movie' ? `/movie-details/${id}` : `/tv-details/${id}`}>
                                                 <MyPropsMovie
-                                                    poster={poster_path ? faces + poster_path : fallbackImg}
+                                                    poster={poster_path ? faces_original + poster_path : fallbackImg}
                                                     originalTitle={original_title || name}
                                                     votes={vote_average ? Votes(vote_average) : 0}
                                                     releaseDate={release_date || first_air_date}

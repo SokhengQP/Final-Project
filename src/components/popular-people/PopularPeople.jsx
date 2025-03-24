@@ -85,7 +85,7 @@ export default function PopularPeople() {
                          totalPages={totalPages}
                          onPageChange={handlePageChange}
                          showIcons
-                         className="mb-2 p-0 px-16 flex justify-end"
+                         className="mb-2 p-0  flex justify-center md:justify-end border"
                     />
 
                     <section className="grid grid-cols-1 xl:grid-cols-2 gap-32 px-16">

@@ -10,6 +10,9 @@ import main_logo from "../../source-image/fox_logo.jpg"
 import { VscGoToSearch } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile, logout } from "../../features/auths/authAction";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
+import { Dropdown } from "flowbite-react";
+
 
 export default function Header() {
      const [menuOpen, setMenuOpen] = useState(false);
@@ -57,6 +60,10 @@ export default function Header() {
           navigate('/log-in');
      };
 
+     const handleMenuItemClick = () => {
+          setMenuOpen(false);
+     };
+
      const links = [
           {
                category: 'Movie',
@@ -102,25 +109,21 @@ export default function Header() {
                <div className="container flex justify-between items-center py-0">
                     {/* Logo */}
                     <Link to="/" className="flex-shrink-0 rounded-3xl custom-drop-shadow">
-                         <img id="logo" className=" aspect-square p-4 h-24 w-24 rounded-3xl cursor-pointer hover:scale-105" src={main_logo} alt="FoxMovie" />
+                         <img id="logo" className="aspect-square p-4 h-24 w-24 rounded-3xl cursor-pointer hover:scale-105" src={main_logo} alt="FoxMovie" />
                     </Link>
 
                     {/* Desktop Menu (Hidden on Mobile) */}
-                    <nav className="hidden md:flex items-center ">
+                    <nav className="hidden md:flex items-center">
                          {links.map(({ category, icon, items }) => (
                               <div key={category} className="relative group p-2 rounded-md">
                                    <div className="flex items-center gap-2 cursor-pointer custom-drop-shadow px-4 py-2 rounded-xl border-transparent border-2 hover:border-current">
                                         <span className="group-hover:-translate-x-1">{icon}</span>
                                         <span className="font-bold text-sm animates text-nowrap">{category}</span>
                                    </div>
-
-                                   {/* Dropdown */}
-
                                    <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
                                         {items.map(({ title, path }) => (
                                              <Link key={title} to={path} className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
                                                   <div>{title}</div>
-
                                              </Link>
                                         ))}
                                    </div>
@@ -129,14 +132,16 @@ export default function Header() {
                     </nav>
 
                     <div className="flex items-center space-x-4">
-                         <div className="relative p-2 rounded-xl flex items-center hover:bg-gray-200 dark:hover:bg-gray-700">
+                         <div className="relative p-2 rounded-xl flex items-center">
                               {
-                                   !isAuthenticated && !isAuthenticated ? (
-                                        <Link to={`/log-in`}>
-                                             Log in
-                                        </Link>) : <button onClick={handleLogout}>
-                                        <img className="w-10 rounded-md" src={profile?.avatar} alt={profile?.name} />
-                                   </button>
+                                   !isAuthenticated ? (
+                                        <Link to={`/log-in`} className="flex items-center gap-2 hover:bg-gray-600 px-4 py-2 rounded-lg active-header">
+                                             <FiLogOut size='20px' />
+                                             <p>Sign in</p>
+                                        </Link>) :
+                                        <Dropdown label="" dismissOnClick={false} renderTrigger={() => <img src={profile?.avatar} alt={profile?.name} className="w-12 hover:rounded-xl rounded-[50%] cursor-pointer" />}>
+                                             <Dropdown.Item onClick={handleLogout} className="text-nowrap">Sign out   <FiLogIn size='20px' /></Dropdown.Item>
+                                        </Dropdown>
                               }
                               <MdPerson size={24} className="hidden group-hover:block" />
                          </div>
@@ -155,7 +160,12 @@ export default function Header() {
                               <h3 className="font-bold px-4 py-2">{category}</h3>
                               <div className="flex flex-col space-y-1">
                                    {items.map(({ title, path }) => (
-                                        <Link key={title} to={path} className="px-6 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <Link
+                                             key={title}
+                                             to={path}
+                                             className="px-6 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
+                                             onClick={handleMenuItemClick} // Add onClick handler here
+                                        >
                                              <section>{title}</section>
                                         </Link>
                                    ))}
