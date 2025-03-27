@@ -4,12 +4,11 @@ import { useParams } from "react-router";
 import { fetchMovieDetails, fetchTopBilledCast } from "../../features/movie-action/movieAction";
 import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router";
-import { convertRuntime, Votes, innerDate, url } from '../../utility.js';
 import ProgressRounded from "./details/ProgressRounded.jsx";
 import { IoMdTime } from "react-icons/io";
 import { MdDateRange } from "react-icons/md";
 import { GrOverview } from "react-icons/gr";
-import { faces, fallbackImg, faces_original } from '../../utility.js';
+import { faces, fallbackImg, faces_original, innerDate, Votes, convertRuntime } from '../../utility.js';
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 
@@ -54,7 +53,7 @@ export default function MovieDetails() {
                          onLoad={() => setIsLoaded(true)}
                          onError={() => setIsLoaded(true)}
                          className={`${!isLoaded ? 'blur-xl' : ''} w-full`}
-                         src={backdrop_path ? url + backdrop_path : fallbackImg}
+                         src={backdrop_path ? faces_original + backdrop_path : fallbackImg}
                          alt={title || ''}
                     />
                </div>
@@ -74,7 +73,8 @@ export default function MovieDetails() {
                          </div>
 
                          {/* Movie Details */}
-                         <div className="z-10 flex flex-col gap-6 sm:p-6 rounded-xl w-fit pt-8">
+                         <div className="z-10 flex flex-col gap-6 sm:p-6 rounded-xl w-fit pt-8 relative">
+                              <div className="absolute top-2/4 left-0 blur-3xl bg-gray-400 "></div>
                               {/* Title and Rating */}
                               <section className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                                    <p className="text-2xl sm:text-3xl md:text-4xl font-bold custom-drop-shadow cursor-pointer text-wrap">

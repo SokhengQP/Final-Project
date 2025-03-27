@@ -39,7 +39,7 @@ const searchSlice = createSlice({
         loading: false,
         error: null,
     },
-    reducers: {}, // No regular reducers needed for now
+    reducers: {}, 
 
     extraReducers: (builder) => {
         builder

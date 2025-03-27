@@ -37,7 +37,7 @@ export default function VdoTv() {
 
     return (
         <>
-            <div className="my-[120px] px-4">
+            <div className="my-[120px] px-4 flex flex-col">
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl font-semibold text-start md:text-xl xl:text-2xl">Total Video(s): {videoTv.results?.length}</h2> {/* Changed from detailsVideo to videoTv */}
                     <Pagination

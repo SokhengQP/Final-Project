@@ -149,7 +149,7 @@ export default function Persons() {
                                 <p>Known For</p>
                             </div>
 
-                            <div className="flex items-center overflow-x-auto gap-6 py-10 px-16">
+                            <div className="flex items-center overflow-x-auto gap-8 md:gap-16 py-10">
                                 {
                                     combinedCredit.cast?.slice(0, 8)?.map((item) => {
                                         const {

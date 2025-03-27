@@ -29,7 +29,6 @@ const favouriteSlice = createSlice({
                 state.favorites.push(favoriteMovie);
                 try {
                     localStorage.setItem('favorites', JSON.stringify(state.favorites));
-
                 } catch {
                     console.error('Error saving favorites to localStorage:', err);
                 }

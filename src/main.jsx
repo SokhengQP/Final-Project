@@ -175,9 +175,8 @@ const router = createBrowserRouter([
         path: '/to-stock-favor',
         element: <StockFavor />
       },
-
       {
-        path: '/total-tv-episode/:id/seasons/:season-number',
+        path: '/tv-episode/:id/seasons/:season_number',
         element: <TotalEpi />
       },
 

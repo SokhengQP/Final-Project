@@ -44,6 +44,7 @@ export const movieSlice = createSlice({
           castTv: {},
           discoverTv: {},
           page: 1,
+          moreCrew: 8,
           error: {},
           loading: {},
           status: "",
@@ -53,7 +54,12 @@ export const movieSlice = createSlice({
      reducers: {
           setPage: (state, action) => {
                state.page = action.payload;
+          },
+          
+          setMore: (state, action) => {
+               state.moreCrew = action.payload;
           }
+     
      },
 
      extraReducers(builder) {
@@ -179,5 +185,5 @@ export const movieSlice = createSlice({
 
 export default movieSlice.reducer;
 export const {
-     setPage
+     setPage, setMore
 } = movieSlice.actions;

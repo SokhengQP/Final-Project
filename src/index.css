@@ -67,10 +67,10 @@ html {
 body {
      background-color: var(--bg-primary);
      color: var(--text-primary);
-     font-family: Nunito, sans-serif;
      -webkit-font-smoothing: antialiased;
-     font-weight: 500;
      transition: background-color 0.3s ease, color 0.3s ease;
+     font-family: "Roboto", sans-serif;
+     font-weight: 400;
 }
 
 /* Dark Mode */
@@ -223,5 +223,6 @@ body,
 
 .input-transparent:focus {
      outline: none;
-     border-color: #2A2A2A; /* Match your design */
+     border-color: #2A2A2A;
+     /* Match your design */
 }

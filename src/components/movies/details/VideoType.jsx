@@ -34,20 +34,19 @@ export default function VideoType() {
     const totalPages = Math.ceil(detailsVideo.results.length / videosPerPage);
 
     return (
-        <div className="my-[120px] px-4">
-            <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold text-start md:text-xl xl:text-2xl">Total Video(s): {detailsVideo.results?.length}</h2>
+        <div className="my-[120px] px-8 md:py-16">
+            <div className="flex justify-between items-center flex-col py-2">
+                <h2 className="text-xl font-semibold text-start md:text-xl xl:text-2xl">Total Videos: {detailsVideo.results?.length}</h2>
                 <Pagination
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={setCurrentPage}
-                    showIcons
-                    className="mb-2 p-0"
+                    className={`mb-2 p-0`}
                 />
             </div>
 
-            <h3 className="text-xl hover:underline cursor-pointer">Official Trailer</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-6">
+            <h3 className="text-xl hover:underline cursor-pointer px-4 md:px-16 py-2">Official Trailer</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-8 px-4 md:px-16 md:gap-16">
                 {
                     detailsVideo.results?.filter(video => video.type === 'Trailer')?.map(item => (
                         <div key={item.key} className="aspect-video overflow-clip hover:scale-105 group">
@@ -63,10 +62,10 @@ export default function VideoType() {
                 }
             </div>
 
-            <h3 className="text-xl mt-10 hover:underline cursor-pointer">Others</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-6">
+            <h3 className="text-xl mt-10 hover:underline cursor-pointer px-4 md:px-16 py-2">Others</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 px-4 md:px-16 gap-8 md:gap-16">
                 {
-                    paginatedVideos?.map(item => (
+                    paginatedVideos?.filter(video => video.type !== 'Trailer')?.map(item => (
                         <div key={item.key} className="aspect-video overflow-clip hover:scale-105 group">
                             <iframe
                                 allowFullScreen
@@ -82,15 +81,4 @@ export default function VideoType() {
         </div>
     );
 }
-
-
-
-
-
-
-
-
-
-
-
 

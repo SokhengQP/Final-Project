@@ -90,7 +90,7 @@ export default function Home() {
                     </button>
                </div>
 
-               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 px-8 md:px-16">
+               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 md:gap-16 px-8 md:px-16">
                     {data.results?.map(item => {
                          let { id, poster_path, original_title, backdrop_path, release_date, media_type, first_air_date, name, vote_average } = item;
                          const isFav = isFavorite(id);
@@ -104,6 +104,7 @@ export default function Home() {
                                              releaseDate={release_date || first_air_date}
                                         />
                                    </Link>
+                                   
                                    <button
                                         className={`absolute right-4 top-2 mt-2 px-2 py-2 rounded-[50%] text-md ${isFav ? 'bg-black text-red-600 cursor-not-allowed' : 'bg-[#090109] text-white '}`}
                                         onClick={() => handleAddToFavorites(item)}

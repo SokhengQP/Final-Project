@@ -22,15 +22,18 @@ export const tvSlice = createSlice({
         onTv: {},
         topRatedTv: {},
         page: 1,
+        season: null,
+        error: null,
         status: '',
-        error: null
     },
 
     reducers: {
         setPage: (state, action) => {
             state.page = action.payload;
-        }
+        },
     },
+
+
 
     extraReducers(builder) {
 
