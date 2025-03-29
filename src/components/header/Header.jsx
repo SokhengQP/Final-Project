@@ -134,11 +134,11 @@ export default function Header() {
                          <div className="relative p-2 rounded-xl flex items-center">
                               {
                                    !isAuthenticated ? (
-                                        <Link to={`/log-in`} className="flex items-center gap-2 hover:bg-gray-600 px-4 py-2 rounded-lg active-header flex-shrink-0">
+                                        <Link to={`/log-in`} className="flex items-center gap-2 hover:bg-gray-600 px-4 py-2 rounded-lg flex-shrink-0">
                                              <FiLogOut size='20px' />
                                              <p>Sign in</p>
                                         </Link>) :
-                                        <Dropdown label="" dismissOnClick={false} renderTrigger={() => <img src={profile?.avatar} alt={profile?.name} className="w-12 hover:rounded-xl rounded-[50%] cursor-pointer" />}>
+                                        <Dropdown label="" dismissOnClick={false} renderTrigger={() => <img src={profile?.avatar} alt={profile?.name} className="w-12 hover:rounded-xl duration-200 rounded-[50%] cursor-pointer" />}>
                                              <Dropdown.Item onClick={handleLogout} className="text-nowrap">Sign out   <FiLogIn size='20px' /></Dropdown.Item>
                                         </Dropdown>
                               }
