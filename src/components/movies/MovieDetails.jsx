@@ -13,7 +13,7 @@ import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 
 export default function MovieDetails() {
-     
+
      const dispatch = useDispatch();
      const params = useParams();
      const { details, creditMovie } = useSelector((state) => state.movie);
@@ -38,7 +38,7 @@ export default function MovieDetails() {
      const isFavorite = (movieId) => {
           return favorites.some(fav => fav.id === movieId);
      };
-     
+
      const isFav = isFavorite(id);
      const [visibleCount, setVisibleCount] = useState(8);
      const loadmore = () => {
@@ -193,9 +193,18 @@ export default function MovieDetails() {
                     ) : (
                          <p className="text-gray-400 text-start w-full px-2">We don't have any cast information available.</p>
                     )}
-                    <button onClick={loadmore}>
-                         Load more
-                    </button>
+                    <div>
+                         {creditMovie?.cast && visibleCount < creditMovie?.cast?.length && (
+                              <div className="text-center py-4">
+                                   <button
+                                        onClick={loadmore}
+                                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition text-nowrap"
+                                   >
+                                        Load more
+                                   </button>
+                              </div>
+                         )}
+                    </div>
                </div>
 
                {/* Full Cast & Crew Link */}

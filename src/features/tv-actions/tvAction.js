@@ -5,11 +5,11 @@ const keys = `995b46c34578880175b2df0cb63164cd`;
 
 
 // TV SERIES LISTS - Popular
-export const fetchPopularTv = createAsyncThunk('/my-popular/fetchPopularTv/',
-    async (page) => {
+export const fetchPopularTv = createAsyncThunk('/popular-tvshows/fetchPopularTv/',
+    async (page = 1) => {
         try {
-            let response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${keys}&page=${page}`);
-            let data = response.json();
+            const response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${keys}&page=${page}`);
+            const data = response.json();
             return data;
         } catch (error) {
             return Promise.reject(error);
@@ -83,21 +83,35 @@ export const fetchTvEpisode = createAsyncThunk(
         rejectWithValue
     }) => { // Keep id to match route
         try {
-            if (!id || !season_number) {
+            // Validate inputs
+            if (!id || season_number === undefined || season_number === null) {
                 throw new Error('Missing ID or season number');
             }
 
-            const response = await fetch(
-                `https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${keys}`
-            );
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            // Ensure season_number is an integer (TMDB accepts 0 for specials)
+            const seasonNum = parseInt(season_number, 10);
+            if (isNaN(seasonNum)) {
+                throw new Error(`Invalid season number: ${season_number}`);
             }
 
-            const data = await response.json(); // Add await here
+            const url = `https://api.themoviedb.org/3/tv/${id}/season/${seasonNum}?api_key=${keys}`;
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
+            }
+
+            const data = await response.json();
+
+            // Check if we got meaningful data
+            if (!data.episodes) {
+                console.warn(`No episodes returned for season ${seasonNum}`);
+            }
+
             return data;
         } catch (error) {
+            console.error(`Fetch failed for TV ${id}, season ${season_number}:`, error);
             return rejectWithValue(error.message || 'Failed to fetch TV episodes');
         }
     }

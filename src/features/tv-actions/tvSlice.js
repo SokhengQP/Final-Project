@@ -22,7 +22,6 @@ export const tvSlice = createSlice({
         onTv: {},
         topRatedTv: {},
         page: 1,
-        season: null,
         error: null,
         status: '',
     },
@@ -31,6 +30,7 @@ export const tvSlice = createSlice({
         setPage: (state, action) => {
             state.page = action.payload;
         },
+ 
     },
 
 
@@ -81,5 +81,5 @@ export const tvSlice = createSlice({
 
 export default tvSlice.reducer;
 export const {
-    setPage
+    setPage, setSeason
 } = tvSlice.actions;

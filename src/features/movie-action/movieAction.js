@@ -282,14 +282,3 @@ export const fetchGenreTv = createAsyncThunk('/product/fetchGenreTv/',
      }
 );
 
-export const fetchPopularTv = createAsyncThunk('/my-popular/fetchPopularTvs/',
-    async (page = 1) => {
-        try {
-            let response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${keys}&page=${page}`);
-            let data = response.json();
-            return data;
-        } catch (error) {
-            return Promise.reject(error);
-        }
-    }
-);

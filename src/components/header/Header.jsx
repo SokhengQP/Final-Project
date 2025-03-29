@@ -116,7 +116,7 @@ export default function Header() {
                          {links.map(({ category, icon, items }) => (
                               <div key={category} className="relative group p-2 rounded-md">
                                    <div className="flex items-center gap-2 cursor-pointer custom-drop-shadow px-4 py-2 rounded-xl border-transparent border-2 hover:border-current">
-                                        <span className="group-hover:-translate-x-1">{icon}</span>
+                                        <span className="group-hover:-translate-x-1 duration-1000">{icon}</span>
                                         <span className="font-bold text-sm animates text-nowrap">{category}</span>
                                    </div>
                                    <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
@@ -129,7 +129,7 @@ export default function Header() {
                               </div>
                          ))}
                     </nav>
-
+                    
                     <div className="flex items-center space-x-4">
                          <div className="relative p-2 rounded-xl flex items-center">
                               {

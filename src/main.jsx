@@ -36,6 +36,7 @@ import ActingMV from './components/popular-people/acting/ActingMV.jsx';
 import StockFavor from './components/favorite/StockFavor.jsx';
 import SearchProgress from './components/header/SearchProgress.jsx';
 import TotalEpi from './components/tv-shows/details/TotalEpi.jsx';
+import AllSeason from './components/tv-shows/details/AllSeason.jsx';
 
 
 export const ScrollToTop = () => {
@@ -180,7 +181,10 @@ const router = createBrowserRouter([
         element: <TotalEpi />
       },
 
-      
+      {
+        path: '/tv-seasons/:id/seasons',
+        element: <AllSeason />
+      },
 
     ],
 

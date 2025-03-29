@@ -8,18 +8,8 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
-      keyframes: {
-        gradient: {
-          '0%': {
-            backgroundPosition: '0% 50%'
-          },
-          '50%': {
-            backgroundPosition: '100% 50%'
-          },
-          '100%': {
-            backgroundPosition: '0% 50%'
-          },
-        },
+      transitionDelay: {
+        '4000': '40000ms', // Adds delay-3000 as a utility
       },
     },
     animation: {

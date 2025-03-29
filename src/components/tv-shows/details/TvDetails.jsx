@@ -16,6 +16,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 export default function TvDetails() {
 
     const params = useParams();
+
     const dispatch = useDispatch();
     const { tvs, creditTv } = useSelector((state) => state.movie);
     const { favorites } = useSelector(state => state.favorites);
@@ -40,13 +41,11 @@ export default function TvDetails() {
     };
 
     const isFav = isFavorite({ id });
+
     const [visibleCount, setVisibleCount] = useState(8);
     const loadMore = () => {
         setVisibleCount((prevCount) => prevCount + 8);
     };
-
-    
-
 
     return (
         <>
@@ -155,7 +154,7 @@ export default function TvDetails() {
                 Series Cast
             </p>
 
-            <div className="flex items-center gap-8 md:gap-16 overflow-x-auto mx-8 md:mx-16 py-6 z-50">
+            <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto mx-8 md:mx-16 py-6 sm:py-8 md:py-10 z-50">
                 {creditTv?.cast ? (
                     creditTv?.cast?.slice(0, visibleCount)?.map((castMember) => {
                         const { id, profile_path, name, character } = castMember;
@@ -188,7 +187,7 @@ export default function TvDetails() {
                 ) : (
                     <p className="text-gray-400 text-start w-full px-2">We don't have any cast information available.</p>
                 )}
-                <button >
+                <button>
                     {creditTv?.cast && visibleCount < creditTv?.cast?.length && (
                         <div className="text-center py-4">
                             <button
@@ -224,9 +223,8 @@ export default function TvDetails() {
                             <div className="px-2 overflow-clip">
                                 <img className={`w-32 rounded-md`} src={poster_path ? faces + poster_path : fallbackImg} alt="" />
                             </div>
-                            <div className="flex flex-col  justify-center px-2 text-sm flex-shrink gap-2">
-
-                                <Link to={`/tv-episode/${tvs?.id}/seasons/${season_number}`} className="text-xl font-bold">Season {season_number}</Link>
+                            <div className="flex flex-col justify-center px-2 text-sm flex-shrink gap-2">
+                                <Link to={`/tv-episode/${id ? tvs?.id : name}/seasons/${season_number}`} className="text-xl font-bold">Season {season_number}</Link>
                                 <p className="flex items-center ">{convertDate(air_date)} &nbsp; <GoDotFill size={'12px'} /> &nbsp; {episode_count} Episodes</p>
 
                                 <p className="text-wrap">{name} of {tvs?.original_name} premiered on {convertBirthday(air_date)}.</p>
@@ -243,8 +241,7 @@ export default function TvDetails() {
                 })()}
             </div>
 
-            <button className="mx-8 md:mx-16">View All Seasons</button>
-
+            <Link to={`/tv-seasons/${id}/seasons`} className="mx-8 md:mx-16">View All Seasons</Link>
 
         </>
     );

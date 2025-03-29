@@ -11,10 +11,10 @@ import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
 
 export default function PopularTv() {
-     const dispatch = useDispatch();
      let { popularTv, page } = useSelector((state) => state.myTvs);
      const { favorites } = useSelector(state => state.favorites);
      const totalPage = popularTv?.total_pages || 1;
+     const dispatch = useDispatch();
 
      useEffect(() => {
           dispatch(fetchPopularTv(page));

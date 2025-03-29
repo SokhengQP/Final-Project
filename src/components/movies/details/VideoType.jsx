@@ -46,15 +46,14 @@ export default function VideoType() {
             </div>
 
             <h3 className="text-xl hover:underline cursor-pointer px-4 md:px-16 py-2">Official Trailer</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-8 px-4 md:px-16 md:gap-16">
+            <div className="flex gap-8 px-4 md:px-16 md:gap-16 overflow-x-auto">
                 {
                     detailsVideo.results?.filter(video => video.type === 'Trailer')?.map(item => (
                         <div key={item.key} className="aspect-video overflow-clip hover:scale-105 group">
                             <iframe
                                 allowFullScreen
                                 src={`https://www.youtube.com/embed/${item.key}`}
-                                className="w-full h-full rounded-xl"
-                                loading="lazy"
+                                className="rounded-xl"
                             />
                             <p className="mt-2 text-start px-4 text-wrap group-hover:text-blue-500 text-ellipsis">{item.name}</p>
                         </div>
@@ -65,7 +64,7 @@ export default function VideoType() {
             <h3 className="text-xl mt-10 hover:underline cursor-pointer px-4 md:px-16 py-2">Others</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 px-4 md:px-16 gap-8 md:gap-16">
                 {
-                    paginatedVideos?.filter(video => video.type !== 'Trailer')?.map(item => (
+                    paginatedVideos ? paginatedVideos?.filter(video => video.type !== 'Trailer')?.map(item => (
                         <div key={item.key} className="aspect-video overflow-clip hover:scale-105 group">
                             <iframe
                                 allowFullScreen
@@ -75,10 +74,9 @@ export default function VideoType() {
                             />
                             <p className="mt-2 text-start px-4 text-wrap group-hover:text-blue-500 text-ellipsis">{item.name}</p>
                         </div>
-                    ))
-                }
+                    )) : <p>No videos</p>
+                } 
             </div>
         </div>
     );
 }
-

@@ -17,6 +17,7 @@ export default function CastCrewTv() {
 
     const [isLoadedCast, setIsLoadedCast] = useState(8);
     const [isLoadedCrew, setIsLoadedCrew] = useState(8);
+    const [isHoldImg, setIsHoldImg] = useState(false);
 
     const handleCast = () => {
         setIsLoadedCast(prev => prev + 8);
@@ -31,8 +32,14 @@ export default function CastCrewTv() {
         <>
             <header className="flex gap-4 items-center mt-[120px] rounded-md overflow-clip px-10 py-4 shadow-[0_0_4px_gray] dark:bg-[rgba(128,128,128,0.28)]">
                 <div className="cursor-pointer">
-                    
-                    <img className="w-[80px] rounded-md" src={tvs?.poster_path ? faces + tvs?.poster_path : fallbackImg} alt={faces + tvs?.backdrop_path} />
+                    <img
+                        onLoad={() => setIsHoldImg(true)}
+                        onError={() => setIsHoldImg(true)}
+                        className={`${!isHoldImg ? 'blur-xl' : ''} w-[80px] rounded-md`}
+                        src={tvs?.poster_path ? faces + tvs?.poster_path : fallbackImg}
+                        alt={faces + tvs?.backdrop_path}
+                    />
+
                 </div>
 
                 <div className="cursor-pointer">
@@ -52,12 +59,12 @@ export default function CastCrewTv() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 mx-10 py-4">
                 <div className="flex flex-col gap-4">
-                <div className="flex gap-2 items-center flex-shrink-0 text-xl">
+                    <div className="flex gap-2 items-center flex-shrink-0 text-xl">
                         <p className="font-semibold">Cast</p>
                         <p className="text-gray-400 ">{creditTv?.cast?.length}</p>
                     </div>
 
-                    <div className="flex flex-wrap justify-between md:flex-wrap-reverse md:items-center md:justify-center gap-8 w-full md:w-fit">
+                    <div className="flex flex-wrap justify-between md:flex-wrap-reverse md:items-center md:justify-start gap-8 w-full md:w-fit">
                         {
                             creditTv?.cast?.slice(0, isLoadedCast)?.map((math) => {
                                 const { id, name, profile_path, total_episode_count, roles } = math;
@@ -65,16 +72,18 @@ export default function CastCrewTv() {
                                     <Link
                                         to={`/to-persons/${id}-${name.replace(/\s/g, ('-'))}`}
                                         key={name}
-                                        className="flex gap-6 rounded-xl shadow-[0_0_4px_gray] overflow-hidden transition-transform border-gray-700 cursor-pointer"
+                                        className={`flex rounded-xl overflow-hidden border-2 border-gray-600 cursor-pointer`}
                                     >
                                         <img
-                                            className="object-cover aspect-square w-[80px]"
+                                            onError={() => setIsHoldImg(true)}
+                                            onLoad={() => setIsHoldImg(true)}
+                                            className={`${!isHoldImg ? 'blur-xl' : ''} object-cover aspect-square w-[80px]`}
                                             src={profile_path ? faces + profile_path : fallbackImg}
                                             alt={name}
                                         />
-                                        <div className="flex flex-col justify-center items-start">
+                                        <div className="flex flex-col justify-center items-start px-4">
                                             <p className="truncate text-[12px] md:text-[14px] xl:text-base hover:text-blue-500">{name ? name : ''}</p>
-                                            <p className="text-[14px] brightness-90">{roles?.map(cha => cha.character) ?? "??"} <span className="text-gray-300 text-[14px]">({total_episode_count ? total_episode_count + ' Episodes' : 'N/A'})</span></p>
+                                            <p className="text-[14px] brightness-90 ">{roles?.map(cha => cha.character) ?? "??"} <span className="text-gray-300 text-[14px]">({total_episode_count ? total_episode_count + ' Episodes' : 'N/A'})</span></p>
                                         </div>
                                     </Link>
                                 )
@@ -104,10 +113,12 @@ export default function CastCrewTv() {
                                         <Link
                                             to={`/to-persons/${id}-${name?.replace(/\s/g, ('-'))}`}
                                             key={name}
-                                            className="flex gap-6 rounded-xl shadow-[0_0_4px_gray] overflow-hidden border-2 border-gray-600 cursor-pointer"
+                                            className="flex gap-6 rounded-xl overflow-hidden border-2 border-gray-600 cursor-pointer"
                                         >
                                             <img
-                                                className="object-cover aspect-square w-[80px]"
+                                                onError={() => setIsHoldImg(true)}
+                                                onLoad={() => setIsHoldImg(true)}
+                                                className={`object-cover aspect-square w-[80px] ${!isHoldImg ? 'blur-xl' : ''}`}
                                                 src={profile_path ? faces + profile_path : fallbackImg}
                                                 alt={name}
                                             />
@@ -122,7 +133,7 @@ export default function CastCrewTv() {
                         </div>
                         <br />
                         <button onClick={handleCrew}
-                            className={`${isLoadedCrew < creditTv?.crew?.length ? handleCrew : 'hidden'} bg-blue-500 rounded-xl py-4 w-full`}
+                            className={`${isLoadedCrew < creditTv?.crew?.length ? handleCrew : 'hidden'} text-white bg-blue-500 rounded-xl py-4 w-full`}
                         >
                             Load more
                         </button>
