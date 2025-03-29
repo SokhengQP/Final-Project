@@ -58,9 +58,9 @@ export default function TotalEpi() {
 
     return (
         <>
-            <div className="mt-[120px] flex flex-col md:flex-row md:items-center md:justify-between bg-[#4a044a] py-4">
+            <div className="mt-[120px] flex flex-col md:flex-row md:items-center md:justify-between bg-[#4a044a] py-4 px-8 md:px-16">
                 <div className="flex justify-start items-center flex-shrink-0">
-                    <aside className="ml-8 md:ml-16 rounded-xl border">
+                    <aside className="rounded-xl border">
                         <img
                             onLoad={() => setIsLoaded(true)}
                             onError={() => setIsLoaded(false)}
@@ -69,7 +69,7 @@ export default function TotalEpi() {
                             alt="Season Poster"
                         />
                     </aside>
-                    <section className="flex flex-col font-bold gap-2 mx-8">
+                    <section className="flex flex-col font-bold gap-2 px-2">
                         <p className="flex items-center text-xl">
                             <p>{tvEpi.name}</p>
                             <span className="px-4">{tvEpi?.air_date ? convertDate(tvEpi?.air_date) : ""}</span>
@@ -80,7 +80,7 @@ export default function TotalEpi() {
                         </Link>
                     </section>
                 </div>
-                <div className="mx-8 md:mx-16 text-xl py-4">
+                <div className="text-xl py-4">
                     <p>Episodes {tvEpi?.episodes?.length || 0}</p>
                 </div>
             </div>
@@ -122,15 +122,14 @@ export default function TotalEpi() {
                                         src={still_path ? faces + still_path : fallbackImg}
                                         alt={name}
                                     />
-                                <div className="flex-col justify-center gap-2 flex group-hover:flex px-4 py-8  rounded-xl">
+                                <div className="flex-col justify-center gap-2 group-hover:flex px-4 py-8 rounded-xl hidden hover:flex absolute bottom-0 backdrop-blur-xl shadow-md">
                                     <section className="flex flex-col">
                                         <div className="flex items-center text-lg gap-4 font-semibold">
                                             <span className="text-lg">{episode_number || ""}</span>
                                             <p className="text-lg truncate">{name}</p>
                                         </div>
-                                        <div className="flex text-sm items-center">
+                                        <div className="flex text-sm items-start justify-center flex-col">
                                             <p>{convertBirthday(air_date) || ""}</p>
-                                            <GoDotFill size={"12px"} />
                                             <p>{convertRuntime(runtime) || ""}</p>
                                         </div>
                                     </section>

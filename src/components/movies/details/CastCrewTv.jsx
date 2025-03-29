@@ -27,7 +27,6 @@ export default function CastCrewTv() {
         setIsLoadedCrew(prev => prev + 8);
     }
 
-    console.log(tvs)
     return (
         <>
             <header className="flex gap-4 items-center mt-[120px] rounded-md overflow-clip px-10 py-4 shadow-[0_0_4px_gray] dark:bg-[rgba(128,128,128,0.28)]">

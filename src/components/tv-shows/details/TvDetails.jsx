@@ -20,6 +20,7 @@ export default function TvDetails() {
     const dispatch = useDispatch();
     const { tvs, creditTv } = useSelector((state) => state.movie);
     const { favorites } = useSelector(state => state.favorites);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         document.title = 'TV Details';
@@ -162,20 +163,20 @@ export default function TvDetails() {
                             <div key={id || name}>
                                 <Link
                                     to={`/to-persons/${id}-${name?.replace(/\s+/g, "-")}`}
-                                    className=" hover:scale-105 flex flex-col flex-shrink-0 items-center w-[120px] sm:w-[140px] 2xl:w-[200px] cursor-pointer"
+                                    className="flex flex-col flex-shrink-0 items-center w-[120px] sm:w-[140px] 2xl:w-[200px] overflow-hidden cursor-pointer transition duration-200 hover:bg-[#001233] py-4 rounded-3xl ease-in-out hover:text-white"
                                 >
                                     <img
-                                        className="w-full h-[180px] sm:h-[200px] md:h-[260px] rounded-xl object-cover"
+                                        className={`${!isLoaded ? 'blur' : ''} h-[180px] sm:h-[200px] md:h-[260px] rounded-md object-cover`}
                                         src={profile_path ? `${faces}${profile_path}` : fallbackImg}
                                         alt={`${name} as ${character}`}
                                         loading="lazy"
-                                        onError={(e) => (e.target.src = fallbackImg)}
+                                        onLoad={() => setIsLoaded(true)}
                                     />
-                                    <div className="font-semibold py-2 px-4 w-full text-center">
-                                        <p className="truncate text-xs sm:text-[12px] md:text-[14px] xl:text-base">
+                                    <div className="font-semibold py-2 w-full text-center">
+                                        <p className="truncate text-base">
                                             {name}
                                         </p>
-                                        <p className="truncate text-[10px] sm:text-[10px] md:text-[12px] xl:text-[14px] text-gray-400">
+                                        <p className="text-[10px] sm:text-[10px] md:text-[12px] xl:text-[14px] text-gray-400">
                                             {character}
                                         </p>
                                     </div>
@@ -211,7 +212,7 @@ export default function TvDetails() {
                 </Link>
             </div>
 
-            <div className="mx-8 md:mx-16 ">
+            <div className="mx-8 md:mx-16 mb-8">
                 {(() => {
                     if (!Array.isArray(seasons) || seasons.length === 0) {
                         return <li>No seasons available</li>;
@@ -241,7 +242,12 @@ export default function TvDetails() {
                 })()}
             </div>
 
-            <Link to={`/tv-seasons/${id}/seasons`} className="mx-8 md:mx-16">View All Seasons</Link>
+            <Link
+                to={`/tv-seasons/${id}/seasons`}
+                className="mx-8 md:mx-16 border-2 py-2 px-2 rounded-md"
+            >
+                View All Seasons
+            </Link>
 
         </>
     );
