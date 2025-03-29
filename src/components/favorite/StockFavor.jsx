@@ -10,7 +10,7 @@ export default function StockFavor() {
     const dispatch = useDispatch();
     const { favorites } = useSelector((state) => state.favorites);
     const [query, setQuery] = useState('');
-    const [mediaType, setMediaType] = useState('all'); 
+    const [mediaType, setMediaType] = useState('all');
 
     const handleRemoveFromFavorites = (movieId) => {
         dispatch(removeFromFavorites(movieId));
@@ -110,12 +110,7 @@ export default function StockFavor() {
                                                 {overview?.length > 75 ? overview.substring(0, 75) + '...' : overview}
                                             </p>
                                             <aside className="flex items-center justify-center gap-4 text-center">
-                                                <Link
-                                                    to={`/profile/${id}`}
-                                                    className="border-2 text-sm py-1 rounded-3xl w-full border-white dark:border-[#2A2A2A] dark:text-black"
-                                                >
-                                                    Profile
-                                                </Link>
+
                                                 <Link
                                                     to={media_type === 'tv' ? `/tv-details/${id}` : `/movie-details/${id}`}
                                                     className="bg-white text-sm dark:bg-black text-black dark:text-white px-4 py-1 rounded-3xl w-full"

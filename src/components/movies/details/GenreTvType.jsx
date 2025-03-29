@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDiscoverTv, fetchGenreTv, fetchTv } from '../../../features/movie-action/movieAction';
 import { Link, useParams } from 'react-router'; // Fixed import
@@ -30,10 +30,10 @@ export default function GenreTvType() {
     const handlePageChange = (newPage) => {
         dispatch(setPage(newPage));
     };
-
+    const [isOnLoad, setIsOnLoad] = useState(false)
     return (
         <div className='my-[120px] px-24'>
-            <div className='flex justify-between items-center '>
+            <div className='flex flex-col xl:flex-row justify-between items-center '>
                 <div className='text-3xl'>
                     <aside>{genreName()}</aside>
                 </div>
@@ -46,30 +46,38 @@ export default function GenreTvType() {
                 />
             </div>
 
-            <ul className='grid grid-cols-1 gap-8 '>
-                {
-                    discoverTv.results?.map((movie) => (
-                        <Link key={movie.id} to={`/tv-details/${movie.id}`} className='hover:scale-105 transition-all duration-100 flex items-center gap-4 rounded-xl overflow-clip shadow-[0_0_2px_gray] dark:bg-[#374151]'>
-                            <img
-                                className='object-contain w-[140px]'
-                                src={movie.poster_path ? faces + movie.poster_path : fallbackImg}
-                                alt={movie.name}
-                            />
+            <ul className="grid grid-cols-1 gap-8 sm:gap-6 md:gap-8 mt-4">
+                {discoverTv.results?.map((movie) => (
+                    <Link
+                        key={movie.id}
+                        to={`/tv-details/${movie.id}`}
+                        className=" flex flex-col sm:flex-row items-center gap-3 sm:gap-4 rounded-xl overflow-hidden shadow-[0_0_2px_gray] dark:bg-[#374151]"
+                    >
+                        <img
+                            onLoad={() => setIsOnLoad(true)}
+                            className={`object-cover w-full sm:w-[120px] md:w-[140px] aspect-square h-auto sm:h-full max-h-[200px] sm:max-h-none ${!isOnLoad ? 'blur-xl' : ''}`}
+                            src={movie.poster_path ? faces + movie.poster_path : fallbackImg}
+                            alt={movie.name}
+                        />
 
-                            <aside className='h-full flex flex-col justify-center gap-y-4 p-4'>
-                                <div>
-                                    <section className='text-base xl:text-[18px] 2xl:text-[24px] font-bold hover:text-blue-500'>{movie.name}</section>
-                                    <section className='text-gray-400'>{innerDate(movie.first_air_date)}</section>
+                        <aside className="h-full flex flex-col justify-center gap-y-3 sm:gap-y-4 p-3 sm:p-4">
+                            <div>
+                                <section className="text-sm sm:text-base md:text-lg lg:text-xl 2xl:text-2xl font-bold hover:text-blue-500">
+                                    {movie.name}
+                                </section>
+                                <section className="text-gray-400 text-xs sm:text-sm">
+                                    {innerDate(movie.first_air_date)}
+                                </section>
+                            </div>
+
+                            <div>
+                                <div className="text-xs sm:text-sm md:text-base line-clamp-3">
+                                    {movie.overview}
                                 </div>
-
-                                <div>
-                                    <div className='ellipsis-overview'>{movie.overview}</div>
-                                </div>
-                            </aside>
-
-                        </Link>
-                    ))
-                }
+                            </div>
+                        </aside>
+                    </Link>
+                ))}
             </ul>
         </div>
     );
