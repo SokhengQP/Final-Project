@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchNowPlayingPage } from "../../features/movie-action/movieAction";
 import { MyPropsMovie } from "../../props/MyPropsMovie";
 import { Link } from "react-router";
-import { setPage } from '../../features/movie-action/movieSlice';
 import { Votes } from "../../utility";
 import { Pagination } from "flowbite-react";
 import { faces, fallbackImg } from '../../utility'
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { setPage } from '../../features/movie-action/movieSlice';
 
 export default function NowPlaying() {
 
@@ -28,7 +28,7 @@ export default function NowPlaying() {
           dispatch(setPage(1));
      }, [dispatch])
 
-     
+
      const handlePageChange = (newPage) => {
           dispatch(setPage(newPage));  // Properly set page via dispatch
      };
@@ -82,8 +82,9 @@ export default function NowPlaying() {
                                                   {isFav ? <MdFavorite /> : <MdFavoriteBorder />}
                                              </button>
                                         </div>
-                                   );
-                              })
+                                   )
+                              }
+                              )
                          ) : (
                               <p>No movies found.</p>
                          )

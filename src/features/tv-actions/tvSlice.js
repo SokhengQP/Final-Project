@@ -81,5 +81,5 @@ export const tvSlice = createSlice({
 
 export default tvSlice.reducer;
 export const {
-    setPage, setSeason
+    setPage
 } = tvSlice.actions;

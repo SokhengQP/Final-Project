@@ -5,9 +5,9 @@ const url = `995b46c34578880175b2df0cb63164cd`;
 // Discover Movie
 
 export const fetchDiscover = createAsyncThunk('/movie/fetchDiscover/',
-     async () => {
+     async (page = 1) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${url}&page=${page}`);
                const datas = await response.json();
                return datas
           } catch (error) {
@@ -106,11 +106,11 @@ export const fetchUpcomming = createAsyncThunk('/movie/fetchUpcomming/',
 
 // Trending All
 export const fetchMovies = createAsyncThunk('/movie/fetchMovie/',
-     async (timeWindow) => {
+     async ({timeWindow, page = 1}) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${url}&page=${page}`);
                const datas = await response.json();
-               return datas
+               return datas;
           } catch (error) {
                return Promise.reject(error)
           }
