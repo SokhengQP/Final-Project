@@ -82,9 +82,9 @@ export default function Home() {
                </div>
 
                {/* Trending Section */}
-               <div className="flex items-center justify-start gap-8 my-4 px-8 md:px-16">
-                    <aside className="flex items-center gap-2">
-                         <h2 className="text-base 2xl:text-3xl">Trending</h2>
+               <div className="flex flex-col md:flex-row items-center md:justify-between py-0 md:py-4 px-8 md:px-16 ">
+                    <aside className="flex justify-center items-center gap-2">
+                         <h2 className="text-base 2xl:text-3xl ">Trending</h2>
                          <button
                               onClick={toggleDay}
                               className="text-base px-2 rounded-3xl cursor-pointer py-1 my-2 w-[140px] hover:bg-gray-500 bg-gray-600 2xl:text-xl"
@@ -97,7 +97,7 @@ export default function Home() {
                          totalPages={totalPage}
                          onPageChange={handlePageChange}
                          showIcons
-                         className="mb-2 p-0"
+                         className="mb-4"
                     />
                </div>
 
