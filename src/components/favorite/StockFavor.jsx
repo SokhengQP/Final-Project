@@ -107,7 +107,7 @@ export default function StockFavor() {
                                         <div className="flex flex-col gap-4">
                                             <p className="text-xl font-[800] line-clamp-2">{title || name}</p>
                                             <p className="text-sm text-gray-500">
-                                                {overview?.length > 75 ? overview.substring(0, 75) + '...' : overview}
+                                                {overview?.length > 60 ? overview.substring(0, 60) + '...' : overview}
                                             </p>
                                             <aside className="flex items-center justify-center gap-4 text-center">
 

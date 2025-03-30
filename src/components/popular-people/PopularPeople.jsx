@@ -1,4 +1,4 @@
-import { Children, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPopularPeople, fetchSearchPeople } from "../../features/people/peopleAction";
 import { setPage } from "../../features/people/peopleSlice";

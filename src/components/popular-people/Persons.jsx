@@ -5,7 +5,7 @@ import { fetchPersonDetail, fetchCombinedCredit, fetchExternalId } from '../../f
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io5";
 import { FaXTwitter, FaTiktok } from "react-icons/fa6";
-import { fallbackImg, convertGender, convertBirthday, convertCurrentYear, insta, twit, fb, tiktoks, yt } from '../../utility';
+import { fallbackImg, convertGender, convertBirthday, convertCurrentYear, insta, twit, fb, tiktoks, yt, faces_original } from '../../utility';
 import ActingMV from './acting/ActingMV.jsx';
 import React from 'react';
 
@@ -58,7 +58,7 @@ export default function Persons() {
                         <img
                             onLoad={() => setIsLoaded(true)}
                             onError={() => setIsLoaded(true)}
-                            className={`rounded-xl ${!isLoaded ? 'blur-xl' : ''}`} src={personDetail?.profile_path ? faces + personDetail?.profile_path : fallbackImg} alt="" />
+                            className={`rounded-xl ${!isLoaded ? 'blur-xl' : ''}`} src={personDetail?.profile_path ? faces_original + personDetail?.profile_path : fallbackImg} alt="" />
 
                         <div className="py-6 flex items-center gap-6">
                             <Link className={`custom-drop-shadow p-2 cursor-pointer ${facebook_id ? facebook_id : 'hidden'}`} to={fb + facebook_id} target="_blank">
