@@ -58,7 +58,7 @@ export default function TotalEpi() {
 
     return (
         <>
-            <div className="mt-[120px] flex flex-col md:flex-row md:items-center md:justify-between bg-[#4a044a] py-4 px-8 md:px-16">
+            <div className="mt-[120px] flex flex-col md:flex-row md:items-center md:justify-between backdrop-blur-xl bg-[#80808020] py-4 px-8 md:px-16">
                 <div className="flex justify-start items-center flex-shrink-0">
                     <aside className="rounded-xl border">
                         <img
@@ -87,16 +87,16 @@ export default function TotalEpi() {
 
             <br />
 
-            <div className="flex justify-between px-8 md:px-16">
+            <div className="flex justify-between px-8 md:px-16 ">
                 <button
-                    className={`border-2 px-4 py-1 rounded-md ${currentSeason <= 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`bg-blue-700 hover:bg-blue-500 border-gray-600  px-4 py-1 rounded-md ${currentSeason <= 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
                     onClick={handlePrevious}
                     disabled={currentSeason <= 0}
                 >
                     Previous
                 </button>
                 <button
-                    className={`border-2 px-4 py-1 rounded-md ${currentSeason >= totalSeasonNumber - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`bg-blue-700 hover:bg-blue-500 border-gray-600 px-4 py-1 rounded-md ${currentSeason >= totalSeasonNumber - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
                     onClick={handleNext}
                     disabled={currentSeason >= totalSeasonNumber - 1}
                 >
@@ -111,7 +111,7 @@ export default function TotalEpi() {
                     tvEpi.episodes.slice(0, loadmore)?.map((episode) => {
                         const { name, air_date, still_path, vote_average, episode_number, runtime, overview } = episode;
                         return (
-                            <div key={episode.id} className="flex flex-col hover:bg-[#a5a5a549] rounded-2xl justify-center items-center relative group cursor-pointer hover:backdrop-blur-xl ">
+                            <div key={episode.id} className="flex flex-col backdrop-blur-xl hover:bg-[#80808020] rounded-2xl justify-center items-center relative group cursor-pointer hover:backdrop-blur-xl ">
                                 <div className="relative rounded-lg overflow-clip">
 
                                     <img className="peer" src={still_path ? faces_original + still_path : fallbackImg} alt={name} />
@@ -138,7 +138,7 @@ export default function TotalEpi() {
                 )}
                 <button
                     onClick={theLoader}
-                    className={`border-2 w-full py-4 rounded-lg ${loadmore < (tvEpi?.episodes?.length || 0) ? theLoader : 'hidden'} transition delay-[4s] ease-in-out h-fit self-center`}
+                    className={`bg-blue-700 hover:bg-blue-500 border-gray-600 w-full py-4 rounded-lg ${loadmore < (tvEpi?.episodes?.length || 0) ? theLoader : 'hidden'} transition delay-[4s] ease-in-out h-fit self-center`}
                 >
                     Load more
                 </button>

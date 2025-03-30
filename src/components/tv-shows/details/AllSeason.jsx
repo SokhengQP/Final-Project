@@ -20,7 +20,7 @@ export default function AllSeason() {
         <>
 
             <div className="mt-[120px] py-4">
-                <aside className="px-8 md:px-16 gap-4 rounded-xl flex-col md:flex-row flex justify-center md:justify-start md:gap-4 w-full">
+                <aside className="px-8 md:px-16 gap-4 flex-col md:flex-row flex justify-center md:justify-start md:gap-4 w-full backdrop-blur-xl bg-[#80808020] py-4">
                     <img
                         onLoad={() => setIsLoaded(true)}
                         onError={() => setIsLoaded(false)}
@@ -50,7 +50,7 @@ export default function AllSeason() {
                             <Link
                                 to={`/tv-episode/${tvs?.id}/seasons/${season_number}`}
                                 key={id}
-                                className=" flex gap-6  items-center p-4 hover:bg-[#80008070] rounded-3xl">
+                                className=" flex gap-6  items-center p-4 backdrop-blur-xl hover:bg-[#80808020] rounded-3xl">
                                 <img
                                     className="rounded-md h-36 "
                                     src={poster_path ? faces + poster_path : fallbackImg}
