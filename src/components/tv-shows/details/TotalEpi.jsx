@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTvEpisode } from "../../../features/tv-actions/tvAction";
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router";
-import { convertBirthday, convertDate, convertRuntime, faces, faces_original, fallbackImg, Votes } from "../../../utility";
+import { convertBirthday, convertDate, convertRuntime, faces_original, fallbackImg, Votes } from "../../../utility";
 import { IoArrowBack } from "react-icons/io5";
 import ProgressRounded from "../../movies/details/ProgressRounded";
 import { GoDotFill } from "react-icons/go";
@@ -119,21 +119,21 @@ export default function TotalEpi() {
                                         onError={() => setIsLoaded(false)}
                                         onLoad={() => setIsLoaded(true)}
                                         className={`object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-35 ${!isLoaded ? "blur-xl" : ""}`}
-                                        src={still_path ? faces + still_path : fallbackImg}
+                                        src={still_path ? faces_original + still_path : fallbackImg}
                                         alt={name}
                                     />
-                                <div className="flex-col justify-center gap-2 group-hover:flex px-4 py-8 rounded-xl hidden hover:flex absolute bottom-0 backdrop-blur-xl shadow-md">
+                                <div className="flex-col justify-center gap-2 group-hover:flex rounded-md mb-2 hidden hover:flex absolute bottom-0 backdrop-blur-xl shadow-md p-2">
                                     <section className="flex flex-col">
-                                        <div className="flex items-center text-lg gap-4 font-semibold">
-                                            <span className="text-lg">{episode_number || ""}</span>
-                                            <p className="text-lg truncate">{name}</p>
+                                        <div className="flex items-center text-xs gap-2 font-semibold">
+                                            <span className="">{episode_number || ""}</span>
+                                            <p className="truncate">{name}</p>
                                         </div>
-                                        <div className="flex text-sm items-start justify-center flex-col">
+                                        <div className="flex text-xs items-start justify-center flex-col">
                                             <p>{convertBirthday(air_date) || ""}</p>
                                             <p>{convertRuntime(runtime) || ""}</p>
                                         </div>
                                     </section>
-                                    <section className="flex text-sm">
+                                    <section className="flex text-xs">
                                         <span className="line-clamp-1 md:line-clamp-4">
                                             {overview || "No overview available."}
                                         </span>

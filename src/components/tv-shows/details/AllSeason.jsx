@@ -13,19 +13,17 @@ export default function AllSeason() {
     useEffect(() => {
         dispatch(fetchTv(params.id))
     }, [])
-
-    
+    const [isLoaded, setIsLoaded] = useState(false);
 
     return (
         <>
-
 
             <div className="mt-[120px] py-4">
                 <aside className="px-8 md:px-16 rounded-xl flex items-center w-full">
                     <img
                         onLoad={() => setIsLoaded(true)}
                         onError={() => setIsLoaded(false)}
-                        className="w-24 h-24 object-contain flex flex-shrink-0 border rounded-xl"
+                        className={`rounded-xl flex items-center`}
                         src={tvs?.poster_path ? faces_original + tvs?.poster_path : fallbackImg}
                         alt="Season Poster"
                     />
@@ -71,7 +69,7 @@ export default function AllSeason() {
                         )
                     })
                 }
-              
+
             </div>
         </>
     )
