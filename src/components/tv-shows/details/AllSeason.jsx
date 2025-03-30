@@ -10,6 +10,7 @@ export default function AllSeason() {
     const params = useParams();
     const dispatch = useDispatch()
     const { tvs } = useSelector((state) => state.movie);
+
     useEffect(() => {
         dispatch(fetchTv(params.id))
     }, [])
@@ -19,20 +20,19 @@ export default function AllSeason() {
         <>
 
             <div className="mt-[120px] py-4">
-                <aside className="px-8 md:px-16 rounded-xl flex items-center w-full">
+                <aside className="px-8 md:px-16 gap-4 rounded-xl flex-col md:flex-row flex justify-center md:justify-start md:gap-4 w-full">
                     <img
                         onLoad={() => setIsLoaded(true)}
                         onError={() => setIsLoaded(false)}
                         className={`rounded-xl flex items-center`}
-                        src={tvs?.poster_path ? faces_original + tvs?.poster_path : fallbackImg}
+                        src={tvs?.poster_path ? faces + tvs?.poster_path : fallbackImg}
                         alt="Season Poster"
                     />
-                    <section className="flex flex-col font-bold gap-2 mx-8">
+                    <section className="flex flex-col font-bold gap-2 md:justify-center">
                         <p className="flex items-center text-xl">
                             <p>{tvs?.name}</p>
                             <span className="px-4">{tvs?.air_date ? convertDate(tvs?.air_date) : ""}</span>
                         </p>
-                        <div>Total episode</div>
                         <Link to={`/tv-details/${tvs?.id}`} className="flex items-center gap-2 flex-shrink-0 text-sm">
                             <IoArrowBack />
                             <p>Back to season list</p>
@@ -45,7 +45,6 @@ export default function AllSeason() {
             <div className="gap-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-8 md:px-16">
                 {
                     tvs.seasons?.map(season => {
-                        console.log(season)
                         const { air_date, episode_count, id, name, overview, poster_path, season_number, vote_average } = season;
                         return (
                             <Link

@@ -3,7 +3,7 @@ import { fetchDiscoverByGenre, fetchTopBilledCast, fetchMovieDetails } from "../
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { url, faces, fallbackImg, convertDate } from "../../../utility";
+import { faces, fallbackImg, convertDate } from "../../../utility";
 
 
 export default function CastCrew() {
@@ -43,7 +43,7 @@ export default function CastCrew() {
                 
                 <div className="flex items-center gap-4 justify-between">
                     <div className="cursor-pointer">
-                        <img className="w-[80px] rounded-md" src={url + details?.poster_path} alt={url + creditMovie?.backdrop_path} />
+                        <img className="w-[80px] rounded-md" src={faces + details?.poster_path} alt={faces + creditMovie?.backdrop_path} />
                     </div>
 
                     <div className="cursor-pointer">
@@ -120,7 +120,7 @@ export default function CastCrew() {
                                     >
                                         <img
                                             className="object-cover aspect-square w-[80px]"
-                                            src={profile_path ? url + profile_path : fallbackImg}
+                                            src={profile_path ? faces + profile_path : fallbackImg}
                                             alt={name}
                                         />
                                         <div className="flex flex-col justify-center items-start px-4">

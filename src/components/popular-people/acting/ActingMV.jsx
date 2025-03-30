@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCombinedCredit } from "../../../features/people/peopleAction";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router"; // Note: should be "react-router-dom" in modern versions
-import { convertDate, url } from '../../../utility';
+import { convertDate } from '../../../utility';
 import { FaTv } from "react-icons/fa6";
 import { RiMovie2AiLine } from "react-icons/ri";
 export default function ActingMV() {

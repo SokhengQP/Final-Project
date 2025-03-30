@@ -106,39 +106,28 @@ export default function TotalEpi() {
 
             <br />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 place-content-center gap-16 px-8 md:px-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 place-content-center gap-16 px-8 md:px-16">
                 {tvEpi && tvEpi.episodes?.length ? (
                     tvEpi.episodes.slice(0, loadmore)?.map((episode) => {
                         const { name, air_date, still_path, vote_average, episode_number, runtime, overview } = episode;
                         return (
-                            <div key={episode.id} className="flex flex-col rounded-2xl overflow-clip justify-center items-center relative group cursor-pointer hover:backdrop-blur-xl">
-                                <div className="absolute top-4 right-4">
-                                    <ProgressRounded value={Votes(vote_average)} />
-                                </div>
-                                    <img
-                                        onError={() => setIsLoaded(false)}
-                                        onLoad={() => setIsLoaded(true)}
-                                        className={`object-cover transition-opacity duration-300 ease-in-out group-hover:opacity-35 ${!isLoaded ? "blur-xl" : ""}`}
-                                        src={still_path ? faces_original + still_path : fallbackImg}
-                                        alt={name}
-                                    />
-                                <div className="flex-col justify-center gap-2 group-hover:flex rounded-md mb-2 hidden hover:flex absolute bottom-0 backdrop-blur-xl shadow-md p-2">
-                                    <section className="flex flex-col">
-                                        <div className="flex items-center text-xs gap-2 font-semibold">
-                                            <span className="">{episode_number || ""}</span>
+                            <div key={episode.id} className="flex flex-col rounded-2xl justify-center items-center relative group cursor-pointer hover:backdrop-blur-xl ">
+                                <div className="relative rounded-lg overflow-clip">
+
+                                    <img className="peer" src={still_path ? faces_original + still_path : fallbackImg} alt={name} />
+                                    <div className="p-2 absolute -bottom-24 peer-hover:bottom-2 hover:bottom-2 duration-200 mx-2 backdrop-blur-3xl rounded-lg w-[96%] bg-[#a5a5a549] transition-all">
+                                        <aside className="flex gap-2 items-center text-xs md:text-lg font-bold">
+                                            <p className="self-start">{episode_number}</p>
                                             <p className="truncate">{name}</p>
-                                        </div>
-                                        <div className="flex text-xs items-start justify-center flex-col">
-                                            <p>{convertBirthday(air_date) || ""}</p>
-                                            <p>{convertRuntime(runtime) || ""}</p>
-                                        </div>
-                                    </section>
-                                    <section className="flex text-xs">
-                                        <span className="line-clamp-1 md:line-clamp-4">
-                                            {overview || "No overview available."}
-                                        </span>
-                                    </section>
+                                        </aside>
+                                        <aside className="flex gap-2 items-center text-xs overflow-hidden md:text-sm ">
+                                            <p className="self-start ">{runtime}</p>
+                                            <p className="truncate sm:line-clamp-2 sm:text-wrap">{overview}</p>
+                                        </aside>
+                                    </div>
+
                                 </div>
+
                             </div>
                         );
                     })

@@ -5,7 +5,7 @@ import { fetchPersonDetail, fetchCombinedCredit, fetchExternalId } from '../../f
 import { FaInstagram, FaFacebook } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io5";
 import { FaXTwitter, FaTiktok } from "react-icons/fa6";
-import { url, fallbackImg, convertGender, convertBirthday, convertCurrentYear, insta, twit, fb, tiktoks, yt } from '../../utility';
+import { fallbackImg, convertGender, convertBirthday, convertCurrentYear, insta, twit, fb, tiktoks, yt } from '../../utility';
 import ActingMV from './acting/ActingMV.jsx';
 import React from 'react';
 
@@ -58,7 +58,7 @@ export default function Persons() {
                         <img
                             onLoad={() => setIsLoaded(true)}
                             onError={() => setIsLoaded(true)}
-                            className={`rounded-xl ${!isLoaded ? 'blur-xl' : ''}`} src={personDetail?.profile_path ? url + personDetail?.profile_path : fallbackImg} alt="" />
+                            className={`rounded-xl ${!isLoaded ? 'blur-xl' : ''}`} src={personDetail?.profile_path ? faces + personDetail?.profile_path : fallbackImg} alt="" />
 
                         <div className="py-6 flex items-center gap-6">
                             <Link className={`custom-drop-shadow p-2 cursor-pointer ${facebook_id ? facebook_id : 'hidden'}`} to={fb + facebook_id} target="_blank">
@@ -168,7 +168,7 @@ export default function Persons() {
                                                 <img
                                                     onLoad={() => setIsLoaded(true)}
                                                     onError={() => setIsLoaded(true)}
-                                                    className={`h-[80%] md:h-[85%] rounded-xl object-cover ${!isLoaded ? 'blur-xl' : ''}`} src={poster_path ? url + poster_path : fallbackImg} alt={credit_id} />
+                                                    className={`h-[80%] md:h-[85%] rounded-xl object-cover ${!isLoaded ? 'blur-xl' : ''}`} src={poster_path ? faces_original + poster_path : fallbackImg} alt={credit_id} />
                                                 <p className="text-ellipsis h-[15%] py-4 px-2 justify-self-start text-sm md:text-base">
                                                     {original_title || name}
                                                 </p>
@@ -185,7 +185,6 @@ export default function Persons() {
                                 </aside>
 
                             </div>
-
                         </div>
                     </section>
                 </div>

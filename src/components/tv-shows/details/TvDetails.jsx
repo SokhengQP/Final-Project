@@ -65,7 +65,7 @@ export default function TvDetails() {
             <div className="relative px-8 md:px-16">
                 <div className="grid grid-cols-1 2xl:grid-cols-2 mt-20 sm:mt-24 md:mt-[120px] place-content-center rounded-3xl relative overflow-hidden">
                     {/* Poster Image (Hidden on smaller screens) */}
-                    <div className="z-10 group cursor-pointer hidden 2xl:flex items-center justify-center">
+                    <div className="z-10 group cursor-pointer hidden 2xl:flex items-center justify-center flex-shrink-0">
                         <img
                             className="object-cover rounded-xl brightness-125 w-[40%]"
                             src={poster_path ? faces + poster_path : fallbackImg}
@@ -167,7 +167,7 @@ export default function TvDetails() {
                                 >
                                     <img
                                         className={`${!isLoaded ? 'blur' : ''} h-[180px] sm:h-[200px] md:h-[260px] rounded-md object-cover`}
-                                        src={profile_path ? `${faces}${profile_path}` : fallbackImg}
+                                        src={profile_path ? `${faces_original}${profile_path}` : fallbackImg}
                                         alt={`${name} as ${character}`}
                                         loading="lazy"
                                         onLoad={() => setIsLoaded(true)}
@@ -206,7 +206,7 @@ export default function TvDetails() {
             <hr className="mx-16"></hr>
 
             {/* Full Cast & Crew Link */}
-            <div className="px-8 md:px-16 my-4 w-fit rounded-md py-1 hover:text-blue-500 cursor-pointer custom-drop-shadow hover:scale-105 text-sm sm:text-base md:text-lg">
+            <div className="px-8 md:px-16 my-4 w-fit rounded-md py-1 hover:text-blue-500 cursor-pointer custom-drop-shadow hover:scale-105 text-sm sm:text-base md:text-lg duration-200">
                 <Link to={`/tv/${tvs?.id}-${original_name?.replace(/\s+/g, '-')}/cast&crew`}>
                     Full Cast & Crew
                 </Link>

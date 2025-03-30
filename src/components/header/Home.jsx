@@ -5,7 +5,7 @@ import { MyPropsMovie } from "../../props/MyPropsMovie";
 import { Link } from "react-router";
 import { Votes } from "../../utility";
 import InfiniteScroll from '../../styles/InfiniteScroll';
-import { faces, fallbackImg } from "../../utility";
+import { faces_original, fallbackImg } from "../../utility";
 import GradientText from '../../styles/GradientText';
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
@@ -30,7 +30,7 @@ export default function Home() {
      }
 
      let imageItems = discover?.results?.map((item) => ({
-          src: `${faces}${item.poster_path || fallbackImg}`,
+          src: `${faces_original}${item.poster_path || fallbackImg}`,
           alt: item.original_title,
      })) || [];
 
@@ -98,7 +98,7 @@ export default function Home() {
                               <div key={id} className="relative">
                                    <Link to={media_type === 'movie' ? `/movie-details/${id}` : `/tv-details/${id}`}>
                                         <MyPropsMovie
-                                             poster={backdrop_path ? faces + poster_path : fallbackImg}
+                                             poster={backdrop_path ? faces_original + poster_path : fallbackImg}
                                              originalTitle={original_title || name}
                                              votes={Votes(vote_average)}
                                              releaseDate={release_date || first_air_date}
