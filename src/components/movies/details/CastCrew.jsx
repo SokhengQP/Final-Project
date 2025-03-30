@@ -39,7 +39,7 @@ export default function CastCrew() {
 
     return (
         <>
-            <header className="flex flex-col items-start md:flex-row md:items-center md:justify-between gap-4  mt-[120px] rounded-md overflow-clip px-10 py-4  dark:bg-[rgba(128,128,128,0.28)]">
+            <header className="flex flex-col items-start md:flex-row md:items-center md:justify-between gap-4 mt-[120px] rounded-md overflow-clip px-8 md:px-16 py-4  dark:bg-[rgba(128,128,128,0.28)]">
                 
                 <div className="flex items-center gap-4 justify-between">
                     <div className="cursor-pointer">
@@ -66,14 +66,14 @@ export default function CastCrew() {
 
             </header>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 mx-10 py-4">
-                <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 px-8 md:px-16 py-4">
+                <div className="flex flex-col gap-4 px-8 py-4 backdrop-blur-xl">
                     <div className="flex gap-2 items-center flex-shrink-0 text-xl">
                         <span className="font-semibold">Cast</span>
                         <span className="text-gray-400">{creditMovie?.cast?.length}</span>
                     </div>
 
-                    <div className="flex flex-wrap justify-between md:flex-wrap-reverse md:items-center md:justify-center gap-8 w-full md:w-fit">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {
                             creditMovie?.cast?.slice(0, isLoadedCast)?.map((math, index) => {
                                 const { id, original_name, name, profile_path, character } = math;
@@ -81,7 +81,7 @@ export default function CastCrew() {
                                     <Link
                                         to={`/to-persons/${id}-${name?.replace(/\s/g, '-')}#cast`}
                                         key={index}
-                                        className="border-2 flex w-full md:w-fit rounded-xl overflow-hidden custom-drop-shadow border-gray-600 cursor-pointer"
+                                        className="border-4 flex w-full rounded-xl overflow-hidden custom-drop-shadow border-gray-600 cursor-pointer"
                                     >
                                         <img
                                             className="object-cover aspect-square w-[80px]"
@@ -103,12 +103,12 @@ export default function CastCrew() {
                     >Load more</button>
                 </div>
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 rounded-xl px-8 py-4 backdrop-blur-xl">
                     <div className="flex gap-2 items-center flex-shrink-0 text-xl">
                         <p className="font-semibold">Crew</p>
                         <p className="text-gray-400 ">{creditMovie?.crew?.length}</p>
                     </div>
-                    <div className="flex flex-wrap justify-between md:flex-wrap-reverse md:items-center md:justify-center gap-8 w-full md:w-fit">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {
                             creditMovie?.crew?.slice(0, isLoadedCrew)?.map((crews, index) => {
                                 const { id, name, profile_path, job } = crews;
@@ -116,7 +116,7 @@ export default function CastCrew() {
                                     <Link
                                         to={`/to-persons/${id}-${name.replace(/\s+/g, '-')}#Cast`}
                                         key={index}
-                                        className="border-2 flex w-full md:w-fit rounded-xl shadow-[0_0_4px_gray] overflow-hidden custom-drop-shadow border-gray-600 cursor-pointer"
+                                        className="border-4 flex w-full rounded-xl overflow-hidden custom-drop-shadow border-gray-600 cursor-pointer"
                                     >
                                         <img
                                             className="object-cover aspect-square w-[80px]"

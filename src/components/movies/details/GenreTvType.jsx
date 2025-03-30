@@ -32,7 +32,7 @@ export default function GenreTvType() {
     };
     const [isOnLoad, setIsOnLoad] = useState(false)
     return (
-        <div className='my-[120px] px-24'>
+        <div className='my-[120px] px-8 md:px-16'>
             <div className='flex flex-col xl:flex-row justify-between items-center '>
                 <div className='text-3xl'>
                     <aside>{genreName()}</aside>

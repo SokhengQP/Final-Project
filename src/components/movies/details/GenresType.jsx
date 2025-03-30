@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDiscoverByGenre, fetchGenreMovie } from '../../../features/movie-action/movieAction';
 import { Link, useParams } from 'react-router';
@@ -28,7 +28,7 @@ export default function GenresType() {
     };
     const [isOnLoad, setIsOnLoad] = useState(false)
     return (
-        <div className='my-[120px] px-24'>
+        <div className='my-[120px] px-8 md:px-16'>
             <div className='flex flex-col xl:flex-row justify-between items-center'>
                 <div className='text-3xl'>
                     <aside>{genreName()}</aside>
