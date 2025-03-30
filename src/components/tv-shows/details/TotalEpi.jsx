@@ -64,7 +64,7 @@ export default function TotalEpi() {
                         <img
                             onLoad={() => setIsLoaded(true)}
                             onError={() => setIsLoaded(false)}
-                            className="w-24 h-24 object-contain flex flex-shrink-0"
+                            className="w-32 h-32 object-contain flex flex-shrink-0"
                             src={tvEpi?.poster_path ? faces_original + tvEpi?.poster_path : fallbackImg}
                             alt="Season Poster"
                         />
@@ -111,7 +111,7 @@ export default function TotalEpi() {
                     tvEpi.episodes.slice(0, loadmore)?.map((episode) => {
                         const { name, air_date, still_path, vote_average, episode_number, runtime, overview } = episode;
                         return (
-                            <div key={episode.id} className="flex flex-col rounded-2xl justify-center items-center relative group cursor-pointer hover:backdrop-blur-xl ">
+                            <div key={episode.id} className="flex flex-col hover:bg-[#a5a5a549] rounded-2xl justify-center items-center relative group cursor-pointer hover:backdrop-blur-xl ">
                                 <div className="relative rounded-lg overflow-clip">
 
                                     <img className="peer" src={still_path ? faces_original + still_path : fallbackImg} alt={name} />

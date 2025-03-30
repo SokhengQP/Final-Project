@@ -5,7 +5,7 @@ import { setPage } from "../../features/people/peopleSlice";
 import { Link } from "react-router";
 import { MyPropsPerson } from "../../props/MyPropsPerson";
 import { Pagination } from "flowbite-react";
-import { faces, fallbackImg } from '../../utility';
+import { faces_original, fallbackImg } from '../../utility';
 import { useDebounce } from 'use-debounce';
 import { MdPersonSearch } from "react-icons/md";
 
@@ -105,7 +105,7 @@ export default function PopularPeople() {
                                         >
                                              <MyPropsPerson
                                                   name={name || "N/A"}
-                                                  profile={profile_path ? `${faces}${profile_path}` : fallbackImg}
+                                                  profile={profile_path ? `${faces_original}${profile_path}` : fallbackImg}
                                                   overviews={known_for?.map(txts => txts?.overview)}
                                              />
                                         </Link>

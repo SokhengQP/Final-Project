@@ -4,13 +4,11 @@ import { fetchUpcomming } from "../../features/movie-action/movieAction";
 import { setPage } from '../../features/movie-action/movieSlice';
 import { Link } from "react-router";
 import { MyPropsMovie } from "../../props/MyPropsMovie";
-import { Votes } from "../../utility";
+import { Votes, faces_original, fallbackImg } from "../../utility";
 import { Pagination } from "flowbite-react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
 
-const empty = `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg`;
-const url = `https://image.tmdb.org/t/p/original`;
 
 export default function Upcomming() {
      const { upcomming, page } = useSelector(state => state.movie);
@@ -70,7 +68,7 @@ export default function Upcomming() {
                                                   <Link to={`/movie-details/${id}-${original_title?.replace(/\s+/g, '-')}`} className=" cursor-pointer">
                                                        <MyPropsMovie
                                                             originalTitle={title || 'N/A'}
-                                                            poster={poster_path ? url + poster_path : empty}
+                                                            poster={poster_path ? faces_original + poster_path : fallbackImg}
                                                             votes={Votes(vote_average) || "0"}
                                                             releaseDate={release_date || '0h 00m'}
                                                        />

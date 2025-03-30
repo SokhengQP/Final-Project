@@ -4,7 +4,7 @@ import { fetchPopular } from '../../features/movie-action/movieAction';
 import { Link } from "react-router";
 import { MyPropsMovie } from "../../props/MyPropsMovie";
 import { setPage } from "../../features/movie-action/movieSlice";
-import { faces, fallbackImg, innerDate, Votes } from "../../utility";
+import { faces_original, fallbackImg, innerDate, Votes } from "../../utility";
 import { Pagination } from "flowbite-react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
@@ -69,7 +69,7 @@ export default function PopularMovie() {
                                              <div key={id} className="relative">
                                                   <Link to={`/movie-details/${id}-${original_title?.replace(/\s/g, "-")}`} className="cursor-pointer">
                                                        <MyPropsMovie
-                                                            poster={poster_path ? faces + poster_path : fallbackImg}
+                                                            poster={poster_path ? faces_original + poster_path : fallbackImg}
                                                             releaseDate={innerDate(release_date)}
                                                             votes={Votes(vote_average)}
                                                             originalTitle={title}

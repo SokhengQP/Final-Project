@@ -26,9 +26,13 @@ export default function GenresType() {
     const handlePageChange = (newPage) => {
         dispatch(setPage(newPage));
     };
-    const [isOnLoad, setIsOnLoad] = useState(false)
+    
+    const [isOnLoad, setIsOnLoad] = useState(false);
+
     return (
+
         <div className='my-[120px] px-8 md:px-16'>
+
             <div className='flex flex-col xl:flex-row justify-between items-center'>
                 <div className='text-3xl'>
                     <aside>{genreName()}</aside>

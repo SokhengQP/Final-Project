@@ -11,7 +11,7 @@
      box-sizing: border-box;
      scrollbar-width: transparent;
      scrollbar-color: transparent;
-     /* transition: all 0.11s linear; */
+     transition: all 0.11s linear;
 }
 
 ::-webkit-scrollbar {

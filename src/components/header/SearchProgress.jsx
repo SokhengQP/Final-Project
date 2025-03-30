@@ -81,7 +81,7 @@ export default function SearchProgress() {
                         ) : results.length === 0 ? (
                             <p>No results found</p>
                         ) : (
-                            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6 transition-all ease-in-out gap-6 duration-500">
+                            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6 transition gap-8 md:gap-16 duration-500">
                                 {results.map(item => {
                                     let { id, poster_path, original_title, release_date, media_type, first_air_date, name, vote_average } = item;
                                     const isFav = isFavorite(id);

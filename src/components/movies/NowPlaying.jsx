@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchNowPlayingPage } from "../../features/movie-action/movieAction";
 import { MyPropsMovie } from "../../props/MyPropsMovie";
 import { Link } from "react-router";
-import { Votes } from "../../utility";
 import { Pagination } from "flowbite-react";
-import { faces, fallbackImg } from '../../utility'
+import { faces_original, fallbackImg, Votes } from '../../utility'
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { setPage } from '../../features/movie-action/movieSlice';
@@ -69,7 +68,7 @@ export default function NowPlaying() {
                                              <Link to={`/movie-details/${id}-${original_title?.replace(/\s+/g, '-')}`} >
                                                   <MyPropsMovie
                                                        originalTitle={title || 'Unavailable'}
-                                                       poster={poster_path ? faces + poster_path : fallbackImg}
+                                                       poster={poster_path ? faces_original + poster_path : fallbackImg}
                                                        votes={Votes(vote_average) || 0}
                                                        releaseDate={release_date || 'Unavailable'}
                                                   />

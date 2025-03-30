@@ -29,12 +29,12 @@ export default function CastCrewTv() {
 
     return (
         <>
-            <header className="flex gap-4 items-center mt-[120px] rounded-md overflow-clip px-10 py-4 shadow-[0_0_4px_gray] dark:bg-[rgba(128,128,128,0.28)]">
+            <header className="flex gap-4 items-center mt-[120px] rounded-md overflow-clip px-8 md:px-16 py-4 shadow-[0_0_4px_gray] dark:bg-[rgba(128,128,128,0.28)]">
                 <div className="cursor-pointer">
                     <img
                         onLoad={() => setIsHoldImg(true)}
                         onError={() => setIsHoldImg(true)}
-                        className={`${!isHoldImg ? 'blur-xl' : ''} w-[80px] rounded-md`}
+                        className={`${!isHoldImg ? 'blur-xl' : ''} w-32 h-32 object-contain border rounded-xl`}
                         src={tvs?.poster_path ? faces + tvs?.poster_path : fallbackImg}
                         alt={faces + tvs?.backdrop_path}
                     />
@@ -56,14 +56,14 @@ export default function CastCrewTv() {
             </header>
 
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 mx-10 py-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 px-8 md:px-16 py-4">
                 <div className="flex flex-col gap-4">
                     <div className="flex gap-2 items-center flex-shrink-0 text-xl">
                         <p className="font-semibold">Cast</p>
                         <p className="text-gray-400 ">{creditTv?.cast?.length}</p>
                     </div>
 
-                    <div className="flex flex-wrap justify-between md:flex-wrap-reverse md:items-center md:justify-start gap-8 w-full md:w-fit">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 place-content-center gap-8">
                         {
                             creditTv?.cast?.slice(0, isLoadedCast)?.map((math) => {
                                 const { id, name, profile_path, total_episode_count, roles } = math;
@@ -97,14 +97,14 @@ export default function CastCrewTv() {
 
 
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 ">
                     <div className="flex flex-col gap-4">
                         <div className="flex gap-2 items-center flex-shrink-0 text-xl">
                             <p className="font-semibold">Series Crew</p>
                             <p className="text-gray-400 ">{creditTv?.crew?.length}</p>
                         </div>
 
-                        <div className="flex flex-wrap justify-between md:flex-wrap-reverse md:items-center md:justify-center gap-8 w-full md:w-fit">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 place-content-center gap-8">
                             {
                                 creditTv?.crew?.slice(0, isLoadedCrew)?.map(crews => {
                                     const { id, name, profile_path, jobs, total_episode_count } = crews;

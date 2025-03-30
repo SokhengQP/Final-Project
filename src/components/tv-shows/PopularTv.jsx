@@ -6,7 +6,7 @@ import { Pagination } from "flowbite-react";
 import { MyPropsMovie } from "../../props/MyPropsMovie";
 import { Votes } from "../../utility";
 import { setPage } from '../../features/tv-actions/tvSlice';
-import { faces, fallbackImg } from '../../utility'
+import { faces_original, fallbackImg } from '../../utility'
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
 
@@ -66,7 +66,7 @@ export default function PopularTv() {
                                                   <Link to={`/tv-details/${id}-${original_name?.replace(/\s+/g, '-')}`} className="cursor-pointer gap-10">
                                                        <MyPropsMovie
                                                             originalTitle={name || 'Unavailable'}
-                                                            poster={poster_path ? (faces + poster_path) : (fallbackImg)}
+                                                            poster={poster_path ? (faces_original + poster_path) : (fallbackImg)}
                                                             votes={Votes(vote_average)}
                                                             releaseDate={first_air_date || 'Unavailable'}
                                                        />

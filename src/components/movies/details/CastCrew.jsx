@@ -3,7 +3,7 @@ import { fetchDiscoverByGenre, fetchTopBilledCast, fetchMovieDetails } from "../
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { faces, fallbackImg, convertDate } from "../../../utility";
+import { faces_original, fallbackImg, convertDate } from "../../../utility";
 
 
 export default function CastCrew() {
@@ -43,7 +43,7 @@ export default function CastCrew() {
                 
                 <div className="flex items-center gap-4 justify-between">
                     <div className="cursor-pointer">
-                        <img className="w-[80px] rounded-md" src={faces + details?.poster_path} alt={faces + creditMovie?.backdrop_path} />
+                        <img className="w-[80px] rounded-md" src={faces_original + details?.poster_path} alt={faces_original + creditMovie?.backdrop_path} />
                     </div>
 
                     <div className="cursor-pointer">
@@ -67,7 +67,7 @@ export default function CastCrew() {
             </header>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 px-8 md:px-16 py-4">
-                <div className="flex flex-col gap-4 px-8 py-4 backdrop-blur-xl">
+                <div className="flex flex-col gap-4">
                     <div className="flex gap-2 items-center flex-shrink-0 text-xl">
                         <span className="font-semibold">Cast</span>
                         <span className="text-gray-400">{creditMovie?.cast?.length}</span>
@@ -85,7 +85,7 @@ export default function CastCrew() {
                                     >
                                         <img
                                             className="object-cover aspect-square w-[80px]"
-                                            src={profile_path ? faces + profile_path : fallbackImg}
+                                            src={profile_path ? faces_original + profile_path : fallbackImg}
                                             alt={name}
                                         />
                                         <div className="flex flex-col justify-center items-start px-4">
@@ -103,7 +103,7 @@ export default function CastCrew() {
                     >Load more</button>
                 </div>
 
-                <div className="flex flex-col gap-4 rounded-xl px-8 py-4 backdrop-blur-xl">
+                <div className="flex flex-col gap-4 rounded-xl">
                     <div className="flex gap-2 items-center flex-shrink-0 text-xl">
                         <p className="font-semibold">Crew</p>
                         <p className="text-gray-400 ">{creditMovie?.crew?.length}</p>
@@ -120,7 +120,7 @@ export default function CastCrew() {
                                     >
                                         <img
                                             className="object-cover aspect-square w-[80px]"
-                                            src={profile_path ? faces + profile_path : fallbackImg}
+                                            src={profile_path ? faces_original + profile_path : fallbackImg}
                                             alt={name}
                                         />
                                         <div className="flex flex-col justify-center items-start px-4">

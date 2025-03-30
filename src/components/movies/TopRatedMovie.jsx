@@ -5,12 +5,9 @@ import { setPage } from '../../features/movie-action/movieSlice';
 import { Link } from "react-router"; // Fix this
 import { MyPropsMovie } from "../../props/MyPropsMovie";
 import { Pagination } from "flowbite-react"; // Use flowbite pagination for consistency
-import { Votes } from "../../utility";
+import { Votes, faces_original } from "../../utility";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
-
-
-const url = `https://image.tmdb.org/t/p/original`;
 
 
 export default function TopRatedMovie() {
@@ -72,7 +69,7 @@ export default function TopRatedMovie() {
                                              <Link to={`/movie-details/${id}-${original_title?.replace(/\s+/g, '-')}`} className=" cursor-pointer">
                                                   <MyPropsMovie
                                                        originalTitle={title || 'Unavailable'}
-                                                       poster={url + poster_path}
+                                                       poster={faces_original + poster_path}
                                                        votes={Votes(vote_average)}
                                                        releaseDate={release_date || 'Unavailable'}
                                                   />

@@ -24,7 +24,7 @@ export default function AllSeason() {
                     <img
                         onLoad={() => setIsLoaded(true)}
                         onError={() => setIsLoaded(false)}
-                        className={`rounded-xl flex items-center`}
+                        className={`w-32 h-32 object-contain flex flex-shrink-0 border rounded-xl`}
                         src={tvs?.poster_path ? faces + tvs?.poster_path : fallbackImg}
                         alt="Season Poster"
                     />
