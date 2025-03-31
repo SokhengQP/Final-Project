@@ -46,7 +46,7 @@ export const movieSlice = createSlice({
           page: 1,
           moreCrew: 8,
           error: {},
-          loading: {},
+          loading: false,
           status: "",
 
      },
@@ -55,11 +55,11 @@ export const movieSlice = createSlice({
           setPage: (state, action) => {
                state.page = action.payload;
           },
-          
+
           setMore: (state, action) => {
                state.moreCrew = action.payload;
           }
-     
+
      },
 
      extraReducers(builder) {
@@ -67,7 +67,7 @@ export const movieSlice = createSlice({
 
                .addCase(fetchDiscover.fulfilled, (state, action) => {
                     state.status = 'SUCCEED';
-                    state.discover = action.payload; 
+                    state.discover = action.payload;
                })
 
                .addCase(fetchMovieTopRate.fulfilled, (state, action) => {
@@ -109,11 +109,18 @@ export const movieSlice = createSlice({
                     state.status = "SUCCEED";
                     state.tvs = action.payload;
                })
-
+               .addCase(fetchPopular.pending, (state, action) => {
+                    // TODO
+                    state.loading = true;
+               })
                .addCase(fetchPopular.fulfilled, (state, action) => {
                     // TODO
                     state.status = "SUCCEED";
                     state.popular = action.payload;
+               })
+               .addCase(fetchPopular.rejected, (state, action) => {
+                    // TODO
+                    state.loading = false;
                })
 
                .addCase(fetchMovies.rejected, (state, action) => {

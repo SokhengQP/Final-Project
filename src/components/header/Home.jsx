@@ -66,17 +66,20 @@ export default function Home() {
                     />
                </div>
 
-               <div className="absolute z-10 top-20 left-2/4 -translate-x-2/4 sm:top-32 md:top-32 xl:top-32 2xl:top-32">
+               <div className="absolute z-10 top-3/4 left-20  sm:top-32 md:top-32 xl:top-32 2xl:top-32">
                     <GradientText
-                         colors={["#40ffaa", "#3c096c", "#40ffaa", "#ff9e00", "#40ffaa"]}
+                         colors={["#0a0908", "#f1faee", "#f1faee", "#0a0908"]}
                          animationSpeed={4}
                          showBorder={false}
-                         className="custom-class"
+                        
                     >
                          <div className="flex flex-col gap-4 p-7">
-                              <p className="text-5xl font-[800] px-4 text-center">
-                                   Welcome to<br /> Fox Movie
+                              <p className="text-5xl px-4 text-start font-sans font-[800]">
+                                   Welcome to
+                                   <br />
+                                   FoxMovie
                               </p>
+                              <p className="px-4 text-lg dark:text-gray-500 text-black">The collection of Movies and Tv Shows and Popular People</p>
                          </div>
                     </GradientText>
                </div>
@@ -138,8 +141,8 @@ export default function Home() {
                                         </Link>
                                         <button
                                              className={`absolute right-4 top-2 mt-2 px-2 py-2 rounded-[50%] text-md ${isFav
-                                                       ? "bg-black text-red-600 cursor-not-allowed"
-                                                       : "bg-[#090109] text-white "
+                                                  ? "bg-black text-red-600 cursor-not-allowed"
+                                                  : "bg-[#090109] text-white "
                                                   }`}
                                              onClick={() => handleAddToFavorites(item)}
                                              disabled={isFav}

@@ -37,6 +37,7 @@ import StockFavor from './components/favorite/StockFavor.jsx';
 import SearchProgress from './components/header/SearchProgress.jsx';
 import TotalEpi from './components/tv-shows/details/TotalEpi.jsx';
 import AllSeason from './components/tv-shows/details/AllSeason.jsx';
+import Loading from './styles/Loading.jsx';
 
 
 export const ScrollToTop = () => {
@@ -186,6 +187,10 @@ const router = createBrowserRouter([
         element: <AllSeason />
       },
 
+      {
+        path: '/waitng-loading',
+        element: <Loading />
+      }
     ],
 
     errorElement: <PathError />,
@@ -197,8 +202,8 @@ const router = createBrowserRouter([
   },
 
 ])
-
-createRoot(document.getElementById('root')).render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />

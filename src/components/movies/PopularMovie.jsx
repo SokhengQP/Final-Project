@@ -8,10 +8,11 @@ import { faces_original, fallbackImg, innerDate, Votes } from "../../utility";
 import { Pagination } from "flowbite-react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { addToFavorites } from "../../features/favorite-action/favouriteSlice";
+import Loading from "../../styles/Loading";
 
 export default function PopularMovie() {
      const dispatch = useDispatch();
-     const { popular, page } = useSelector((state) => state.movie);
+     const { popular, page, loading } = useSelector((state) => state.movie);
      const { favorites } = useSelector(state => state.favorites);
 
      const totalPages = popular?.total_pages || 1;
@@ -22,7 +23,7 @@ export default function PopularMovie() {
      useEffect(() => {
           dispatch(fetchPopular(page));
      }, [dispatch, page])
-     
+
      // Reset page to first page when switching component
      useEffect(() => {
           dispatch(setPage(1));
@@ -46,6 +47,8 @@ export default function PopularMovie() {
 
      return (
           <div className="my-[120px] px-8 md:px-16">
+
+               <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">{!loading && <Loading />}</div>
 
                <div className="flex flex-col 2xl:flex-row justify-between items-center w-full my-4 ">
                     <h1 className="text-xl md:text-2xl xl:text-3xl">Popular Movie</h1>

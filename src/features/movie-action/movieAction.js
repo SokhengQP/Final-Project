@@ -1,9 +1,8 @@
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
 const url = `995b46c34578880175b2df0cb63164cd`;
-// Discover Movie
+import Loading from "../../styles/Loading";
 
+// Discover Movie
 export const fetchDiscover = createAsyncThunk('/movie/fetchDiscover/',
      async (page = 1) => {
           try {
@@ -106,7 +105,7 @@ export const fetchUpcomming = createAsyncThunk('/movie/fetchUpcomming/',
 
 // Trending All
 export const fetchMovies = createAsyncThunk('/movie/fetchMovie/',
-     async ({timeWindow, page = 1}) => {
+     async ({ timeWindow, page = 1 }) => {
           try {
                const response = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${url}&page=${page}`);
                const datas = await response.json();
@@ -200,14 +199,28 @@ export const fetchNowPlayingPage = createAsyncThunk('/product/fetchNowPlayingPag
 
 // Popular
 export const fetchPopular = createAsyncThunk('/product/fetchPopular/',
-     async (pages = 1) => {
+     async (pages = 1, { rejectWithValue }) => {
+          let spinnerTime = null;
           try {
                const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${url}&&page=${pages}`);
+               if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+               }
                const respData = response.json();
                return respData;
-          } catch (error) {
-               return Promise.reject(error);
           }
+
+          catch (error) {
+               return rejectWithValue(error.message);
+          }
+
+          finally {
+               if (spinnerTime) {
+                    clearTimeout(spinnerTime);
+               }
+          }
+
+
      }
 )
 

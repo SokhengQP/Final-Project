@@ -13,7 +13,15 @@ export default {
       },
     },
     animation: {
-      gradient: 'gradient 8s linear infinite'
+      'gradient': 'gradient 8s linear infinite',
+      'rot55': 'rot55 0.7s linear infinite',
+    },
+    keyframes: {
+      rot55: {
+        to: {
+          transform: 'rotate(360deg)',
+        },
+      },
     },
   },
   plugins: [
