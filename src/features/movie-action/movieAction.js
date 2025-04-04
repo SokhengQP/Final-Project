@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const url = `995b46c34578880175b2df0cb63164cd`;
-import Loading from "../../styles/Loading";
+const url = import.meta.env.VITE_API_KEY;
+
 
 // Discover Movie
 export const fetchDiscover = createAsyncThunk('/movie/fetchDiscover/',

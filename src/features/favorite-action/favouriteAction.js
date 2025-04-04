@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_KEY = `995b46c34578880175b2df0cb63164cd`;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 import {
     createAsyncThunk

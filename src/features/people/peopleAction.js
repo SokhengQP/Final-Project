@@ -2,7 +2,7 @@ import {
     createAsyncThunk
 } from "@reduxjs/toolkit";
 
-const keys = `995b46c34578880175b2df0cb63164cd`;
+const keys = import.meta.env.VITE_API_KEY;
 
 export const fetchPopularPeople = createAsyncThunk(
     'people/fetchPeoplePopular',
