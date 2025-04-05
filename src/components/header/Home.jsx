@@ -18,13 +18,14 @@ export default function Home() {
      const { favorites } = useSelector((state) => state.favorites);
      const { data, discover, page } = useSelector((state) => state.movie);
      const totalPage = data?.total_pages || 1;
+     
+     const [timeWindow, setTimeWindow] = useState("day");
 
      useEffect(() => {
           dispatch(fetchMovies({ timeWindow, page }));
           dispatch(fetchDiscover(page));
      }, [dispatch, page, timeWindow]);
 
-     const [timeWindow, setTimeWindow] = useState("day");
 
      const handlePageChange = (newPage) => {
           dispatch(setPage(newPage));

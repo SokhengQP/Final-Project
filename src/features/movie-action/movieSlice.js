@@ -54,11 +54,6 @@ export const movieSlice = createSlice({
           setPage: (state, action) => {
                state.page = action.payload;
           },
-
-          setMore: (state, action) => {
-               state.moreCrew = action.payload;
-          }
-
      },
 
      extraReducers(builder) {
