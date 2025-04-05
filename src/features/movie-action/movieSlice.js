@@ -34,7 +34,6 @@ export const movieSlice = createSlice({
           detailsVideo: {},
           popular: {},
           details: {},
-          // movieplaying: {},
           movieplayingPage: {},
           tvs: {},
           detailReleaseDate: {},

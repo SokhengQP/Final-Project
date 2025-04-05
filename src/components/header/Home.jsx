@@ -13,19 +13,18 @@ import { setPage } from "../../features/movie-action/movieSlice";
 import { Pagination } from "flowbite-react";
 
 const InfiniteScrollMemo = React.memo(InfiniteScroll);
-
 export default function Home() {
      const dispatch = useDispatch();
      const { favorites } = useSelector((state) => state.favorites);
-     const { data, discover, page, status, error } = useSelector((state) => state.movie);
+     const { data, discover, page } = useSelector((state) => state.movie);
      const totalPage = data?.total_pages || 1;
-
-     const [timeWindow, setTimeWindow] = useState("day");
 
      useEffect(() => {
           dispatch(fetchMovies({ timeWindow, page }));
           dispatch(fetchDiscover(page));
      }, [dispatch, page, timeWindow]);
+
+     const [timeWindow, setTimeWindow] = useState("day");
 
      const handlePageChange = (newPage) => {
           dispatch(setPage(newPage));
@@ -40,7 +39,7 @@ export default function Home() {
      }
 
      let imageItems = discover?.results?.map((item) => ({
-          src: item.poster_path ? `${faces_original}${item.poster_path}` : fallbackImg,
+          src: `${faces_original}${item.poster_path || fallbackImg}`,
           alt: item.original_title,
      })) || [];
 
@@ -49,20 +48,7 @@ export default function Home() {
                dispatch(addToFavorites(movie));
           }, 500);
      };
-
      const isFavorite = (movieId) => favorites.some((fav) => fav.id === movieId);
-
-     if (status === 'loading') {
-          return <div className="text-center py-8">Loading...</div>;
-     }
-
-     if (status === 'failed') {
-          return (
-               <div className="text-center py-8 text-red-500">
-                    Error: {error || 'Failed to fetch movies. Please try again later.'}
-               </div>
-          );
-     }
 
      return (
           <>
@@ -83,6 +69,7 @@ export default function Home() {
                          colors={["#0a0908", "#f1faee", "#f1faee", "#0a0908"]}
                          animationSpeed={4}
                          showBorder={false}
+
                     >
                          <div className="flex flex-col gap-4 p-7">
                               <p className="text-5xl px-4 text-start font-sans font-[800]">
@@ -90,15 +77,13 @@ export default function Home() {
                                    <br />
                                    FoxMovie
                               </p>
-                              <p className="px-4 text-lg dark:text-gray-500 text-black">
-                                   The collection of Movies and TV Shows and Popular People
-                              </p>
+                              <p className="px-4 text-lg dark:text-gray-500 text-black">The collection of Movies and Tv Shows and Popular People</p>
                          </div>
                     </GradientText>
                </div>
 
                {/* Trending Section */}
-               <div className="flex flex-col md:flex-row items-center md:justify-between py-0 md:py-4 px-8 md:px-16">
+               <div className="flex flex-col md:flex-row items-center md:justify-between py-0 md:py-4 px-8 md:px-16 ">
                     <aside className="flex justify-center items-center gap-2">
                          <h2 className="text-base 2xl:text-3xl">Trending</h2>
                          <button
@@ -143,8 +128,8 @@ export default function Home() {
                                         >
                                              <MyPropsMovie
                                                   poster={
-                                                       poster_path
-                                                            ? `${faces_original}${poster_path}`
+                                                       backdrop_path
+                                                            ? faces_original + poster_path
                                                             : fallbackImg
                                                   }
                                                   originalTitle={original_title || name}
@@ -154,8 +139,8 @@ export default function Home() {
                                         </Link>
                                         <button
                                              className={`absolute right-4 top-2 mt-2 px-2 py-2 rounded-[50%] text-md ${isFav
-                                                       ? "bg-black text-red-600 cursor-not-allowed"
-                                                       : "bg-[#090109] text-white "
+                                                  ? "bg-black text-red-600 cursor-not-allowed"
+                                                  : "bg-[#090109] text-white "
                                                   }`}
                                              onClick={() => handleAddToFavorites(item)}
                                              disabled={isFav}
