@@ -23,7 +23,7 @@ export default function Home() {
 
      useEffect(() => {
           dispatch(fetchMovies({ timeWindow, page }));
-          dispatch(fetchDiscover(page)); // For infinite scroll
+          dispatch(fetchDiscover(page));
      }, [dispatch, page, timeWindow]);
 
      const handlePageChange = (newPage) => {
@@ -38,11 +38,10 @@ export default function Home() {
           });
      }
 
-     let imageItems =
-          discover?.results?.map((item) => ({
-               src: `${faces_original}${item.poster_path || fallbackImg}`,
-               alt: item.original_title,
-          })) || [];
+     let imageItems = discover?.results?.map((item) => ({
+          src: `${faces_original}${item.poster_path || fallbackImg}`,
+          alt: item.original_title,
+     })) || [];
 
      const handleAddToFavorites = (movie) => {
           setTimeout(() => {
@@ -50,6 +49,7 @@ export default function Home() {
           }, 500);
      };
      const isFavorite = (movieId) => favorites.some((fav) => fav.id === movieId);
+    
      return (
           <>
                <div style={{ height: "600px", position: "relative" }}>
@@ -69,7 +69,7 @@ export default function Home() {
                          colors={["#0a0908", "#f1faee", "#f1faee", "#0a0908"]}
                          animationSpeed={4}
                          showBorder={false}
-                        
+
                     >
                          <div className="flex flex-col gap-4 p-7">
                               <p className="text-5xl px-4 text-start font-sans font-[800]">
@@ -85,7 +85,7 @@ export default function Home() {
                {/* Trending Section */}
                <div className="flex flex-col md:flex-row items-center md:justify-between py-0 md:py-4 px-8 md:px-16 ">
                     <aside className="flex justify-center items-center gap-2">
-                         <h2 className="text-base 2xl:text-3xl ">Trending</h2>
+                         <h2 className="text-base 2xl:text-3xl">Trending</h2>
                          <button
                               onClick={toggleDay}
                               className="text-base px-2 rounded-3xl cursor-pointer py-1 my-2 w-[140px] hover:bg-gray-500 bg-gray-600 2xl:text-xl"

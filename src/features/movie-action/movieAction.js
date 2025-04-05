@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const url = import.meta.env.VITE_API_KEY;
 
+const api_key = import.meta.env.VITE_API_KEY;
 
 // Discover Movie
 export const fetchDiscover = createAsyncThunk('/movie/fetchDiscover/',
      async (page = 1) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${url}&page=${page}`);
+               const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&page=${page}`);
                const datas = await response.json();
                return datas
           } catch (error) {
@@ -22,7 +22,7 @@ export const fetchDiscoverTv = createAsyncThunk('/tv/fetchDiscoverTv/',
           page
      }) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/discover/tv?with_genres=${genreId}&api_key=${url}&page=${page}`);
+               const response = await fetch(`https://api.themoviedb.org/3/discover/tv?with_genres=${genreId}&api_key=${api_key}&page=${page}`);
                const datas = await response.json();
                return datas
           } catch (error) {
@@ -39,7 +39,7 @@ export const fetchDiscoverByGenre = createAsyncThunk('/movie/fetchDiscoverByGenr
           page
      }) => {
           try {
-               let response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&api_key=${url}&page=${page}`);
+               let response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&api_key=${api_key}&page=${page}`);
                const datas = await response.json();
                return datas;
           } catch (error) {
@@ -52,7 +52,7 @@ export const fetchDiscoverByGenre = createAsyncThunk('/movie/fetchDiscoverByGenr
 export const fetchTopBilledCast = createAsyncThunk('/movie/fetchTopBilledCast/',
      async (id) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api_key}`);
                const datas = await response.json();
                return datas
           } catch (error) {
@@ -66,7 +66,7 @@ export const fetchTopBilledCast = createAsyncThunk('/movie/fetchTopBilledCast/',
 export const fetchCreditTv = createAsyncThunk('/tv/fetchCreditTv/',
      async (id) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/aggregate_credits?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/aggregate_credits?api_key=${api_key}`);
                const datas = await response.json();
                return datas
           } catch (error) {
@@ -80,7 +80,7 @@ export const fetchCreditTv = createAsyncThunk('/tv/fetchCreditTv/',
 export const fetchMovieTopRate = createAsyncThunk('/movie/fetchMovieTopRate/',
      async (page) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${url}&page=${page}`);
+               const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&page=${page}`);
                const datas = await response.json();
                return datas
           } catch (error) {
@@ -93,7 +93,7 @@ export const fetchMovieTopRate = createAsyncThunk('/movie/fetchMovieTopRate/',
 export const fetchUpcomming = createAsyncThunk('/movie/fetchUpcomming/',
      async (page = 1) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${url}&page=${page}`);
+               const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${api_key}&page=${page}`);
                const datas = await response.json();
                return datas
           } catch (error) {
@@ -107,7 +107,7 @@ export const fetchUpcomming = createAsyncThunk('/movie/fetchUpcomming/',
 export const fetchMovies = createAsyncThunk('/movie/fetchMovie/',
      async ({ timeWindow, page = 1 }) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${url}&page=${page}`);
+               const response = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${api_key}&page=${page}`);
                const datas = await response.json();
                return datas;
           } catch (error) {
@@ -120,7 +120,7 @@ export const fetchMovies = createAsyncThunk('/movie/fetchMovie/',
 export const fetchTrendingDay = createAsyncThunk('/movie/fetchMovie/',
      async () => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}`);
                const datas = await response.json();
                return datas
           } catch (error) {
@@ -133,7 +133,7 @@ export const fetchTrendingDay = createAsyncThunk('/movie/fetchMovie/',
 export const fetchTv = createAsyncThunk('/movie/fetchTv/',
      async (id) => {
           try {
-               let response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${url}`);
+               let response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}`);
                let datas = await response.json();
                return datas;
           } catch (error) {
@@ -148,7 +148,7 @@ export const fetchTv = createAsyncThunk('/movie/fetchTv/',
 export const fetchMoviesVideo = createAsyncThunk('/product/fetchMoviesVidoe/',
      async (id) => {
           try {
-               let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${url}`);
+               let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${api_key}`);
                const respData = response.json();
                return respData;
           } catch (error) {
@@ -161,7 +161,7 @@ export const fetchMoviesVideo = createAsyncThunk('/product/fetchMoviesVidoe/',
 export const fetchTvVideo = createAsyncThunk('/product/fetchTvVideo/',
      async (id) => {
           try {
-               let response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${url}`);
+               let response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${api_key}`);
                const respData = response.json();
                return respData;
           } catch (error) {
@@ -173,7 +173,7 @@ export const fetchTvVideo = createAsyncThunk('/product/fetchTvVideo/',
 export const fetchMoviesReleaseDate = createAsyncThunk('/product/fetchfetchMoviesReleaseDate/',
      async (id) => {
           try {
-               let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates?api_key=${url}`);
+               let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates?api_key=${api_key}`);
                const respData = response.json();
                return respData;
           } catch (error) {
@@ -187,7 +187,7 @@ export const fetchMoviesReleaseDate = createAsyncThunk('/product/fetchfetchMovie
 export const fetchNowPlayingPage = createAsyncThunk('/product/fetchNowPlayingPage/',
      async (pages = 1) => {
           try {
-               let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${url}&page=${pages}`);
+               let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${api_key}&page=${pages}`);
                let respData = response.json();
                return respData;
           } catch (error) {
@@ -202,7 +202,7 @@ export const fetchPopular = createAsyncThunk('/product/fetchPopular/',
      async (pages = 1, { rejectWithValue }) => {
           let spinnerTime = null;
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${url}&&page=${pages}`);
+               const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&&page=${pages}`);
                if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                }
@@ -229,7 +229,7 @@ export const fetchPopular = createAsyncThunk('/product/fetchPopular/',
 export const fetchMovieDetails = createAsyncThunk('/product/fetchDetails/',
      async (id) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`);
                const respData = response.json();
                return respData;
           } catch (error) {
@@ -244,7 +244,7 @@ export const fetchMovieDetails = createAsyncThunk('/product/fetchDetails/',
 export const fetchSearchMovie = createAsyncThunk('/product/fetchSearchMovie/',
      async () => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/movie/939243/videos?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/movie/939243/videos?api_key=${api_key}`);
                const respData = response.json();
                return respData;
           } catch (error) {
@@ -257,7 +257,7 @@ export const fetchSearchMovie = createAsyncThunk('/product/fetchSearchMovie/',
 export const fetchTopRated = createAsyncThunk('/product/fetchTopRated/',
      async () => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}`);
                const respData = response.json();
                return respData;
           } catch (error) {
@@ -273,7 +273,7 @@ export const fetchTopRated = createAsyncThunk('/product/fetchTopRated/',
 export const fetchGenreMovie = createAsyncThunk('/product/fetchGenreMovie/',
      async () => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`);
                const respData = response.json();
                return respData;
           } catch (error) {
@@ -286,7 +286,7 @@ export const fetchGenreMovie = createAsyncThunk('/product/fetchGenreMovie/',
 export const fetchGenreTv = createAsyncThunk('/product/fetchGenreTv/',
      async () => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${url}`);
+               const response = await fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${api_key}`);
                const respData = response.json();
                return respData;
           } catch (error) {
