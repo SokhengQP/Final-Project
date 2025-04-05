@@ -49,9 +49,7 @@ export default function Home() {
                dispatch(addToFavorites(movie));
           }, 500);
      };
-
      const isFavorite = (movieId) => favorites.some((fav) => fav.id === movieId);
-
      return (
           <>
                <div style={{ height: "600px", position: "relative" }}>
@@ -66,7 +64,7 @@ export default function Home() {
                     />
                </div>
 
-               <div className="absolute z-10 top-3/4 left-20  sm:top-32 md:top-32 xl:top-32 2xl:top-32">
+               <div className="absolute z-10 top-24 left-0 sm:top-32 md:top-32 xl:top-32 2xl:top-32">
                     <GradientText
                          colors={["#0a0908", "#f1faee", "#f1faee", "#0a0908"]}
                          animationSpeed={4}

@@ -102,7 +102,6 @@ export default function Header() {
           },
      ];
 
-
      return (
           <header id="nav" className={`fixed top-0 w-full backdrop-blur-xl z-50 transition-all duration-300 shadow-md px-4 md:px-16 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
                <div className="container flex justify-between items-center py-0">
