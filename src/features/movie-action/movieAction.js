@@ -105,9 +105,9 @@ export const fetchUpcomming = createAsyncThunk('/movie/fetchUpcomming/',
 
 // Trending All
 export const fetchMovies = createAsyncThunk('/movie/fetchMovie/',
-     async ({ timeWindow, page = 1 }) => {
+     async ( page = 1 ) => {
           try {
-               const response = await fetch(`https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${api_key}&page=${page}`);
+               const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${api_key}&page=${page}`);
                const datas = await response.json();
                return datas;
           } catch (error) {
